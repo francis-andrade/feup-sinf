@@ -1,27 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authentication: {},
+      artigos: {}
+    };
+  }
+
+  loadArtigos() {
+    fetch('http://localhost:8080/WebApi/Base/Artigos/LstArtigos',
+        {
+          headers: {
+            'Authorization' : `Bearer ${this.state.authentication['access_token']}`,
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => response.json())
+        .then(data => this.setState({ artigos: data }));
+  }
+
+  componentDidMount() {
+    let requestBody = {
+      username: 'FEUP',
+      password: 'qualquer1',
+      company: 'BELAFLOR',
+      instance: 'DEFAULT',
+      line: 'professional',
+      grant_type: 'password'
+    };
+
+    let formData = new URLSearchParams();
+    for (var key in requestBody) {
+      formData.append(key, requestBody[key]);
+    }
+    
+    fetch('http://localhost:8080/WebApi/token', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => this.setState({ authentication: data }))
+      .then(this.loadArtigos.bind(this));   
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    return <div>{JSON.stringify(this.state)}</div>;
   }
 }
 
