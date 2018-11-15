@@ -1,55 +1,15 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Dashboard from "./Dashboard.js"
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      authentication: {},
-      artigos: {}
-    };
-  }
-
-  loadArtigos() {
-    fetch('http://localhost:8080/WebApi/Base/Artigos/LstArtigos',
-        {
-          headers: {
-            'Authorization' : `Bearer ${this.state.authentication['access_token']}`,
-            'Accept': 'application/json'
-          }
-        })
-        .then(response => response.json())
-        .then(data => this.setState({ artigos: data }));
-  }
-
-  componentDidMount() {
-    let requestBody = {
-      username: 'FEUP',
-      password: 'qualquer1',
-      company: 'BELAFLOR',
-      instance: 'DEFAULT',
-      line: 'professional',
-      grant_type: 'password'
-    };
-
-    let formData = new URLSearchParams();
-    for (var key in requestBody) {
-      formData.append(key, requestBody[key]);
-    }
-    
-    fetch('http://localhost:8080/WebApi/token', {
-      method: 'POST',
-      body: formData,
-    })
-      .then(response => response.json())
-      .then(data => this.setState({ authentication: data }))
-      .then(this.loadArtigos.bind(this));   
-  }
-
-  render() {
-    return <div>{JSON.stringify(this.state)}</div>;
-  }
-}
+const App = () => (
+  <Router>
+    <div>
+      Try /dashboard
+      {/* <Route exact path="/" component={Home} /> */}
+      <Route path="/dashboard" component={Dashboard} />
+    </div>
+  </Router>
+);
 
 export default App;
