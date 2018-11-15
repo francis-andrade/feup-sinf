@@ -1,13 +1,27 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Dashboard from "./Dashboard.js"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./Header.js";
+import GenericDash from "./Dashboards/GenericDash";
+import SalesDash from "./Dashboards/SalesDash";
+import PurchasesDash from "./Dashboards/PurchasesDash";
+import FinancialDash from "./Dashboards/FinancialDash";
+import LogisticsDash from "./Dashboards/LogisticsDash";
+import HRDash from "./Dashboards/HumanResourcesDash";
 
 const App = () => (
   <Router>
     <div>
-      Try /dashboard
-      {/* <Route exact path="/" component={Home} /> */}
-      <Route path="/dashboard" component={Dashboard} />
+      <Header />
+
+      <Switch>
+        {/* <Route exact path='/' component={Home}/> */}
+        <Route path='/generic' component={GenericDash} />
+        <Route path='/sales' component={SalesDash} />
+        <Route path='/purchases' component={PurchasesDash} />
+        <Route path='/financial' component={FinancialDash} />
+        <Route path='/logistics' component={LogisticsDash} />
+        <Route path='/humanresources' component={HRDash} />
+      </Switch>
     </div>
   </Router>
 );
