@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import CalendarSelector from '../components/CalendarSelector'
 
 class HumanResourcesDash extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class HumanResourcesDash extends Component {
     render() {
         return (
             <div>
-                Nothing here!
+                <CalendarSelector />
             </div>
         );
     }

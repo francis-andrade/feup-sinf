@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import CalendarSelector from '../components/CalendarSelector'
 
 class LogisticsDash extends Component {
     constructor(props) {
@@ -48,7 +49,14 @@ class LogisticsDash extends Component {
       }
 
       render() {
-        return <div>{JSON.stringify(this.state)}</div>;
+        return(
+          <div>
+            <CalendarSelector />
+            <div>
+              {JSON.stringify(this.state)}
+            </div>
+          </div>
+        );
       }
 }
 

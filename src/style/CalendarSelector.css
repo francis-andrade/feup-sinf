@@ -1,0 +1,13 @@
+.calendarSelectorContainer {
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+    margin-top: 2.5%;
+}
+
+.calendarInput {
+    text-align: center;
+    font-size: 1.3em;
+    padding-top: 2%;
+    padding-bottom: 3%;
+}
