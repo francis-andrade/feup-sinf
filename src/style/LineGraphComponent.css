@@ -1,0 +1,18 @@
+.lineGraphContainer {
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+}
+
+.lineGraphTitle {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    padding-top: 2%;
+    padding-bottom: 3%;
+}
+
+.lineGraphCanvas {
+    padding-top: 2vh;
+    padding-bottom: 5vh;
+}

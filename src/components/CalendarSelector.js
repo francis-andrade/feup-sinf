@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Container } from 'reactstrap';
 import { FaCalendarAlt } from 'react-icons/fa';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import moment from 'moment';
@@ -45,9 +45,9 @@ class CalendarSelector extends Component {
         const modifiers = { start: from, end: to };
 
         return (
-            <div>
+            <Container>
                 <Row>
-                    <Col xs={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }} xl={{ size: 6, offset: 3 }} className="calendarSelectorContainer">
+                    <Col xs={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }} xl={{ size: 10, offset: 1 }} className="calendarSelectorContainer">
                         <Row>
                             <Col className="calendarInput">
                                 <span>Start Date: </span>
@@ -118,7 +118,7 @@ class CalendarSelector extends Component {
                         </Row>
                     </Col>
                 </Row>
-            </div>
+            </Container>
         )
     }
 }
