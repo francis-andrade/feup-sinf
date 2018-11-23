@@ -16,7 +16,7 @@ class FinancialDash extends Component {
 
     render() {
         return (
-            <div>
+            <div className='dashboardBackground'>
                 <Row>
                     <Col>
                         <CalendarSelector />

@@ -7,6 +7,7 @@ import Helmet from 'react-helmet';
 
 import 'react-day-picker/lib/style.css';
 import '../styles/CalendarSelector.style.css';
+import '../styles/Common.style.css';
 
 import { formatDate, parseDate } from 'react-day-picker/moment';
 
@@ -47,7 +48,7 @@ class CalendarSelector extends Component {
         return (
             <Container>
                 <Row>
-                    <Col xs={{ size: 12 }} lg={{ size: 8, offset: 2 }} xl={{ size: 10, offset: 1 }} className="calendarSelectorContainer">
+                    <Col xs={{ size: 12 }} lg={{ size: 8, offset: 2 }} xl={{ size: 10, offset: 1 }} className='calendarSelectorContainer componentBackground'>
                         <Row>
                             <Col className="calendarInput">
                                 <span>Start Date: </span>

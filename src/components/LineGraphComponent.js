@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Container } from 'reactstrap';
 
 import '../styles/GraphComponent.style.css';
+import '../styles/Common.style.css';
 
 import { Line } from 'react-chartjs-2';
 
@@ -39,7 +40,7 @@ class LineGraphComponent extends Component {
 
     render() {
         return(
-            <Container className='lineGraphContainer'>
+            <Container className='lineGraphContainer componentBackground'>
                 <Row>
                     <Col className='lineGraphTitle'>
                         <span>Graph Title</span>
