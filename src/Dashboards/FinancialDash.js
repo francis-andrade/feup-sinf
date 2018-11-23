@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import '../App.css';
+import '../styles/Common.style.css';
 import CalendarSelector from '../components/CalendarSelector'
 import LineGraphComponent from '../components/LineGraphComponent';
 
@@ -22,10 +23,18 @@ class FinancialDash extends Component {
                     </Col>
                 </Row>
                 <Row style={{ 'marginTop':'5vh' }} >
-                    <Col lg={{ size: 5, offset: 1 }} xl={{ size: 4, offset: 2 }}>
+                    <Col lg={{ size: 5, offset: 1 }} className='columnStack'>
                         <LineGraphComponent />
                     </Col>
-                    <Col lg={{ size: 5 }} xl={{ size: 4 }}>
+                    <Col lg={{ size: 5 }}>
+                        <LineGraphComponent />
+                    </Col>
+                </Row>
+                <Row style={{ 'marginTop':'5vh' }} >
+                    <Col lg={{ size: 5, offset: 1 }} className='columnStack'>
+                        <LineGraphComponent />
+                    </Col>
+                    <Col lg={{ size: 5 }}>
                         <LineGraphComponent />
                     </Col>
                 </Row>

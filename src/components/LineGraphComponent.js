@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Container } from 'reactstrap';
 
-import '../style/LineGraphComponent.css';
+import '../styles/GraphComponent.style.css';
 
 import { Line } from 'react-chartjs-2';
 
@@ -47,7 +47,7 @@ class LineGraphComponent extends Component {
                 </Row>
                 <Row>
                     <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='lineGraphCanvas'>
-                        <Line data={this.data} options={{ maintainAspectRatio: false }} />
+                        <Line data={this.data} options={{ maintainAspectRatio: false }} height='200' />
                     </Col>
                 </Row>
             </Container>
