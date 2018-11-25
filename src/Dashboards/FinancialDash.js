@@ -4,6 +4,7 @@ import '../App.css';
 import '../styles/Common.style.css';
 import CalendarSelector from '../components/CalendarSelector'
 import LineGraphComponent from '../components/LineGraphComponent';
+import KPIComponent from '../components/KPIComponent';
 
 class FinancialDash extends Component {
     constructor(props) {
@@ -36,6 +37,14 @@ class FinancialDash extends Component {
                     </Col>
                     <Col lg={{ size: 5 }}>
                         <LineGraphComponent />
+                    </Col>
+                </Row>
+                <Row style={{ 'marginTop':'5vh' }} >
+                    <Col lg={{ size: 5, offset: 1 }} className='columnStack'>
+                        <KPIComponent />
+                    </Col>
+                    <Col lg={{ size: 5 }}>
+                        <KPIComponent />
                     </Col>
                 </Row>
             </div>
