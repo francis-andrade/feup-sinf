@@ -24,7 +24,7 @@ class KPIComponent extends Component {
                 <hr className='kpiHr'/>
                 <Row>
                     <Col>
-                        <span className='kpiTitle'>Sales Value</span>
+                        <span className='kpiTitle'>{this.props.title}</span>
                     </Col>
                 </Row>
             </Container>

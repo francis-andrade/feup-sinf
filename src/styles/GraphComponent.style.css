@@ -1,10 +1,10 @@
-/* .lineGraphContainer {
+/* .graphContainer {
     border-color: black;
     border-width: 5px;
     border-style: solid;
 } */
 
-.lineGraphTitle {
+.graphTitle {
     text-align: center;
     font-size: 2em;
     font-weight: bold;
@@ -12,7 +12,7 @@
     padding-bottom: 3%;
 }
 
-.lineGraphCanvas {
+.graphCanvas {
     padding-top: 2vh;
     padding-bottom: 5vh;
 }
