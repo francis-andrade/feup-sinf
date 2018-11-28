@@ -4,10 +4,21 @@ const fs = require('fs');
 
 const XmlReader = require('xml-reader');
 const Flatted = require('flatted');
+const xmlQuery = require('xml-query');
 
 const app = express();
 
 let parsedXML;
+
+// TODO: temporary test query for reading fields in SAF-T
+app.get('/api/testQuery', (req, res) => {
+    
+    let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
+    parsedXML = XmlReader.parseSync(xmlFile);
+
+    const xq = xmlQuery(parsedXML);
+    console.log(xq.find('AccountID').get(1));
+});
 
 // Parse a SAF-T file read from the file system and store it
 app.get('/api/parseXML', (req, res) => {
