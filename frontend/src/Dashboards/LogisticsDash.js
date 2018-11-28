@@ -12,7 +12,7 @@ class LogisticsDash extends Component {
         };
       }
     
-      loadArtigos() {
+      listArticles() {
         fetch('http://localhost:2018/WebApi/Base/Artigos/LstArtigos',
             {
               headers: {
@@ -45,7 +45,7 @@ class LogisticsDash extends Component {
         })
           .then(response => response.json())
           .then(data => this.setState({ authentication: data }))
-          .then(this.loadArtigos.bind(this));   
+          .then(this.listArticles.bind(this));   
       }
 
       render() {

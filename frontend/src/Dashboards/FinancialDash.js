@@ -42,6 +42,16 @@ class FinancialDash extends Component {
         };
     }
 
+    componentDidMount() {
+
+        // TODO: example fetch from server
+        fetch('http://localhost:5000/Api/printXML', {
+            method: 'GET',
+            mode: 'no-cors'
+        })
+            .then(response => console.log(response.body))
+    }
+
     render() {
         return (
             <div className='dashboardBackground'>
@@ -50,7 +60,7 @@ class FinancialDash extends Component {
                         <CalendarSelector />
                     </Col>
                 </Row>
-                <Row style={{ 'marginTop':'5vh' }} >
+                <Row style={{ 'marginTop': '5vh' }} >
                     <Col lg={{ size: 5, offset: 1 }} className='columnStack'>
                         <GraphComponent type={'pie'} data={this.data} height={'200'} title={'Graph Title'} />
                     </Col>
@@ -58,7 +68,7 @@ class FinancialDash extends Component {
                         <GraphComponent type={'line'} data={this.data} height={'200'} title={'Graph Title1'} />
                     </Col>
                 </Row>
-                <Row style={{ 'marginTop':'5vh' }} >
+                <Row style={{ 'marginTop': '5vh' }} >
                     <Col lg={{ size: 5, offset: 1 }} className='columnStack'>
                         <GraphComponent type={'line'} data={this.data} height={'200'} title={'Graph Title2'} />
                     </Col>
@@ -66,7 +76,7 @@ class FinancialDash extends Component {
                         <GraphComponent type={'line'} data={this.data} height={'200'} title={'Graph Title3'} />
                     </Col>
                 </Row>
-                <Row style={{ 'marginTop':'5vh' }} >
+                <Row style={{ 'marginTop': '5vh' }} >
                     <Col lg={{ size: 5, offset: 1 }} className='columnStack'>
                         <KPIComponent title={'KPI Title'} />
                     </Col>
