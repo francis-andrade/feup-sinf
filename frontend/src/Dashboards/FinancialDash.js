@@ -19,7 +19,7 @@ class FinancialDash extends Component {
             datasets: [
                 {
                     label: 'My First dataset',
-                    fill: false,
+                    fill: true,
                     lineTension: 0.1,
                     backgroundColor: 'rgba(75,192,192,0.4)',
                     borderColor: 'rgba(75,192,192,1)',
@@ -62,18 +62,18 @@ class FinancialDash extends Component {
                 </Row>
                 <Row style={{ 'marginTop': '5vh' }} >
                     <Col lg={{ size: 5, offset: 1 }} className='columnStack'>
-                        <GraphComponent type={'pie'} data={this.data} height={'200'} title={'Graph Title'} />
+                        <GraphComponent type={'pie'} data={this.data} height={200} title={'Graph Title'} />
                     </Col>
                     <Col lg={{ size: 5 }}>
-                        <GraphComponent type={'line'} data={this.data} height={'200'} title={'Graph Title1'} />
+                        <GraphComponent type={'line'} data={this.data} height={200} title={'Graph Title1'} />
                     </Col>
                 </Row>
                 <Row style={{ 'marginTop': '5vh' }} >
                     <Col lg={{ size: 5, offset: 1 }} className='columnStack'>
-                        <GraphComponent type={'line'} data={this.data} height={'200'} title={'Graph Title2'} />
+                        <GraphComponent type={'line'} data={this.data} height={200} title={'Graph Title2'} />
                     </Col>
                     <Col lg={{ size: 5 }}>
-                        <GraphComponent type={'line'} data={this.data} height={'200'} title={'Graph Title3'} />
+                        <GraphComponent type={'line'} data={this.data} height={200} title={'Graph Title3'} />
                     </Col>
                 </Row>
                 <Row style={{ 'marginTop': '5vh' }} >
