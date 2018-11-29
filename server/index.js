@@ -17,7 +17,17 @@ app.get('/api/testQuery', (req, res) => {
     parsedXML = XmlReader.parseSync(xmlFile);
 
     const xq = xmlQuery(parsedXML);
-    console.log(xq.find('AccountID').get(1));
+
+    let query = xq.find('ClosingDebitBalance')
+
+    // Iterate over ClosingDebitBalance
+    let closingDebitSum = 0;
+    for (let o of query['ast']) {
+        closingDebitSum += parseInt(o['children'][0]['value']);
+        //console.log(o['children'][0]['value']);
+    }
+    console.log(closingDebitSum);
+    res.send(closingDebitSum + '');
 });
 
 // Parse a SAF-T file read from the file system and store it
