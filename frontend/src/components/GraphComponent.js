@@ -4,7 +4,7 @@ import { Row, Col, Container } from 'reactstrap';
 import '../styles/GraphComponent.style.css';
 import '../styles/Common.style.css';
 
-import { Line, Bar, Radar, Doughnut, Pie, Polar, Bubble } from 'react-chartjs-2';
+import { Line, Bar, Radar, Doughnut, Pie, Polar, Bubble, HorizontalBar, Scatter } from 'react-chartjs-2';
 
 class GraphComponent extends Component {
     constructor(props) {
@@ -36,6 +36,12 @@ class GraphComponent extends Component {
                 break;
             case 'bubble':
                 this.graph = <Bubble data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                break;
+            case 'horizontalBar':
+                this.graph = <HorizontalBar data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                break;
+            case 'scatter':
+                this.graph = <Scatter data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             default:
                 break;

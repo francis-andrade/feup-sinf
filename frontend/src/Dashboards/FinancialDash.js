@@ -110,7 +110,7 @@ class FinancialDash extends Component {
         return(
             <div className='dashboardBackground'>
                 <Row>
-                    <Col>
+                    <Col style={{ 'marginTop': '5vh' }}>
                         <CalendarSelector />
                     </Col>
                 </Row>
