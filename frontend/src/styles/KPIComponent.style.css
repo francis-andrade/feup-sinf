@@ -1,8 +1,3 @@
-.kpiHr {
-    width: 50%;
-    margin-right: 3%;
-}
-
 .kpiValue {
     font-size: 2.5em;
     float: right;
@@ -14,5 +9,43 @@
     font-size: 1.3em;
     float: right;
     margin-right: 5%;
-    margin-bottom: 2%;
+}
+
+.kpiInfo {
+    font-size: 0.8em;
+    float: right;
+    margin-right: 5%;
+    margin-bottom: 3%;
+}
+
+@media(min-height:640px){
+    .kpiContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 22vh;
+    }
+}
+
+@media(min-height:840px){
+    .kpiContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 21.9vh;
+    }
+
+    .kpiHr {
+        width: 50%;
+        margin-right: 3%;
+    }
+}
+
+@media(max-height:839px){
+    .kpiHr {
+        width: 50%;
+        margin-right: 3%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
 }

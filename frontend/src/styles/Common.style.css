@@ -1,7 +1,17 @@
-@media(max-width:768px){
+@media(max-width:1224px){
     .columnStack {
         margin-bottom: 5vh;
     }
+}
+
+@media(min-width:1224px){
+    .rowStack {
+        margin-top: 5vh;
+    }
+}
+
+.lastElement {
+    margin-bottom: 5vh;
 }
 
 .dashboardBackground {

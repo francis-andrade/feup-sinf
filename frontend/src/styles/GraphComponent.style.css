@@ -12,8 +12,18 @@
     padding-bottom: 3%;
 }
 
-.graphCanvas {
-    padding-top: 2vh;
-    padding-bottom: 5vh;
-    height: 40vh
+@media(max-height:539px){
+    .graphCanvas {
+        padding-top: 2vh;
+        padding-bottom: 5vh;
+        height: 216px;
+    }
+}
+
+@media(min-height:540px){
+    .graphCanvas {
+        padding-top: 2vh;
+        padding-bottom: 5vh;
+        height: 40vh
+    }
 }
