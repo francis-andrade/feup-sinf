@@ -115,73 +115,73 @@ class FinancialDash extends Component {
                     </Col>
                 </Row>
                 <Row style={{ 'marginTop': '5vh' }}>
-                    <Col lg={{ size: 1 }} />
-                    <Col lg={{ size: 5 }} xl className='columnStack'>
+                    <Col xs={{ size: 1 }} />
+                    <Col md={{ size: 5 }} xl className='columnStack'>
                         <KPIComponent title={'Total Income'} type={'money'} currentValue={1645} previousValue={1000}/>
                     </Col>
-                    <Col lg={{ size: 5 }} xl className='columnStack'>
+                    <Col md={{ size: 5 }} xl className='columnStack'>
                         <KPIComponent title={'Total Expenses'} type={'money'} currentValue={834} previousValue={1000}/>
                     </Col>
-                    <Col lg={{ size: 1 }} className='d-xl-none'/>
-                    <Col lg={{ size: 1 }} className='d-xl-none'/>
-                    <Col lg={{ size: 5 }} xl className='columnStack'>
+                    <Col xs={{ size: 1 }} className='d-xl-none'/>
+                    <Col xs={{ size: 1 }} className='d-xl-none'/>
+                    <Col md={{ size: 5 }} xl className='columnStack'>
                         <KPIComponent title={'Total Revenue'} type={'money'} currentValue={2075} previousValue={1000}/>
                     </Col>
-                    <Col lg={{ size: 5 }} xl className='columnStack'>
+                    <Col md={{ size: 5 }} xl className='columnStack'>
                         <KPIComponent title={'Total Asset Value'} type={'money'} currentValue={3966} previousValue={1000}/>
                     </Col>
-                    <Col lg={{ size: 1 }} />
+                    <Col xs={{ size: 1 }} />
                 </Row>
                 <Row className='rowStack'>
                     <Col xl={{ size: 6 }}>
                         <Row>
-                            <Col lg={{ size: 1 }} xl={{ size: 2 }} />
-                            <Col lg className='columnStack'>
+                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
+                            <Col md className='columnStack'>
                                 <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={857} previousValue={1000}/>
                             </Col>
-                            <Col lg className='columnStack'>
+                            <Col md className='columnStack'>
                                 <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={1672} previousValue={1000}/>
                             </Col>
-                            <Col lg={{ size: 1 }} className='d-xl-none' />
+                            <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
                         <Row className='rowStack'>
-                            <Col lg={{ size: 1 }} xl={{ size: 2 }} />
-                            <Col lg className='columnStack'>
+                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
+                            <Col md className='columnStack'>
                                 <KPIComponent title={'Financial Autonomy'} type={'percentage'} currentValue={140} previousValue={126}/>
                             </Col >
-                            <Col lg className='columnStack'>
+                            <Col md className='columnStack'>
                                 <KPIComponent title={'General Liquidity'} type={'percentage'} currentValue={106} previousValue={102}/>
                             </Col>
-                            <Col lg={{ size: 1 }} className='d-xl-none' />
+                            <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
                     </Col>
                     <Col xl={{ size: 6 }}>
                         <Row>
-                            <Col lg={{ size: 1 }} className='d-xl-none' />
+                            <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='columnStack'>
                                 <GraphComponent type={'line'} data={this.revenue} title={'Revenue History'} />
                             </Col>
-                            <Col lg={{ size: 1 }} xl={{ size: 2 }} />
+                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
                     </Col>
                 </Row>
                 <Row className='rowStack'>
                     <Col xl={{ size: 6 }}>
                         <Row>
-                            <Col lg={{ size: 1 }} xl={{ size: 2 }} />
+                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
                                 <GraphComponent type={'line'} data={this.costs} title={'Costs History'} />
                             </Col>
-                            <Col lg={{ size: 1 }} className='d-xl-none' />
+                            <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
                     </Col>
                     <Col xl={{ size: 6 }}>
                         <Row>
-                            <Col lg={{ size: 1 }} className='d-xl-none' />
+                            <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='lastElement'>
                                 <GraphComponent type={'line'} data={this.income} title={'Income History'} />
                             </Col>
-                            <Col lg={{ size: 1 }} xl={{ size: 2 }} />
+                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
                     </Col>
                 </Row>

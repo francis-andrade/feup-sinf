@@ -1,21 +1,21 @@
 .kpiValue {
-    font-size: 2.5em;
+    font-size: 2.0em;
     float: right;
     margin-right: 5%;
     margin-top: 3%;
 }
 
 .kpiTitle {
-    font-size: 1.3em;
+    font-size: 1.2em;
     float: right;
     margin-right: 5%;
 }
 
 .kpiInfo {
-    font-size: 0.8em;
+    font-size: 0.7em;
     float: right;
     margin-right: 5%;
-    margin-bottom: 3%;
+    margin-top: 1%;
 }
 
 @media(min-height:640px){
