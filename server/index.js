@@ -61,6 +61,31 @@ app.get('/api/salesTotals', (req, res) => {
     // res.send(closingDebitSum + '');
 });
 
+// TODO:
+app.get('/api/testQuery', (req, res) => {
+
+    let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
+    parsedXML = XmlReader.parseSync(xmlFile);
+
+    // Get whole document as xml-query object
+    const xq = xmlQuery(parsedXML);
+
+    // Get sales totals
+    let journalQuery = xq.find('GeneralLedgerEntries').children().find('Journal');
+
+    // For each journal entry
+    for(let i = 0; i < journalQuery.size(); i++) {
+        let linesQuery = journalQuery.eq(i).find('Transaction').children().find('Lines');
+
+        // For each line entry of the transaction
+        for(let i = 0; i < linesQuery.size(); i++) {
+            console.log(linesQuery.children().eq(i).children().find('AccountID').text());
+        }
+    }
+
+    // res.send();
+});
+
 // Parse a SAF-T file read from the file system and store it
 app.get('/api/parseXML', (req, res) => {
     
