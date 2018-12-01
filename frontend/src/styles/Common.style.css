@@ -4,6 +4,12 @@
     }
 }
 
+@media(max-width:764px){
+    .smallScreenStack {
+        margin-bottom: 5vh;
+    }
+}
+
 @media(min-width:1224px){
     .rowStack {
         margin-top: 5vh;

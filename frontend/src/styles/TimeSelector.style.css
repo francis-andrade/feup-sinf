@@ -1,0 +1,17 @@
+.timeSelectorContainer {
+    margin-top: 5vh;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+}
+
+.timeSelectorGroup {
+    font-size: 1.6em;
+}
+
+.timeSelectorText {
+    padding-right: 7px;
+}
+
+.timeSelectorInput {
+    text-align: center;
+}

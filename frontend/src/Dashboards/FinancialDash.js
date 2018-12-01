@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
-import '../App.css';
-import '../styles/Common.style.css';
-import CalendarSelector from '../components/CalendarSelector';
+import TimeSelectorComponent from '../components/TimeSelectorComponent';
 import GraphComponent from '../components/GraphComponent';
 import KPIComponent from '../components/KPIComponent';
+import '../App.css';
+import '../styles/Common.style.css';
 
 class FinancialDash extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-
+            year: '2018',
+            month: '1'
         };
+
+        this.changeYear = this.changeYear.bind(this);
+        this.changeMonth = this.changeMonth.bind(this);
 
         this.revenue = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -96,6 +100,18 @@ class FinancialDash extends Component {
         };
     }
 
+    changeYear = (value) => {
+        this.setState({
+            year: value
+        })
+    }
+
+    changeMonth = (value) => {
+        this.setState({
+            month: value
+        })
+    }
+
     componentDidMount() {
 
         // TODO: example fetch from server
@@ -110,9 +126,11 @@ class FinancialDash extends Component {
         return(
             <div className='dashboardBackground'>
                 <Row>
-                    <Col style={{ 'marginTop': '5vh' }}>
-                        <CalendarSelector />
+                    <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
+                    <Col>
+                        <TimeSelectorComponent year={this.state.year} month={this.state.month} changeYear={this.changeYear} changeMonth={this.changeMonth} />
                     </Col>
+                    <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                 </Row>
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
