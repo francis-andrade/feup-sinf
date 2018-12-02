@@ -105,6 +105,54 @@ app.get('/api/printXML', (req, res) => {
     }
 });
 
+app.get('/api/inventory', (req, res) => {
+    
+    const inventoryAccID = "3"
+    
+    // Get whole document as xml-query object
+     const xq = xmlQuery(parsedXML);
+
+     const ledgerAccounts = xq.find("GeneralLedgerAccounts")
+     //const accounts = ledgerAccounts[0].find("Account")
+
+     ledgerAccounts
+     console.log(ledgerAccounts)
+
+     const accounts = ledgerAccounts['ast'][0]['children']
+     //console.log(accounts)
+     //console.log(accounts[1])
+     //console.log(accounts[1]['children'][0])
+
+     let totalInventory = 0
+
+     for (var index = 0; index < accounts.length; index++){
+        
+         const account = accounts[index]
+         if(account['name'].valueOf() == "Account"){
+            const accountID = account['children'][0]
+
+            if(accountID['children'][0]['value'].substring(0, inventoryAccID.length).valueOf() == inventoryAccID.valueOf()){
+                totalInventory += sumInventory(account)
+            }
+            /*else{
+                console.log(accountID['children'][0]['value'].substring(0, inventoryAccID.length))
+            }*/
+         }
+     }
+     console.log(totalInventory)
+     res.send(totalInventory.toString())
+});
+
+function sumInventory(account){
+    const openingDebit = account['children'][2]['children'][0]['value']
+    const openingCredit = account['children'][3]['children'][0]['value']
+    const closingDebit = account['children'][4]['children'][0]['value']
+    const closingCredit = account['children'][5]['children'][0]['value']
+    
+    console.log(closingDebit)
+    return (closingDebit - openingDebit) - (closingCredit - openingCredit)
+}
+
 const port = process.env.PORT || 5000;
 app.listen(port);
 
