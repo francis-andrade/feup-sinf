@@ -86,6 +86,29 @@ app.get('/api/testQuery', (req, res) => {
     // res.send();
 });
 
+
+//TODO: apply date limits
+app.get('/api/backlogValue', function(req, res) {
+
+    const xq = xmlQuery(parsedXML);
+
+    let result = 0;
+
+    //Get SalesInvoices 
+    let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+
+    for (let i = 0; i< allInvoices.size(); i++){
+        let invoiceType = allInvoices.eq(i).find('InvoiceType').children().text();
+        if (invoiceType == 'NC'){ // notas de crédito
+            console.log(invoiceType);
+            let invoiceTotal = parseFloat(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+            result += invoiceTotal;
+        }
+    }
+    console.log(result);
+    res.send(result.toString()); 
+});
+
 // Parse a SAF-T file read from the file system and store it
 app.get('/api/parseXML', (req, res) => {
     
