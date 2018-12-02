@@ -10,6 +10,8 @@ const app = express();
 
 let parsedXML;
 
+let inventory = -1;
+
 // Sums the given balance nodes read from a SAF-T file
 function sumBalance(query) {
 
@@ -106,8 +108,15 @@ app.get('/api/printXML', (req, res) => {
 });
 
 app.get('/api/inventory', (req, res) => {
+
+    if(inventory == -1)
+        inventory = calculateAccountsSum("3", sumInventory)
     
-    const inventoryAccID = "3"
+    res.send(inventory.toString())
+    
+});
+
+function calculateAccountsSum(accountID, sumFunction){
     
     // Get whole document as xml-query object
      const xq = xmlQuery(parsedXML);
@@ -123,25 +132,25 @@ app.get('/api/inventory', (req, res) => {
      //console.log(accounts[1])
      //console.log(accounts[1]['children'][0])
 
-     let totalInventory = 0
+     let totalSum = 0
 
      for (var index = 0; index < accounts.length; index++){
         
          const account = accounts[index]
          if(account['name'].valueOf() == "Account"){
-            const accountID = account['children'][0]
+            const accountIDElem = account['children'][0]
 
-            if(accountID['children'][0]['value'].substring(0, inventoryAccID.length).valueOf() == inventoryAccID.valueOf()){
-                totalInventory += sumInventory(account)
+            const accountValue = accountIDElem['children'][0]['value']
+            if(accountValue.substring(0, accountID.length).valueOf() == accountID.valueOf() && accountValue.length == 4){
+                totalSum += sumFunction(account)
             }
             /*else{
                 console.log(accountID['children'][0]['value'].substring(0, inventoryAccID.length))
             }*/
          }
      }
-     console.log(totalInventory)
-     res.send(totalInventory.toString())
-});
+     return totalSum
+}
 
 function sumInventory(account){
     const openingDebit = account['children'][2]['children'][0]['value']
@@ -152,6 +161,21 @@ function sumInventory(account){
     console.log(closingDebit)
     return (closingDebit - openingDebit) - (closingCredit - openingCredit)
 }
+
+
+
+app.get('/api/inventoryPeriod', (req, res)=>{
+    if(inventory == -1)
+    inventory = calculateAccountsSum("3", sumInventory)
+
+    let costOfGoodsSold = calculateAccountsSum("6", sumInventory)
+    console.log(costOfGoodsSold)
+    let inventoryTurnover = costOfGoodsSold / inventory
+    let inventoryPeriod = 365.0 / inventoryTurnover
+    
+    res.send(inventoryPeriod.toString())
+    
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port);
