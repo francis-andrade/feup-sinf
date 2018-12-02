@@ -1,0 +1,3879 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<AuditFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="urn:OECD:StandardAuditFile-Tax:PT_1.04_01 ../schemas/SAF-T.xsd" xmlns="urn:OECD:StandardAuditFile-Tax:PT_1.04_01">
+  <Header>
+    <AuditFileVersion>1.04_01</AuditFileVersion>
+    <CompanyID>503140600</CompanyID>
+    <TaxRegistrationNumber>503140600</TaxRegistrationNumber>
+    <TaxAccountingBasis>I</TaxAccountingBasis>
+    <CompanyName>Empresa de demonstração (PRIVA)</CompanyName>
+    <CompanyAddress>
+      <StreetName> R. dos Campeões Europeus 28 - 198, 4350-149 Porto</StreetName>
+      <AddressDetail> R. dos Campeões Europeus 28 - 198, 4350-149 Porto</AddressDetail>
+      <City>Porto</City>
+      <PostalCode>4350-149</PostalCode>
+      <Country>PT</Country>
+    </CompanyAddress>
+    <FiscalYear>2017</FiscalYear>
+    <StartDate>2017-01-01</StartDate>
+    <EndDate>2017-12-31</EndDate>
+    <CurrencyCode>EUR</CurrencyCode>
+    <DateCreated>2018-12-01</DateCreated>
+    <TaxEntity>Sede</TaxEntity>
+    <ProductCompanyTaxID>503140600</ProductCompanyTaxID>
+    <SoftwareCertificateNumber>0030</SoftwareCertificateNumber>
+    <ProductID>ERP v750/PRIMAVERA Business Software Solutions</ProductID>
+    <ProductVersion>10.0002.1014</ProductVersion>
+  </Header>
+  <MasterFiles>
+    <Customer>
+      <CustomerID>Consumidor final</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>999999990</CustomerTaxID>
+      <CompanyName>Consumidor final</CompanyName>
+      <BillingAddress>
+        <AddressDetail>Desconhecido</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>Desconhecido</PostalCode>
+        <Country>Desconhecido</Country>
+      </BillingAddress>
+      <ShipToAddress>
+        <AddressDetail>Desconhecido</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>Desconhecido</PostalCode>
+        <Country>Desconhecido</Country>
+      </ShipToAddress>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>ES989922456_C</CustomerID>
+      <AccountID>21123004</AccountID>
+      <CustomerTaxID>989922456</CustomerTaxID>
+      <CompanyName>Soluciones Cad de Madrid, SA</CompanyName>
+      <BillingAddress>
+        <AddressDetail>PASSEO DE PORTUGAL, 464646</AddressDetail>
+        <City>VILANUEVA DE ARRIBA</City>
+        <PostalCode>61001</PostalCode>
+        <Country>ES</Country>
+      </BillingAddress>
+      <ShipToAddress>
+        <AddressDetail>PASSEO DE PORTUGAL, 464646</AddressDetail>
+        <City>VILANUEVA DE ARRIBA</City>
+        <PostalCode>61001</PostalCode>
+        <Country>ES</Country>
+      </ShipToAddress>
+      <Telephone>00.034.1.474747447</Telephone>
+      <Fax>00.034.1.4374747474</Fax>
+      <Website>http://alcad.es</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>AO823892388_C</CustomerID>
+      <AccountID>21113001</AccountID>
+      <CustomerTaxID>823892388</CustomerTaxID>
+      <CompanyName>Inforshow, Informática Comunicação</CompanyName>
+      <BillingAddress>
+        <AddressDetail>Av. dos Coqueiros, 464646</AddressDetail>
+        <City>LUANDA - ANGOLA</City>
+        <PostalCode>Desconhecido</PostalCode>
+        <Country>AO</Country>
+      </BillingAddress>
+      <ShipToAddress>
+        <AddressDetail>Av. dos Coqueiros, 464646</AddressDetail>
+        <City>LUANDA - ANGOLA</City>
+        <PostalCode>Desconhecido</PostalCode>
+        <Country>AO</Country>
+      </ShipToAddress>
+      <Telephone>00.66.9237293377</Telephone>
+      <Fax>00.66.464464646</Fax>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>PT505678900_C</CustomerID>
+      <AccountID>21113003</AccountID>
+      <CustomerTaxID>505678900</CustomerTaxID>
+      <CompanyName>José Maria Fernandes &amp; Filhos, Lda.</CompanyName>
+      <BillingAddress>
+        <AddressDetail>Av. do Norte, 484848</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>4100</PostalCode>
+        <Country>PT</Country>
+      </BillingAddress>
+      <ShipToAddress>
+        <AddressDetail>Av. do Norte, 484848</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>4100</PostalCode>
+        <Country>PT</Country>
+      </ShipToAddress>
+      <Telephone>02.24949  49499</Telephone>
+      <Fax>2.2498448499</Fax>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>GB9393878719-A_C</CustomerID>
+      <AccountID>21113002</AccountID>
+      <CustomerTaxID>9393878719-A</CustomerTaxID>
+      <CompanyName>MicroAvi, Inc.</CompanyName>
+      <BillingAddress>
+        <AddressDetail>34, ROYAL AVENUE</AddressDetail>
+        <City>CHELSEA</City>
+        <PostalCode>87999</PostalCode>
+        <Country>GB</Country>
+      </BillingAddress>
+      <ShipToAddress>
+        <AddressDetail>34, ROYAL AVENUE</AddressDetail>
+        <City>CHELSEA</City>
+        <PostalCode>87999</PostalCode>
+        <Country>GB</Country>
+      </ShipToAddress>
+      <Telephone>00.78.3883383838</Telephone>
+      <Fax>00.78.383838112</Fax>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>PT123456789_C</CustomerID>
+      <AccountID>21111001</AccountID>
+      <CustomerTaxID>123456789</CustomerTaxID>
+      <CompanyName>Sofrio, Lda</CompanyName>
+      <BillingAddress>
+        <AddressDetail>AV. DO ETERNO GELO, 88888</AddressDetail>
+        <City>POLO  NORTE</City>
+        <PostalCode>1000-001</PostalCode>
+        <Country>PT</Country>
+      </BillingAddress>
+      <ShipToAddress>
+        <AddressDetail>AV. DO ETERNO GELO, 88888</AddressDetail>
+        <City>POLO  NORTE</City>
+        <PostalCode>1000-001</PostalCode>
+        <Country>PT</Country>
+      </ShipToAddress>
+      <Telephone>200267890</Telephone>
+      <Fax>200267899</Fax>
+      <Website>http://www.sofrio.com</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>PT503141607_C</CustomerID>
+      <AccountID>21111005</AccountID>
+      <CustomerTaxID>503141607</CustomerTaxID>
+      <CompanyName>Vidro Z- Vidraria Especializada,Lda</CompanyName>
+      <BillingAddress>
+        <AddressDetail>R. das Vidreiras, 437474</AddressDetail>
+        <City>S. António dos Vidrinhos</City>
+        <PostalCode>1000</PostalCode>
+        <Country>PT</Country>
+      </BillingAddress>
+      <ShipToAddress>
+        <AddressDetail>R. das Vidreiras, 437474</AddressDetail>
+        <City>S. António dos Vidrinhos</City>
+        <PostalCode>1000</PostalCode>
+        <Country>PT</Country>
+      </ShipToAddress>
+      <Telephone>1.3939339393</Telephone>
+      <Fax>1.393393939</Fax>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Supplier>
+      <SupplierID>503144703_F</SupplierID>
+      <AccountID>22111001</AccountID>
+      <SupplierTaxID>503144703</SupplierTaxID>
+      <CompanyName>Sociedade de Fornecimentos, Lda.</CompanyName>
+      <BillingAddress>
+        <AddressDetail>Av. do Sul, 387383</AddressDetail>
+        <City>Lisboa</City>
+        <PostalCode>1000-001</PostalCode>
+        <Country>PT</Country>
+      </BillingAddress>
+      <ShipFromAddress>
+        <AddressDetail>Av. do Sul, 387383</AddressDetail>
+        <City>Lisboa</City>
+        <PostalCode>1000-001</PostalCode>
+        <Country>PT</Country>
+      </ShipFromAddress>
+      <Telephone>21383833838</Telephone>
+      <Fax>21383833838</Fax>
+      <Website>http://socfornecimento.pt</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Supplier>
+    <Supplier>
+      <SupplierID>583140688_F</SupplierID>
+      <AccountID>22111002</AccountID>
+      <SupplierTaxID>583140688</SupplierTaxID>
+      <CompanyName>Publicidade &amp; Marrketing</CompanyName>
+      <BillingAddress>
+        <AddressDetail>Av. das Inovações, 4654765</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>4000</PostalCode>
+        <Country>PT</Country>
+      </BillingAddress>
+      <ShipFromAddress>
+        <AddressDetail>Av. das Inovações, 4654765</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>4000</PostalCode>
+        <Country>PT</Country>
+      </ShipFromAddress>
+      <Telephone>22 384844848</Telephone>
+      <Fax>22 484484848</Fax>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Supplier>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>A0001</ProductCode>
+      <ProductGroup>Computadores</ProductGroup>
+      <ProductDescription>Pentium D925 Dual Core</ProductDescription>
+      <ProductNumberCode>5601234901248</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>A0002</ProductCode>
+      <ProductGroup>Computadores</ProductGroup>
+      <ProductDescription>Pentium 4 945+ Dual Core 3.4GHZ</ProductDescription>
+      <ProductNumberCode>5601234982637</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>A0003</ProductCode>
+      <ProductGroup>Computadores</ProductGroup>
+      <ProductDescription>Processador INTEL CORE 2 DUO E6300 1.86GHZ</ProductDescription>
+      <ProductNumberCode>5601234875527</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>A0004</ProductCode>
+      <ProductGroup>Computadores</ProductGroup>
+      <ProductDescription>Processador Intel D326 2.5GHz</ProductDescription>
+      <ProductNumberCode>A0004</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>A0005</ProductCode>
+      <ProductGroup>Mobiliário</ProductGroup>
+      <ProductDescription>Mesa p/ PC</ProductDescription>
+      <ProductNumberCode>5605476109995</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>B0001</ProductCode>
+      <ProductGroup>Monitores</ProductGroup>
+      <ProductDescription>Monitor 17" TFT L1752S</ProductDescription>
+      <ProductNumberCode>B0001</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>B0003</ProductCode>
+      <ProductGroup>Monitores</ProductGroup>
+      <ProductDescription>Monitor TFT 747D 17'</ProductDescription>
+      <ProductNumberCode>B0003</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>B0005</ProductCode>
+      <ProductGroup>Monitores</ProductGroup>
+      <ProductDescription>TFT 19" HV-926TS 1280x1024</ProductDescription>
+      <ProductNumberCode>B0005</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>B0006</ProductCode>
+      <ProductGroup>Monitores</ProductGroup>
+      <ProductDescription>TFT 17" 1702 1280x1024</ProductDescription>
+      <ProductNumberCode>B0006</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>C0001</ProductCode>
+      <ProductGroup>Multimédia</ProductGroup>
+      <ProductDescription>VideoProjector EMP-S4</ProductDescription>
+      <ProductNumberCode>5601234106480</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>C0002</ProductCode>
+      <ProductGroup>Scanners</ProductGroup>
+      <ProductDescription>GT-15000 600x1200ppp 48bit USB SCSI</ProductDescription>
+      <ProductNumberCode>C0002</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>O</ProductType>
+      <ProductCode>Especial</ProductCode>
+      <ProductGroup>Sem família</ProductGroup>
+      <ProductDescription>Linha especial</ProductDescription>
+      <ProductNumberCode>Especial</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>S</ProductType>
+      <ProductCode>F0002</ProductCode>
+      <ProductGroup>Serviços</ProductGroup>
+      <ProductDescription>Formador Joana Fonseca</ProductDescription>
+      <ProductNumberCode>F0002</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>S</ProductType>
+      <ProductCode>F0003</ProductCode>
+      <ProductGroup>Serviços</ProductGroup>
+      <ProductDescription>Serviços de Implementação</ProductDescription>
+      <ProductNumberCode>F0003</ProductNumberCode>
+    </Product>
+    <TaxTable>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isenta</Description>
+        <TaxPercentage>0.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>OUT</TaxCode>
+        <Description>Outras</Description>
+        <TaxPercentage>4.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>RED</TaxCode>
+        <Description>Reduzida</Description>
+        <TaxPercentage>5.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>OUT</TaxCode>
+        <Description>Outras</Description>
+        <TaxPercentage>8.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>OUT</TaxCode>
+        <Description>Outras</Description>
+        <TaxPercentage>9.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>INT</TaxCode>
+        <Description>Intermédia</Description>
+        <TaxPercentage>12.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>OUT</TaxCode>
+        <Description>Outras</Description>
+        <TaxPercentage>14.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>OUT</TaxCode>
+        <Description>Outras</Description>
+        <TaxPercentage>15.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Normal</Description>
+        <TaxPercentage>20.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Normal</Description>
+        <TaxPercentage>21.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Normal</Description>
+        <TaxPercentage>23.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>OUT</TaxCode>
+        <Description>Outras</Description>
+        <TaxPercentage>23.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isenta</Description>
+        <TaxPercentage>0.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>RED</TaxCode>
+        <Description>Reduzida</Description>
+        <TaxPercentage>4.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>INT</TaxCode>
+        <Description>Intermédia</Description>
+        <TaxPercentage>9.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-AC</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Normal</Description>
+        <TaxPercentage>16.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isenta</Description>
+        <TaxPercentage>0.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>RED</TaxCode>
+        <Description>Reduzida</Description>
+        <TaxPercentage>5.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>INT</TaxCode>
+        <Description>Intermédia</Description>
+        <TaxPercentage>12.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IVA</TaxType>
+        <TaxCountryRegion>PT-MA</TaxCountryRegion>
+        <TaxCode>NOR</TaxCode>
+        <Description>Normal</Description>
+        <TaxPercentage>22.00</TaxPercentage>
+      </TaxTableEntry>
+      <TaxTableEntry>
+        <TaxType>IS</TaxType>
+        <TaxCountryRegion>PT</TaxCountryRegion>
+        <TaxCode>ISE</TaxCode>
+        <Description>Isento</Description>
+        <TaxPercentage>0.00</TaxPercentage>
+      </TaxTableEntry>
+    </TaxTable>
+  </MasterFiles>
+  <GeneralLedgerEntries>
+    <NumberOfEntries>36</NumberOfEntries>
+    <TotalDebit>101267.94</TotalDebit>
+    <TotalCredit>102118.51</TotalCredit>
+    <Journal>
+      <JournalID>00021</JournalID>
+      <Description>Caixa A</Description>
+      <Transaction>
+        <TransactionID>2017-01-29 00021 10001</TransactionID>
+        <Period>1</Period>
+        <TransactionDate>2017-01-29</TransactionDate>
+        <SourceID>miguel.cordeiro</SourceID>
+        <Description>Caixa A - Pagamentos</Description>
+        <DocArchivalNumber>10001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>111</AccountID>
+            <SourceDocumentID>211 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Caixa A - Pagamentos</Description>
+            <CreditAmount>489.20</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>6221222</AccountID>
+            <SourceDocumentID>211 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Caixa A - Pagamentos</Description>
+            <DebitAmount>489.20</DebitAmount>
+          </DebitLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-02-27 00021 20001</TransactionID>
+        <Period>2</Period>
+        <TransactionDate>2017-02-27</TransactionDate>
+        <SourceID>miguel.cordeiro</SourceID>
+        <Description>Caixa A - Pagamentos</Description>
+        <DocArchivalNumber>20001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>111</AccountID>
+            <SourceDocumentID>211 A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Caixa A - Pagamentos</Description>
+            <CreditAmount>556.50</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>6221222</AccountID>
+            <SourceDocumentID>211 A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Caixa A - Pagamentos</Description>
+            <DebitAmount>556.50</DebitAmount>
+          </DebitLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-03-31 00021 30001</TransactionID>
+        <Period>3</Period>
+        <TransactionDate>2017-03-31</TransactionDate>
+        <SourceID>MIGUEL.CORDEIRO</SourceID>
+        <Description>Caixa A - Pagamentos</Description>
+        <DocArchivalNumber>30001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>111</AccountID>
+            <SourceDocumentID>211 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Caixa A - Pagamentos</Description>
+            <CreditAmount>985.25</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>22110001</AccountID>
+            <SourceDocumentID>211 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Caixa A - Pagamentos</Description>
+            <DebitAmount>985.25</DebitAmount>
+          </DebitLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-05-13 00021 50001</TransactionID>
+        <Period>5</Period>
+        <TransactionDate>2017-05-13</TransactionDate>
+        <SourceID>MIGUEL.CORDEIRO</SourceID>
+        <Description>Caixa A - Recebimentos</Description>
+        <DocArchivalNumber>50001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>112</AccountID>
+            <SourceDocumentID>212 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Caixa A - Recebimentos</Description>
+            <DebitAmount>412.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>21111001</AccountID>
+            <SourceDocumentID>212 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Caixa A - Recebimentos</Description>
+            <CreditAmount>412.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00031</JournalID>
+      <Description>Bancos - Depósitos</Description>
+      <Transaction>
+        <TransactionID>2017-01-14 00031 10001</TransactionID>
+        <Period>1</Period>
+        <TransactionDate>2017-01-14</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>RE N.º1/1</Description>
+        <DocArchivalNumber>10001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>112</AccountID>
+            <SourceDocumentID>RE A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>RE Nº 1/A</Description>
+            <DebitAmount>1182.76</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>21111001</AccountID>
+            <SourceDocumentID>RE A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>RE Nº 1/A</Description>
+            <CreditAmount>1182.76</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-02-15 00031 20001</TransactionID>
+        <Period>2</Period>
+        <TransactionDate>2017-02-15</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>RE N.º2/1</Description>
+        <DocArchivalNumber>20001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>112</AccountID>
+            <SourceDocumentID>RE A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>RE Nº 2/A</Description>
+            <DebitAmount>1307.08</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>21113003</AccountID>
+            <SourceDocumentID>RE A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>RE Nº 2/A</Description>
+            <CreditAmount>1307.08</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-03-02 00031 30001</TransactionID>
+        <Period>3</Period>
+        <TransactionDate>2017-03-02</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>TDEP N.º2/1</Description>
+        <DocArchivalNumber>30001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>111</AccountID>
+            <SourceDocumentID>TDEP A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TDEP Nº 2/A</Description>
+            <DebitAmount>1407.08</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>TDEP A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TDEP Nº2/A</Description>
+            <CreditAmount>1407.08</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-05-01 00031 50001</TransactionID>
+        <Period>5</Period>
+        <TransactionDate>2017-05-01</TransactionDate>
+        <SourceID>EUGENIO.VEIGA</SourceID>
+        <Description>ADC N.º1/1</Description>
+        <DocArchivalNumber>50001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>21911001</AccountID>
+            <SourceDocumentID>ADC A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>ADC Nº 1/A</Description>
+            <CreditAmount>1000.00</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>112</AccountID>
+            <SourceDocumentID>ADC A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>ADC Nº 1/A</Description>
+            <DebitAmount>1210.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>24339113211</AccountID>
+            <SourceDocumentID>ADC A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>ADC Nº 1/A</Description>
+            <CreditAmount>210.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-07-02 00031 70001</TransactionID>
+        <Period>7</Period>
+        <TransactionDate>2017-07-02</TransactionDate>
+        <SourceID>EUGENIO.VEIGA</SourceID>
+        <Description>ADC N.º2/1</Description>
+        <DocArchivalNumber>70001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>21911003</AccountID>
+            <SourceDocumentID>ADC A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>ADC Nº 2/A</Description>
+            <CreditAmount>35.60</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>112</AccountID>
+            <SourceDocumentID>ADC A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>ADC Nº 2/A</Description>
+            <DebitAmount>43.08</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>24339113211</AccountID>
+            <SourceDocumentID>ADC A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>ADC Nº 2/A</Description>
+            <CreditAmount>7.48</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-12-19 00031 120001</TransactionID>
+        <Period>12</Period>
+        <TransactionDate>2017-12-19</TransactionDate>
+        <SourceID>EUGENIO.VEIGA</SourceID>
+        <Description>RE N.º3/1</Description>
+        <DocArchivalNumber>120001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>112</AccountID>
+            <SourceDocumentID>RE A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>RE Nº 3/A</Description>
+            <DebitAmount>4235.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>21111001</AccountID>
+            <SourceDocumentID>RE A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>RE Nº 3/A</Description>
+            <CreditAmount>4235.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-12-20 00031 120002</TransactionID>
+        <Period>12</Period>
+        <TransactionDate>2017-12-20</TransactionDate>
+        <SourceID>EUGENIO.VEIGA</SourceID>
+        <Description>ADC N.º3/1</Description>
+        <DocArchivalNumber>120002</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>21911001</AccountID>
+            <SourceDocumentID>ADC A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>ADC Nº 3/A</Description>
+            <CreditAmount>7800.00</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>112</AccountID>
+            <SourceDocumentID>ADC A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>ADC Nº 3/A</Description>
+            <DebitAmount>9438.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>24339113211</AccountID>
+            <SourceDocumentID>ADC A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>ADC Nº 3/A</Description>
+            <CreditAmount>1638.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00032</JournalID>
+      <Description>Bancos - Pagamentos</Description>
+      <Transaction>
+        <TransactionID>2017-01-30 00032 10002</TransactionID>
+        <Period>1</Period>
+        <TransactionDate>2017-01-30</TransactionDate>
+        <SourceID>MARLENE.SILVA</SourceID>
+        <Description>Liquidações Indep.</Description>
+        <DocArchivalNumber>10002</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996546</Description>
+            <CreditAmount>1282.35</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>2671578979</AccountID>
+            <SourceDocumentID>323 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996546</Description>
+            <DebitAmount>1282.35</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996543</Description>
+            <CreditAmount>1120.00</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>4</RecordID>
+            <AccountID>2671578977</AccountID>
+            <SourceDocumentID>323 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996545</Description>
+            <DebitAmount>2581.85</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>5</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Transferência</Description>
+            <CreditAmount>192.00</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>6</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996544</Description>
+            <CreditAmount>684.25</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>7</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996545</Description>
+            <CreditAmount>585.60</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-02-28 00032 20003</TransactionID>
+        <Period>2</Period>
+        <TransactionDate>2017-02-28</TransactionDate>
+        <SourceID>MARLENE.SILVA</SourceID>
+        <Description>Liquidações Indep.</Description>
+        <DocArchivalNumber>20003</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/4</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996550</Description>
+            <CreditAmount>1282.35</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>2671578979</AccountID>
+            <SourceDocumentID>323 A/4</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996550</Description>
+            <DebitAmount>1282.35</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/4</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996547</Description>
+            <CreditAmount>960.00</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>4</RecordID>
+            <AccountID>2671578977</AccountID>
+            <SourceDocumentID>323 A/4</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996549</Description>
+            <DebitAmount>2317.85</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>5</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/4</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Transferência</Description>
+            <CreditAmount>88.00</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>6</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/4</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996548</Description>
+            <CreditAmount>684.25</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>7</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/4</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996549</Description>
+            <CreditAmount>585.60</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-03-28 00032 30002</TransactionID>
+        <Period>3</Period>
+        <TransactionDate>2017-03-28</TransactionDate>
+        <SourceID>MARLENE.SILVA</SourceID>
+        <Description>Liquidações Indep.</Description>
+        <DocArchivalNumber>30002</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/6</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996554</Description>
+            <CreditAmount>1282.35</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>2671578979</AccountID>
+            <SourceDocumentID>323 A/6</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996554</Description>
+            <DebitAmount>1282.35</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/6</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996551</Description>
+            <CreditAmount>960.00</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>4</RecordID>
+            <AccountID>2671578977</AccountID>
+            <SourceDocumentID>323 A/6</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996553</Description>
+            <DebitAmount>2229.85</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>5</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/6</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996552</Description>
+            <CreditAmount>684.25</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>6</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>323 A/6</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Cheque n. 0008996553</Description>
+            <CreditAmount>585.60</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00033</JournalID>
+      <Description>Bancos - Outros Mov.</Description>
+      <Transaction>
+        <TransactionID>2017-02-02 00033 20001</TransactionID>
+        <Period>2</Period>
+        <TransactionDate>2017-02-02</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>TRANS N.º1/1</Description>
+        <DocArchivalNumber>20001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>112</AccountID>
+            <SourceDocumentID>TRANS A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TRANS Nº 1/A</Description>
+            <DebitAmount>250.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>111</AccountID>
+            <SourceDocumentID>TRANS A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TRANS Nº 1/A</Description>
+            <CreditAmount>250.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-03-30 00033 30001</TransactionID>
+        <Period>3</Period>
+        <TransactionDate>2017-03-30</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>TRANS N.º2/1</Description>
+        <DocArchivalNumber>30001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>TRANS A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TRANS Nº 2/A</Description>
+            <DebitAmount>10000.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>111</AccountID>
+            <SourceDocumentID>TRANS A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TRANS Nº 2/A</Description>
+            <CreditAmount>10000.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-09-03 00033 90001</TransactionID>
+        <Period>9</Period>
+        <TransactionDate>2017-09-03</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>TRANS N.º3/1</Description>
+        <DocArchivalNumber>90001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>1301</AccountID>
+            <SourceDocumentID>TRANS A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TRANS Nº 3/A</Description>
+            <DebitAmount>4500.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>TRANS A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TRANS Nº 3/A</Description>
+            <CreditAmount>4500.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-12-01 00033 120001</TransactionID>
+        <Period>12</Period>
+        <TransactionDate>2017-12-01</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>TRANS N.º4/1</Description>
+        <DocArchivalNumber>120001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>1201</AccountID>
+            <SourceDocumentID>TRANS A/4</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TRANS Nº 4/A</Description>
+            <DebitAmount>4500.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>1301</AccountID>
+            <SourceDocumentID>TRANS A/4</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>TRANS Nº 4/A</Description>
+            <CreditAmount>4500.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00041</JournalID>
+      <Description>Compras - MN</Description>
+      <Transaction>
+        <TransactionID>2017-01-04 00041 10001</TransactionID>
+        <Period>1</Period>
+        <TransactionDate>2017-01-04</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>VFA N.º1/1</Description>
+        <DocArchivalNumber>10001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>22111001</AccountID>
+            <SourceDocumentID>VFA A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>VFA Nº 1/A</Description>
+            <CreditAmount>6812.30</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>24321132111</AccountID>
+            <SourceDocumentID>VFA A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>VFA Nº 1/A</Description>
+            <DebitAmount>1182.30</DebitAmount>
+          </DebitLine>
+          <DebitLine>
+            <RecordID>3</RecordID>
+            <AccountID>3121</AccountID>
+            <SourceDocumentID>VFA A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>VFA Nº 1/A</Description>
+            <DebitAmount>5630.00</DebitAmount>
+          </DebitLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-05-22 00041 50001</TransactionID>
+        <Period>5</Period>
+        <TransactionDate>2017-05-22</TransactionDate>
+        <SourceID>Administrador</SourceID>
+        <Description>VNC N.º3/A</Description>
+        <DocArchivalNumber>50001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>22111001</AccountID>
+            <SourceDocumentID>VNC A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>+VNC Nº 3/A+</Description>
+            <DebitAmount>6812.30</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>24321132111</AccountID>
+            <SourceDocumentID>VNC A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>+VNC Nº 3/A+</Description>
+            <CreditAmount>1182.30</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>3121</AccountID>
+            <SourceDocumentID>VNC A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>+VNC Nº 3/A+</Description>
+            <CreditAmount>5630.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00051</JournalID>
+      <Description>Vendas - Crédito - MN</Description>
+      <Transaction>
+        <TransactionID>2017-01-05 00051 10001</TransactionID>
+        <Period>1</Period>
+        <TransactionDate>2017-01-05</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>FA N.º1/2006</Description>
+        <DocArchivalNumber>10001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>21111001</AccountID>
+            <SourceDocumentID>FA A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 1/A</Description>
+            <DebitAmount>1182.76</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>24331113211</AccountID>
+            <SourceDocumentID>FA A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 1/A</Description>
+            <CreditAmount>205.27</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>7111</AccountID>
+            <SourceDocumentID>FA A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 1/A</Description>
+            <CreditAmount>977.49</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-01-29 00051 10002</TransactionID>
+        <Period>1</Period>
+        <TransactionDate>2017-01-29</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>FA N.º2/2006</Description>
+        <DocArchivalNumber>10002</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>21113003</AccountID>
+            <SourceDocumentID>FA A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 2/A</Description>
+            <DebitAmount>1307.08</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>24331113211</AccountID>
+            <SourceDocumentID>FA A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 2/A</Description>
+            <CreditAmount>226.85</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>7111</AccountID>
+            <SourceDocumentID>FA A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 2/A</Description>
+            <CreditAmount>1080.23</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-02-13 00051 20001</TransactionID>
+        <Period>2</Period>
+        <TransactionDate>2017-02-13</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>FA N.º3/2006</Description>
+        <DocArchivalNumber>20001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>21111001</AccountID>
+            <SourceDocumentID>FA A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 3/A</Description>
+            <DebitAmount>1176.37</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>24331113211</AccountID>
+            <SourceDocumentID>FA A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 3/A</Description>
+            <CreditAmount>204.16</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>7111</AccountID>
+            <SourceDocumentID>FA A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 3/A</Description>
+            <CreditAmount>972.21</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-04-02 00051 40001</TransactionID>
+        <Period>4</Period>
+        <TransactionDate>2017-04-02</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>FA N.º6/2006</Description>
+        <DocArchivalNumber>40001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>24331113211</AccountID>
+            <SourceDocumentID>FA A/6</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 6/A</Description>
+            <CreditAmount>147.62</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>7111</AccountID>
+            <SourceDocumentID>FA A/6</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 6/A</Description>
+            <CreditAmount>702.95</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-06-03 00051 60001</TransactionID>
+        <Period>6</Period>
+        <TransactionDate>2017-06-03</TransactionDate>
+        <SourceID>lucia.ribeiro</SourceID>
+        <Description>FA N.º8/A</Description>
+        <DocArchivalNumber>60001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>21113003</AccountID>
+            <SourceDocumentID>FA A/8</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 8/A</Description>
+            <DebitAmount>1762.20</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>24331213211</AccountID>
+            <SourceDocumentID>FA A/8</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 8/A</Description>
+            <CreditAmount>305.84</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>7211</AccountID>
+            <SourceDocumentID>FA A/8</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 8/A</Description>
+            <CreditAmount>1456.36</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-07-06 00051 70001</TransactionID>
+        <Period>7</Period>
+        <TransactionDate>2017-07-06</TransactionDate>
+        <SourceID>lucia.ribeiro</SourceID>
+        <Description>FA N.º9/A</Description>
+        <DocArchivalNumber>70001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>24331313211</AccountID>
+            <SourceDocumentID>FA A/9</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 9/A</Description>
+            <CreditAmount>0.84</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>21111005</AccountID>
+            <SourceDocumentID>FA A/9</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 9/A</Description>
+            <DebitAmount>667.92</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>24331113211</AccountID>
+            <SourceDocumentID>FA A/9</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 9/A</Description>
+            <CreditAmount>115.08</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>4</RecordID>
+            <AccountID>7321</AccountID>
+            <SourceDocumentID>FA A/9</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 9/A</Description>
+            <CreditAmount>4.00</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>5</RecordID>
+            <AccountID>7111</AccountID>
+            <SourceDocumentID>FA A/9</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>FA Nº 9/A</Description>
+            <CreditAmount>548.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00062</JournalID>
+      <Description>Apuramento IVA</Description>
+      <Transaction>
+        <TransactionID>2017-01-31 00062 10001</TransactionID>
+        <Period>1</Period>
+        <TransactionDate>2017-01-31</TransactionDate>
+        <SourceID>miguel.cordeiro</SourceID>
+        <Description>Apur. IVA - Janeiro</Description>
+        <DocArchivalNumber>10001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>24321132111</AccountID>
+            <SourceDocumentID>621 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Janeiro</Description>
+            <CreditAmount>1182.30</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>2435</AccountID>
+            <SourceDocumentID>621 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Janeiro</Description>
+            <DebitAmount>1182.30</DebitAmount>
+          </DebitLine>
+          <DebitLine>
+            <RecordID>3</RecordID>
+            <AccountID>24331113211</AccountID>
+            <SourceDocumentID>621 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Janeiro</Description>
+            <DebitAmount>432.12</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>4</RecordID>
+            <AccountID>2435</AccountID>
+            <SourceDocumentID>621 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Janeiro</Description>
+            <CreditAmount>432.12</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>5</RecordID>
+            <AccountID>2435</AccountID>
+            <SourceDocumentID>621 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Janeiro</Description>
+            <CreditAmount>750.18</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>6</RecordID>
+            <AccountID>2438</AccountID>
+            <SourceDocumentID>621 A/2</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Janeiro</Description>
+            <DebitAmount>750.18</DebitAmount>
+          </DebitLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-02-28 00062 20001</TransactionID>
+        <Period>2</Period>
+        <TransactionDate>2017-02-28</TransactionDate>
+        <SourceID>miguel.cordeiro</SourceID>
+        <Description>Apur. IVA - Fevereiro</Description>
+        <DocArchivalNumber>20001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>24331113211</AccountID>
+            <SourceDocumentID>621 A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Fevereiro</Description>
+            <DebitAmount>204.16</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>2435</AccountID>
+            <SourceDocumentID>621 A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Fevereiro</Description>
+            <CreditAmount>204.16</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>3</RecordID>
+            <AccountID>2435</AccountID>
+            <SourceDocumentID>621 A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Fevereiro</Description>
+            <DebitAmount>204.16</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>4</RecordID>
+            <AccountID>2436</AccountID>
+            <SourceDocumentID>621 A/3</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur. IVA - Fevereiro</Description>
+            <CreditAmount>204.16</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00064</JournalID>
+      <Description>Apuramento Selo</Description>
+      <Transaction>
+        <TransactionID>2017-12-31 00064 120001</TransactionID>
+        <Period>12</Period>
+        <TransactionDate>2017-12-31</TransactionDate>
+        <SourceID>MIGUEL.CORDEIRO</SourceID>
+        <Description>Apur.Imp.Selo - Dezembro</Description>
+        <DocArchivalNumber>120001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>24732311</AccountID>
+            <SourceDocumentID>642 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur.Imp.Selo - Dezembro</Description>
+            <DebitAmount>5.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>24751</AccountID>
+            <SourceDocumentID>642 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur.Imp.Selo - Dezembro</Description>
+            <CreditAmount>5.00</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>3</RecordID>
+            <AccountID>24751</AccountID>
+            <SourceDocumentID>642 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur.Imp.Selo - Dezembro</Description>
+            <DebitAmount>5.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>4</RecordID>
+            <AccountID>2476</AccountID>
+            <SourceDocumentID>642 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Apur.Imp.Selo - Dezembro</Description>
+            <CreditAmount>5.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00071</JournalID>
+      <Description>Regularizações Anuais</Description>
+      <Transaction>
+        <TransactionID>2017-12-31 00071 140001</TransactionID>
+        <Period>14</Period>
+        <TransactionDate>2017-12-31</TransactionDate>
+        <SourceID>miguel.cordeiro</SourceID>
+        <Description>CEVC Mercadorias</Description>
+        <DocArchivalNumber>140001</DocArchivalNumber>
+        <TransactionType>J</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>3121</AccountID>
+            <SourceDocumentID>714 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>CEVC Mercadorias</Description>
+            <CreditAmount>5630.00</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>3212</AccountID>
+            <SourceDocumentID>714 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>CEVC Mercadorias</Description>
+            <DebitAmount>5630.00</DebitAmount>
+          </DebitLine>
+          <DebitLine>
+            <RecordID>3</RecordID>
+            <AccountID>3211</AccountID>
+            <SourceDocumentID>714 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>CEVC Mercadorias</Description>
+            <DebitAmount>120.25</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>4</RecordID>
+            <AccountID>3212</AccountID>
+            <SourceDocumentID>714 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>CEVC Mercadorias</Description>
+            <CreditAmount>120.25</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00072</JournalID>
+      <Description>Apuramento Resultados</Description>
+      <Transaction>
+        <TransactionID>2017-12-31 00072 140005</TransactionID>
+        <Period>14</Period>
+        <TransactionDate>2017-12-31</TransactionDate>
+        <SourceID>miguel.cordeiro</SourceID>
+        <Description>Resultados operacionais</Description>
+        <DocArchivalNumber>140005</DocArchivalNumber>
+        <TransactionType>J</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>7111</AccountID>
+            <SourceDocumentID>721 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Resultados operacionais</Description>
+            <DebitAmount>4834.98</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>811</AccountID>
+            <SourceDocumentID>721 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Resultados operacionais</Description>
+            <CreditAmount>4834.98</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-12-31 00072 140007</TransactionID>
+        <Period>14</Period>
+        <TransactionDate>2017-12-31</TransactionDate>
+        <SourceID>miguel.cordeiro</SourceID>
+        <Description>Resultados Correntes</Description>
+        <DocArchivalNumber>140007</DocArchivalNumber>
+        <TransactionType>J</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>811</AccountID>
+            <SourceDocumentID>723 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Resultados Correntes</Description>
+            <DebitAmount>4834.98</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>831</AccountID>
+            <SourceDocumentID>723 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Resultados Correntes</Description>
+            <CreditAmount>4834.98</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-12-31 00072 140009</TransactionID>
+        <Period>14</Period>
+        <TransactionDate>2017-12-31</TransactionDate>
+        <SourceID>miguel.cordeiro</SourceID>
+        <Description>Res. Antes de Impostos</Description>
+        <DocArchivalNumber>140009</DocArchivalNumber>
+        <TransactionType>J</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>831</AccountID>
+            <SourceDocumentID>725 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Res. Antes de Impostos</Description>
+            <DebitAmount>4834.98</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>851</AccountID>
+            <SourceDocumentID>725 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Res. Antes de Impostos</Description>
+            <CreditAmount>4834.98</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+      <Transaction>
+        <TransactionID>2017-12-31 00072 140011</TransactionID>
+        <Period>14</Period>
+        <TransactionDate>2017-12-31</TransactionDate>
+        <SourceID>miguel.cordeiro</SourceID>
+        <Description>Resultados Líquidos</Description>
+        <DocArchivalNumber>140011</DocArchivalNumber>
+        <TransactionType>J</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>851</AccountID>
+            <SourceDocumentID>727 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Resultados Líquidos</Description>
+            <DebitAmount>4834.98</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>881</AccountID>
+            <SourceDocumentID>727 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Resultados Líquidos</Description>
+            <CreditAmount>4834.98</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00081</JournalID>
+      <Description>Letras a Receber</Description>
+      <Transaction>
+        <TransactionID>2017-02-27 00081 20001</TransactionID>
+        <Period>2</Period>
+        <TransactionDate>2017-02-27</TransactionDate>
+        <SourceID>eugenio.veiga</SourceID>
+        <Description>LLT N.º1/1</Description>
+        <DocArchivalNumber>20001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <CreditLine>
+            <RecordID>1</RecordID>
+            <AccountID>21111001</AccountID>
+            <SourceDocumentID>LLT A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>LLT Nº 1/A</Description>
+            <CreditAmount>1176.37</CreditAmount>
+          </CreditLine>
+          <DebitLine>
+            <RecordID>2</RecordID>
+            <AccountID>21211001</AccountID>
+            <SourceDocumentID>LLT A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>LLT Nº 1/A</Description>
+            <DebitAmount>1176.37</DebitAmount>
+          </DebitLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+    <Journal>
+      <JournalID>00082</JournalID>
+      <Description>Letras a Pagar</Description>
+      <Transaction>
+        <TransactionID>2017-12-20 00082 120001</TransactionID>
+        <Period>12</Period>
+        <TransactionDate>2017-12-20</TransactionDate>
+        <SourceID>MIGUEL.CORDEIRO</SourceID>
+        <Description>Lt. Ap. - Letras Aceites</Description>
+        <DocArchivalNumber>120001</DocArchivalNumber>
+        <TransactionType>N</TransactionType>
+        <GLPostingDate>2018-10-17</GLPostingDate>
+        <Lines>
+          <DebitLine>
+            <RecordID>1</RecordID>
+            <AccountID>22210001</AccountID>
+            <SourceDocumentID>821 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Lt. Ap. - Letras Aceites</Description>
+            <DebitAmount>1005.00</DebitAmount>
+          </DebitLine>
+          <CreditLine>
+            <RecordID>2</RecordID>
+            <AccountID>22910001</AccountID>
+            <SourceDocumentID>821 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Lt. Ap. - Letras Aceites</Description>
+            <CreditAmount>1000.00</CreditAmount>
+          </CreditLine>
+          <CreditLine>
+            <RecordID>3</RecordID>
+            <AccountID>24732311</AccountID>
+            <SourceDocumentID>821 A/1</SourceDocumentID>
+            <SystemEntryDate>2018-10-17T16:48:23</SystemEntryDate>
+            <Description>Lt. Ap. - Letras Aceites</Description>
+            <CreditAmount>5.00</CreditAmount>
+          </CreditLine>
+        </Lines>
+      </Transaction>
+    </Journal>
+  </GeneralLedgerEntries>
+  <SourceDocuments>
+    <SalesInvoices>
+      <NumberOfEntries>21</NumberOfEntries>
+      <TotalDebit>26420.59</TotalDebit>
+      <TotalCredit>51681.38</TotalCredit>
+      <Invoice>
+        <InvoiceNo>AVE A/1</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-01-01T00:00:00</InvoiceStatusDate>
+          <SourceID>LUCIA.RIBEIRO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>0</Hash>
+        <HashControl>0</HashControl>
+        <Period>01</Period>
+        <InvoiceDate>2017-01-01</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>LUCIA.RIBEIRO</SourceID>
+        <SystemEntryDate>2017-01-01T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T15:49:00</MovementStartTime>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>A0001</ProductCode>
+          <ProductDescription>Pentium D925 Dual Core</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>790.2</UnitPrice>
+          <TaxPointDate>2017-01-01</TaxPointDate>
+          <Description>Pentium D925 Dual Core</Description>
+          <CreditAmount>790.20</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>87.80</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>4</LineNumber>
+          <ProductCode>A0003</ProductCode>
+          <ProductDescription>Processador INTEL CORE 2 DUO E6300 1.86GHZ</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>1078.2</UnitPrice>
+          <TaxPointDate>2017-01-01</TaxPointDate>
+          <Description>Processador INTEL CORE 2 DUO E6300 1.86GHZ</Description>
+          <CreditAmount>1078.20</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>119.80</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>5</LineNumber>
+          <ProductCode>B0005</ProductCode>
+          <ProductDescription>TFT 19" HV-926TS 1280x1024</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>163.25</UnitPrice>
+          <TaxPointDate>2017-01-01</TaxPointDate>
+          <Description>TFT 19" HV-926TS 1280x1024</Description>
+          <CreditAmount>163.25</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>23.75</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>426.65</TaxPayable>
+          <NetTotal>2031.65</NetTotal>
+          <GrossTotal>2458.30</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/1</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-01-05T00:00:00</InvoiceStatusDate>
+          <SourceID>EUGENIO.VEIGA</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>OOOoVpbJTYXdHhTBMEldSU/guSa9uxfBAklBW/zaMoXQ/fWD+ncFFFaWLwYSgrSRlSx/AF8EWF7hYC5SHgNZJE7sj54ZDs8Hwwq9H+ggeXEk+D868HQ54ag0gdTyR4QIvT8EKZRYFPbZ/W1ZKETwTKi+BHwKy0HVb7szsY5Us/A=</Hash>
+        <HashControl>0</HashControl>
+        <Period>01</Period>
+        <InvoiceDate>2017-01-05</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>EUGENIO.VEIGA</SourceID>
+        <SystemEntryDate>2017-01-05T00:00:00</SystemEntryDate>
+        <TransactionID>2017-01-05 00051 10001</TransactionID>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T12:47:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>A0001</ProductCode>
+          <ProductDescription>Computador Celeron 800MHz</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>810</UnitPrice>
+          <TaxPointDate>2017-01-05</TaxPointDate>
+          <Description>Computador Celeron 800MHz</Description>
+          <CreditAmount>810.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>90.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>B0001</ProductCode>
+          <ProductDescription>Monitor 7JT-1024*1024</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>167.49</UnitPrice>
+          <TaxPointDate>2017-01-05</TaxPointDate>
+          <Description>Monitor 7JT-1024*1024</Description>
+          <CreditAmount>167.49</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>22.41</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>205.27</TaxPayable>
+          <NetTotal>977.49</NetTotal>
+          <GrossTotal>1182.76</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/2</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-01-29T00:00:00</InvoiceStatusDate>
+          <SourceID>EUGENIO.VEIGA</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>LCNAw0q/HQaTjdk4qFJAr/fYyGVAlTZSUq/UTUzawiamG5pX6Dxs+z9GYwAtojoBjURe09Az76cJjF1HJ7lOl2EAH8gh+215DP3w2RzTJ1hzEOIx9IS5u1siPncvfmF2q5FAdpLT+ifp0h4BMGaxHso6Xgq6paJ3X5GLJH9za6k=</Hash>
+        <HashControl>0</HashControl>
+        <Period>01</Period>
+        <InvoiceDate>2017-01-29</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>EUGENIO.VEIGA</SourceID>
+        <SystemEntryDate>2017-01-29T00:00:00</SystemEntryDate>
+        <TransactionID>2017-01-29 00051 10002</TransactionID>
+        <CustomerID>PT505678900_C</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T14:49:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>A0002</ProductCode>
+          <ProductDescription>Computador Pentium III 800MHz</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>926</UnitPrice>
+          <TaxPointDate>2017-01-29</TaxPointDate>
+          <Description>Computador Pentium III 800MHz</Description>
+          <CreditAmount>926.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>B0003</ProductCode>
+          <ProductDescription>Monitor 747D 14'</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>154.23</UnitPrice>
+          <TaxPointDate>2017-01-29</TaxPointDate>
+          <Description>Monitor 747D 14'</Description>
+          <CreditAmount>154.23</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>4.77</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>226.85</TaxPayable>
+          <NetTotal>1080.23</NetTotal>
+          <GrossTotal>1307.08</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/3</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-02-13T00:00:00</InvoiceStatusDate>
+          <SourceID>EUGENIO.VEIGA</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>PoX9gzqH4M05ZSwxYBi/VDD9xQG6g8VgunQLT0jO6n1EBDjyLnOnapK+ih3AGeKjarVK8NgOZZl/sW4YRoHayHxrNJ626e6lyAIeY/2fL66Ms1tBFCdYoVS/axynjxWpqVmMMmoPRXbE2PCQp3DkInElHwv03JgQwTPiEJZE438=</Hash>
+        <HashControl>0</HashControl>
+        <Period>02</Period>
+        <InvoiceDate>2017-02-13</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>EUGENIO.VEIGA</SourceID>
+        <SystemEntryDate>2017-02-13T00:00:00</SystemEntryDate>
+        <TransactionID>2017-02-13 00051 20001</TransactionID>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T14:50:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>A0002</ProductCode>
+          <ProductDescription>Computador Pentium III 800MHz</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>833.4</UnitPrice>
+          <TaxPointDate>2017-02-13</TaxPointDate>
+          <Description>Computador Pentium III 800MHz</Description>
+          <CreditAmount>833.40</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>92.60</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>B0003</ProductCode>
+          <ProductDescription>Monitor 747D 14'</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>138.81</UnitPrice>
+          <TaxPointDate>2017-02-13</TaxPointDate>
+          <Description>Monitor 747D 14'</Description>
+          <CreditAmount>138.81</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>20.19</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>204.16</TaxPayable>
+          <NetTotal>972.21</NetTotal>
+          <GrossTotal>1176.37</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/4</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-03-14T00:00:00</InvoiceStatusDate>
+          <SourceID>LUCIA.RIBEIRO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>bFwfzHrx81vb5niRI1ytXYHwfqeuMlbUc0kfqOEcsY03Dbmzg5tbG4/TyXxdUouL7ZxT7zhsNN78BIKd2b7ujD8B7DuoWPLSfyxLabhfADBwQg8ZHsbJBPdT0DoC6Um7NZswo/N+xZE8N9kJR5S3jIruqCy3LCjNGXkS3L3ejmw=</Hash>
+        <HashControl>0</HashControl>
+        <Period>03</Period>
+        <InvoiceDate>2017-03-14</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>LUCIA.RIBEIRO</SourceID>
+        <SystemEntryDate>2017-03-14T00:00:00</SystemEntryDate>
+        <CustomerID>AO823892388_C</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T15:59:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>A0001</ProductCode>
+          <ProductDescription>Pentium D925 Dual Core</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>878</UnitPrice>
+          <TaxPointDate>2017-03-14</TaxPointDate>
+          <Description>Pentium D925 Dual Core</Description>
+          <CreditAmount>878.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>A0003</ProductCode>
+          <ProductDescription>Computador Pentium III 1GHz</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>1198</UnitPrice>
+          <TaxPointDate>2017-03-14</TaxPointDate>
+          <Description>Computador Pentium III 1GHz</Description>
+          <CreditAmount>1198.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>435.96</TaxPayable>
+          <NetTotal>2076.00</NetTotal>
+          <GrossTotal>2511.96</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/5</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-03-22T00:00:00</InvoiceStatusDate>
+          <SourceID>LUCIA.RIBEIRO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>XGauxMCsN0tlSt1nQuyT+rp4+UUHOXl41zDXND6CWYNnl9qSNdmX8XApRsQQed8On8oJr8aEmz235UokVN6Bn4CIoIYPS4XaM89ftf7zlBJ63dUv9oFYaECS4Z8pux833qlME1YBo9uimgPfQRbFHxqU4j2ZbeK3FZK6rrsfang=</Hash>
+        <HashControl>0</HashControl>
+        <Period>03</Period>
+        <InvoiceDate>2017-03-22</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>LUCIA.RIBEIRO</SourceID>
+        <SystemEntryDate>2017-03-22T00:00:00</SystemEntryDate>
+        <CustomerID>ES989922456_C</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T16:00:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>A0002</ProductCode>
+          <ProductDescription>Pentium 4 945+ Dual Core 3.4GHZ</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>917.67</UnitPrice>
+          <TaxPointDate>2017-03-22</TaxPointDate>
+          <Description>Pentium 4 945+ Dual Core 3.4GHZ</Description>
+          <CreditAmount>917.67</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>8.33</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>B0001</ProductCode>
+          <ProductDescription>Monitor 17" TFT L1752S</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>184.43</UnitPrice>
+          <TaxPointDate>2017-03-22</TaxPointDate>
+          <Description>Monitor 17" TFT L1752S</Description>
+          <CreditAmount>184.43</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>5.47</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>231.44</TaxPayable>
+          <NetTotal>1102.10</NetTotal>
+          <GrossTotal>1333.54</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/6</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-04-02T00:00:00</InvoiceStatusDate>
+          <SourceID>EUGENIO.VEIGA</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>U7SSfPhruVFGsx8MwnrlETp5xjTNRpqOrHCmQjVt0MebaSKXdp4jEdOnwWhUzXPMWs4yXJDERdMAW6RSmaV9aYoJG2NuurYkL1CH1BRxc94gYKkiVC61X1ixVFHLLYbM+DHAYJg+Kiy5JPivga4nbIJk+wn/fB0nz/IDV/SxDdQ=</Hash>
+        <HashControl>0</HashControl>
+        <Period>04</Period>
+        <InvoiceDate>2017-04-02</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>EUGENIO.VEIGA</SourceID>
+        <SystemEntryDate>2017-04-02T00:00:00</SystemEntryDate>
+        <TransactionID>2017-04-02 00051 40001</TransactionID>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T16:02:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>C0001</ProductCode>
+          <ProductDescription>Home Theater PC AMDx64 4200+</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>702.95</UnitPrice>
+          <TaxPointDate>2017-04-02</TaxPointDate>
+          <Description>Home Theater PC AMDx64 4200+</Description>
+          <CreditAmount>702.95</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>94.05</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>147.62</TaxPayable>
+          <NetTotal>702.95</NetTotal>
+          <GrossTotal>850.57</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/7</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-05-23T00:00:00</InvoiceStatusDate>
+          <SourceID>LUCIA.RIBEIRO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>bl8v482f8OBM0olCmMjtdbfl2c9mRhhMXTrY1rSf60YMCg4o5Qw1wUJxU1mD2kT0s8/qm2CAABmCYvwPQQbJFFYw+m6IY5OfVcmUilPEcOdxegvre/BLbtdNPKjFofiTbXReQTP7rX0hZOkLAeLBo81lmZGr+LvtHfqxBcynecQ=</Hash>
+        <HashControl>0</HashControl>
+        <Period>05</Period>
+        <InvoiceDate>2017-05-23</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>LUCIA.RIBEIRO</SourceID>
+        <SystemEntryDate>2017-05-23T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T17:12:00</MovementStartTime>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>A0004</ProductCode>
+          <ProductDescription>Processador Intel D326 2.5GHz</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>449.1</UnitPrice>
+          <TaxPointDate>2017-05-23</TaxPointDate>
+          <Description>Processador Intel D326 2.5GHz</Description>
+          <CreditAmount>449.10</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>49.90</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>94.31</TaxPayable>
+          <NetTotal>449.10</NetTotal>
+          <GrossTotal>543.41</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/8</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-06-03T00:00:00</InvoiceStatusDate>
+          <SourceID>LUCIA.RIBEIRO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>G0AyBRaQr2x4nQarTw7qh+ifsuQalXHcp2/InxUmP2yKwG19RHdKVzXaSvlqZK7KaGVeJqJ6iYqRCS0RUtZ6rx6LiUF4OS6sPKtyn+jfOp3rfZu6RPI3HDpZzu8Lg3b4D9Acl0mUM5imNIpgOvbUOgj3610EgIfOYTH9kOqEtnU=</Hash>
+        <HashControl>0</HashControl>
+        <Period>06</Period>
+        <InvoiceDate>2017-06-03</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>LUCIA.RIBEIRO</SourceID>
+        <SystemEntryDate>2017-06-03T00:00:00</SystemEntryDate>
+        <TransactionID>2017-06-03 00051 60001</TransactionID>
+        <CustomerID>PT505678900_C</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T17:41:00</MovementStartTime>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>F0002</ProductCode>
+          <ProductDescription>Serviços de Assistência Local</ProductDescription>
+          <Quantity>35</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>39.9</UnitPrice>
+          <TaxPointDate>2017-06-03</TaxPointDate>
+          <Description>Serviços de Assistência Local</Description>
+          <CreditAmount>1396.50</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>F0003</ProductCode>
+          <ProductDescription>Serviços de Assistência no Cliente</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>59.86</UnitPrice>
+          <TaxPointDate>2017-06-03</TaxPointDate>
+          <Description>Serviços de Assistência no Cliente</Description>
+          <CreditAmount>59.86</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>305.84</TaxPayable>
+          <NetTotal>1456.36</NetTotal>
+          <GrossTotal>1762.20</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/9</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-07-06T00:00:00</InvoiceStatusDate>
+          <SourceID>LUCIA.RIBEIRO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>AwvZ1nj9yvyVo/Yn1eyWUcROwO4rLAJ8QiGOoBvT/KkIWlU64XjrxjExt/agJPtCxr7D4Cin3RQmm48VTu+no90GydMhMwrivioCZ9NGomwDdAvcxCKcLER52Bg6AiF3mJLrfstE34egjABEgd/wKg1vNKV1vRNoSvJVYtJieaM=</Hash>
+        <HashControl>0</HashControl>
+        <Period>07</Period>
+        <InvoiceDate>2017-07-06</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>LUCIA.RIBEIRO</SourceID>
+        <SystemEntryDate>2017-07-06T00:00:00</SystemEntryDate>
+        <TransactionID>2017-07-06 00051 70001</TransactionID>
+        <CustomerID>PT503141607_C</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T18:07:00</MovementStartTime>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>A0004</ProductCode>
+          <ProductDescription>Processador Intel D326 2.5GHz</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>399.2</UnitPrice>
+          <TaxPointDate>2017-07-06</TaxPointDate>
+          <Description>Processador Intel D326 2.5GHz</Description>
+          <CreditAmount>399.20</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>99.80</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>4</LineNumber>
+          <ProductCode>A0005</ProductCode>
+          <ProductDescription>Mesa p/ PC</ProductDescription>
+          <Quantity>3</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>49.6</UnitPrice>
+          <TaxPointDate>2017-07-06</TaxPointDate>
+          <Description>Mesa p/ PC</Description>
+          <CreditAmount>148.80</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>37.20</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>7</LineNumber>
+          <ProductCode>Especial</ProductCode>
+          <ProductDescription>Linha especial</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>4</UnitPrice>
+          <TaxPointDate>2017-07-06</TaxPointDate>
+          <Description>Portes</Description>
+          <CreditAmount>4.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>115.92</TaxPayable>
+          <NetTotal>552.00</NetTotal>
+          <GrossTotal>667.92</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/10</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-08-14T00:00:00</InvoiceStatusDate>
+          <SourceID>MANUEL.ARAUJO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>HpNaEF4ATRnGUkePkafy3kMrvzcZMOv8k6PmverPYaN1FCUt0SDbIjQVCH+MbcoqkhyTf+bgt92oBdCccRUhp7xPls+wZ6YXP6CkYWUvqRVXXwltNrjpXiAqfeS9IdmvGzBG2ItT5Kn7d0Us3WjDrOHUFr/uxLoHTY02fD6RKUI=</Hash>
+        <HashControl>0</HashControl>
+        <Period>08</Period>
+        <InvoiceDate>2017-08-14</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>MANUEL.ARAUJO</SourceID>
+        <SystemEntryDate>2017-08-14T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T18:09:00</MovementStartTime>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>A0001</ProductCode>
+          <ProductDescription>Pentium D925 Dual Core</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>878</UnitPrice>
+          <TaxPointDate>2017-08-14</TaxPointDate>
+          <Description>Pentium D925 Dual Core</Description>
+          <CreditAmount>878.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>A0003</ProductCode>
+          <ProductDescription>Processador INTEL CORE 2 DUO E6300 1.86GHZ</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>1198</UnitPrice>
+          <TaxPointDate>2017-08-14</TaxPointDate>
+          <Description>Processador INTEL CORE 2 DUO E6300 1.86GHZ</Description>
+          <CreditAmount>1198.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>4</LineNumber>
+          <ProductCode>C0001</ProductCode>
+          <ProductDescription>VideoProjector EMP-S4</ProductDescription>
+          <Quantity>4</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>781.06</UnitPrice>
+          <TaxPointDate>2017-08-14</TaxPointDate>
+          <Description>VideoProjector EMP-S4</Description>
+          <CreditAmount>3124.24</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>63.76</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>5</LineNumber>
+          <ProductCode>C0002</ProductCode>
+          <ProductDescription>GT-15000 600x1200ppp 48bit USB SCSI</ProductDescription>
+          <Quantity>6</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>1602.3</UnitPrice>
+          <TaxPointDate>2017-08-14</TaxPointDate>
+          <Description>GT-15000 600x1200ppp 48bit USB SCSI</Description>
+          <CreditAmount>9613.80</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>196.20</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>3110.95</TaxPayable>
+          <NetTotal>14814.04</NetTotal>
+          <GrossTotal>17924.99</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/11</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-10-20T00:00:00</InvoiceStatusDate>
+          <SourceID>MANUEL.ARAUJO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>Y53Num2z5AHHTGnSCq5uDA5BHn08C0PM1zhy6dfAioAOQ8WAu/VZMeug1xtd4QTHy80P56INRM5n50kHX37bRot+G+X6oKz4sPOqLQoAt32czJZ/MBVszNQg+X/bfqjVJDLjS65wenDdzXRaopNV04Eb7450xxAhxiw+EjfKlYw=</Hash>
+        <HashControl>0</HashControl>
+        <Period>10</Period>
+        <InvoiceDate>2017-10-20</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>MANUEL.ARAUJO</SourceID>
+        <SystemEntryDate>2017-10-20T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T18:51:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>C0001</ProductCode>
+          <ProductDescription>Home Theater PC AMDx64 4200+</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>702.95</UnitPrice>
+          <TaxPointDate>2017-10-20</TaxPointDate>
+          <Description>Home Theater PC AMDx64 4200+</Description>
+          <CreditAmount>702.95</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>94.05</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>A0001</ProductCode>
+          <ProductDescription>Pentium D925 Dual Core</ProductDescription>
+          <Quantity>10</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>790.2</UnitPrice>
+          <TaxPointDate>2017-10-20</TaxPointDate>
+          <Description>Pentium D925 Dual Core</Description>
+          <CreditAmount>7902.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>878.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>6</LineNumber>
+          <ProductCode>Especial</ProductCode>
+          <ProductDescription>Linha especial</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>7800</UnitPrice>
+          <TaxPointDate>2017-10-20</TaxPointDate>
+          <Description>Adiantamento ADC Série 1 N.º 3 de 20-12-2006</Description>
+          <DebitAmount>7800.00</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>169.04</TaxPayable>
+          <NetTotal>804.95</NetTotal>
+          <GrossTotal>973.99</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/12</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-10-21T00:00:00</InvoiceStatusDate>
+          <SourceID>MANUEL.ARAUJO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>aofGOd2vDYO2Fukg2EN7tDmSkGq2sn9bqTRCHRZx9SXuK4brCL2wY3E+vGjzoSEXC2sIc2rl9seO+jFa6+LW8yEfYVMJ2LUgL8yMd+PsVxP9vnjOYx6VE6mAOBvGh7GCNneIwMu11sVBJaYWAGJyy+c4y+Cpo1j0xPFJSZqzX+I=</Hash>
+        <HashControl>0</HashControl>
+        <Period>10</Period>
+        <InvoiceDate>2017-10-21</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>MANUEL.ARAUJO</SourceID>
+        <SystemEntryDate>2017-10-21T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T19:13:00</MovementStartTime>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>A0001</ProductCode>
+          <ProductDescription>Pentium D925 Dual Core</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>790.2</UnitPrice>
+          <TaxPointDate>2017-10-21</TaxPointDate>
+          <Description>Pentium D925 Dual Core</Description>
+          <CreditAmount>790.20</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>87.80</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>4</LineNumber>
+          <ProductCode>A0003</ProductCode>
+          <ProductDescription>Processador INTEL CORE 2 DUO E6300 1.86GHZ</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>1078.2</UnitPrice>
+          <TaxPointDate>2017-10-21</TaxPointDate>
+          <Description>Processador INTEL CORE 2 DUO E6300 1.86GHZ</Description>
+          <CreditAmount>1078.20</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>119.80</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>5</LineNumber>
+          <ProductCode>B0005</ProductCode>
+          <ProductDescription>TFT 19" HV-926TS 1280x1024</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>163.25</UnitPrice>
+          <TaxPointDate>2017-10-21</TaxPointDate>
+          <Description>TFT 19" HV-926TS 1280x1024</Description>
+          <CreditAmount>163.25</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>23.75</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>426.65</TaxPayable>
+          <NetTotal>2031.65</NetTotal>
+          <GrossTotal>2458.30</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/13</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-11-21T00:00:00</InvoiceStatusDate>
+          <SourceID>MANUEL.ARAUJO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>JRhS3H90HPMQWSQz/hPPEl7fbSMISiwu2u608UPvscNSe/Y6BPLhMYsZzxXRhhLMjPFHVLvXgpaHiNUQAf6R8Qc4h5pSOXADhoP6jILuHDMe8pXoxmOYS8KJYMH6J7O34+ngJwAl+AVtdc08tzi/kQLGMJDR0XSto0zPEJ8YH1w=</Hash>
+        <HashControl>0</HashControl>
+        <Period>11</Period>
+        <InvoiceDate>2017-11-21</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>MANUEL.ARAUJO</SourceID>
+        <SystemEntryDate>2017-11-21T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T19:13:00</MovementStartTime>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>A0001</ProductCode>
+          <ProductDescription>Pentium D925 Dual Core</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>790.2</UnitPrice>
+          <TaxPointDate>2017-11-21</TaxPointDate>
+          <Description>Pentium D925 Dual Core</Description>
+          <CreditAmount>790.20</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>87.80</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>4</LineNumber>
+          <ProductCode>A0003</ProductCode>
+          <ProductDescription>Processador INTEL CORE 2 DUO E6300 1.86GHZ</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>1078.2</UnitPrice>
+          <TaxPointDate>2017-11-21</TaxPointDate>
+          <Description>Processador INTEL CORE 2 DUO E6300 1.86GHZ</Description>
+          <CreditAmount>1078.20</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>119.80</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>5</LineNumber>
+          <ProductCode>B0005</ProductCode>
+          <ProductDescription>TFT 19" HV-926TS 1280x1024</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>163.25</UnitPrice>
+          <TaxPointDate>2017-11-21</TaxPointDate>
+          <Description>TFT 19" HV-926TS 1280x1024</Description>
+          <CreditAmount>163.25</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>23.75</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>426.65</TaxPayable>
+          <NetTotal>2031.65</NetTotal>
+          <GrossTotal>2458.30</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FA A/14</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-12-29T00:00:00</InvoiceStatusDate>
+          <SourceID>SERGIO.LOPES</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>ZQBgLxfCw4wYWKPyErUa1fQHxvuiL3B3f5LQ57MgJf1hnaIrGxIQgDOlNKiBrJkr1rsvPia5ymn9eE+I9HRC3s5NIsB/Yc8zdOX407VBgYqiioxTzDFyb4Yqsvl4wAwmmboYw5ib6gYEw3zigfp0oikHzZruZE/xOdLRp3XCkaA=</Hash>
+        <HashControl>0</HashControl>
+        <Period>12</Period>
+        <InvoiceDate>2017-12-29</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>SERGIO.LOPES</SourceID>
+        <SystemEntryDate>2017-12-29T00:00:00</SystemEntryDate>
+        <CustomerID>ES989922456_C</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2007-01-29T19:14:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>B0006</ProductCode>
+          <ProductDescription>TFT 17" 1702 1280x1024</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>276</UnitPrice>
+          <TaxPointDate>2017-12-29</TaxPointDate>
+          <Description>TFT 17" 1702 1280x1024</Description>
+          <CreditAmount>276.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>A0005</ProductCode>
+          <ProductDescription>Mesa p/ PC</ProductDescription>
+          <Quantity>200</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>62</UnitPrice>
+          <TaxPointDate>2017-12-29</TaxPointDate>
+          <Description>Mesa p/ PC</Description>
+          <CreditAmount>12400.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>2661.96</TaxPayable>
+          <NetTotal>12676.00</NetTotal>
+          <GrossTotal>15337.96</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>NC A/1</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-09-03T00:00:00</InvoiceStatusDate>
+          <SourceID>MANUEL.ARAUJO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>0</Hash>
+        <HashControl>0</HashControl>
+        <Period>09</Period>
+        <InvoiceDate>2017-09-03</InvoiceDate>
+        <InvoiceType>NC</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>MANUEL.ARAUJO</SourceID>
+        <SystemEntryDate>2017-09-03T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2017-09-03</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2017-09-03</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementEndTime>1899-12-30T18:17:00</MovementEndTime>
+        <MovementStartTime>2017-09-03T00:00:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>C0001</ProductCode>
+          <ProductDescription>Home Theater PC AMDx64 4200+</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>702.95</UnitPrice>
+          <TaxPointDate>2017-09-03</TaxPointDate>
+          <References>
+            <Reference>FA A/6</Reference>
+          </References>
+          <Description>Home Theater PC AMDx64 4200+</Description>
+          <DebitAmount>702.95</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>94.05</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>147.62</TaxPayable>
+          <NetTotal>702.95</NetTotal>
+          <GrossTotal>850.57</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>NC A/2</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-10-29T00:00:00</InvoiceStatusDate>
+          <SourceID>SERGIO.LOPES</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>0</Hash>
+        <HashControl>0</HashControl>
+        <Period>10</Period>
+        <InvoiceDate>2017-10-29</InvoiceDate>
+        <InvoiceType>NC</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>SERGIO.LOPES</SourceID>
+        <SystemEntryDate>2017-10-29T00:00:00</SystemEntryDate>
+        <CustomerID>ES989922456_C</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementEndTime>2007-01-29T19:15:00</MovementEndTime>
+        <MovementStartTime>2017-10-29T00:00:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>A0005</ProductCode>
+          <ProductDescription>Mesa p/ PC</ProductDescription>
+          <Quantity>120</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>62</UnitPrice>
+          <TaxPointDate>2017-10-29</TaxPointDate>
+          <Description>Mesa p/ PC</Description>
+          <DebitAmount>7440.00</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>B0002</ProductCode>
+          <ProductDescription>Gravador DVD Usb 2.0 Super Multi Drive</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>302.82</UnitPrice>
+          <TaxPointDate>2017-10-29</TaxPointDate>
+          <Description>Gravador DVD Usb 2.0 Super Multi Drive</Description>
+          <DebitAmount>302.82</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>6.18</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>B0007</ProductCode>
+          <ProductDescription>Rato R17B</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>0.00</UnitPrice>
+          <TaxPointDate>2017-10-29</TaxPointDate>
+          <Description>Rato R17B</Description>
+          <DebitAmount>0.00</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>1625.99</TaxPayable>
+          <NetTotal>7742.82</NetTotal>
+          <GrossTotal>9368.81</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>NC A/3</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-01-29T00:00:00</InvoiceStatusDate>
+          <SourceID>SERGIO.LOPES</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>0</Hash>
+        <HashControl>0</HashControl>
+        <Period>01</Period>
+        <InvoiceDate>2017-01-29</InvoiceDate>
+        <InvoiceType>NC</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>SERGIO.LOPES</SourceID>
+        <SystemEntryDate>2017-01-29T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementEndTime>2007-01-29T19:16:00</MovementEndTime>
+        <MovementStartTime>2017-01-29T00:00:00</MovementStartTime>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>CMP-CPU001.MT2800</ProductCode>
+          <ProductDescription>Processador MT (MT2800)</ProductDescription>
+          <Quantity>3</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>269.1</UnitPrice>
+          <TaxPointDate>2017-01-29</TaxPointDate>
+          <Description>Processador MT (MT2800)</Description>
+          <DebitAmount>807.30</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>89.70</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>CMP-CPU001.MT2500</ProductCode>
+          <ProductDescription>Processador MT (MT2500)</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>269.1</UnitPrice>
+          <TaxPointDate>2017-01-29</TaxPointDate>
+          <Description>Processador MT (MT2500)</Description>
+          <DebitAmount>269.10</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>29.90</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>4</LineNumber>
+          <ProductCode>CMP-CPU001.MT2300</ProductCode>
+          <ProductDescription>Processador MT (MT2300)</ProductDescription>
+          <Quantity>12</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>269.1</UnitPrice>
+          <TaxPointDate>2017-01-29</TaxPointDate>
+          <Description>Processador MT (MT2300)</Description>
+          <DebitAmount>3229.20</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>358.80</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>5</LineNumber>
+          <ProductCode>CMP-CPU001.MT2200</ProductCode>
+          <ProductDescription>Processador MT (MT2200)</ProductDescription>
+          <Quantity>10</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>269.1</UnitPrice>
+          <TaxPointDate>2017-01-29</TaxPointDate>
+          <Description>Processador MT (MT2200)</Description>
+          <DebitAmount>2691.00</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>299.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>6</LineNumber>
+          <ProductCode>Especial</ProductCode>
+          <ProductDescription>Linha especial</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>100</UnitPrice>
+          <TaxPointDate>2017-01-29</TaxPointDate>
+          <Description>Portes</Description>
+          <DebitAmount>100.00</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>1490.29</TaxPayable>
+          <NetTotal>7096.60</NetTotal>
+          <GrossTotal>8586.89</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>NC A/4</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-02-25T00:00:00</InvoiceStatusDate>
+          <SourceID>SERGIO.LOPES</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>0</Hash>
+        <HashControl>0</HashControl>
+        <Period>02</Period>
+        <InvoiceDate>2017-02-25</InvoiceDate>
+        <InvoiceType>NC</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>SERGIO.LOPES</SourceID>
+        <SystemEntryDate>2017-02-25T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementEndTime>2007-01-29T19:18:00</MovementEndTime>
+        <MovementStartTime>2017-02-25T00:00:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>A0002</ProductCode>
+          <ProductDescription>Pentium 4 945+ Dual Core 3.4GHZ</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>740.82</UnitPrice>
+          <TaxPointDate>2017-02-25</TaxPointDate>
+          <Description>Pentium 4 945+ Dual Core 3.4GHZ</Description>
+          <DebitAmount>740.82</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>185.20</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>CMP-PS001</ProductCode>
+          <ProductDescription>Placa de Som THES 7.1 Extreme</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>117.6</UnitPrice>
+          <TaxPointDate>2017-02-25</TaxPointDate>
+          <Description>Placa de Som THES 7.1 Extreme</Description>
+          <ProductSerialNumber>
+            <SerialNumber>8</SerialNumber>
+          </ProductSerialNumber>
+          <DebitAmount>117.60</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>32.40</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>180.27</TaxPayable>
+          <NetTotal>858.42</NetTotal>
+          <GrossTotal>1038.69</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>NC A/5</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-03-26T00:00:00</InvoiceStatusDate>
+          <SourceID>SERGIO.LOPES</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>0</Hash>
+        <HashControl>0</HashControl>
+        <Period>03</Period>
+        <InvoiceDate>2017-03-26</InvoiceDate>
+        <InvoiceType>NC</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>SERGIO.LOPES</SourceID>
+        <SystemEntryDate>2017-03-26T00:00:00</SystemEntryDate>
+        <CustomerID>PT503141607_C</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementEndTime>2007-01-29T19:19:00</MovementEndTime>
+        <MovementStartTime>2017-03-26T00:00:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>D0001</ProductCode>
+          <ProductDescription>Teclado Ergonómico PT-776</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>23.7</UnitPrice>
+          <TaxPointDate>2017-03-26</TaxPointDate>
+          <Description>Teclado Ergonómico PT-776</Description>
+          <DebitAmount>23.70</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>6.23</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>EQ001</ProductCode>
+          <ProductDescription>Aparelhagem e Máq. Eletrónicas</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>120</UnitPrice>
+          <TaxPointDate>2017-03-26</TaxPointDate>
+          <Description>Aparelhagem e Máq. Eletrónicas</Description>
+          <DebitAmount>120.00</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>30.00</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>30.18</TaxPayable>
+          <NetTotal>143.70</NetTotal>
+          <GrossTotal>173.88</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>NC A/6</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2017-05-03T00:00:00</InvoiceStatusDate>
+          <SourceID>SERGIO.LOPES</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>0</Hash>
+        <HashControl>0</HashControl>
+        <Period>05</Period>
+        <InvoiceDate>2017-05-03</InvoiceDate>
+        <InvoiceType>NC</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>SERGIO.LOPES</SourceID>
+        <SystemEntryDate>2017-05-03T00:00:00</SystemEntryDate>
+        <CustomerID>GB9393878719-A_C</CustomerID>
+        <ShipTo>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>2007-01-29</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementEndTime>2007-01-29T19:20:00</MovementEndTime>
+        <MovementStartTime>2017-05-03T00:00:00</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>A0001</ProductCode>
+          <ProductDescription>Pentium D925 Dual Core</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>878</UnitPrice>
+          <TaxPointDate>2017-05-03</TaxPointDate>
+          <Description>Pentium D925 Dual Core</Description>
+          <DebitAmount>878.00</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>A0003</ProductCode>
+          <ProductDescription>Processador INTEL CORE 2 DUO E6300 1.86GHZ</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>1198.1</UnitPrice>
+          <TaxPointDate>2017-05-03</TaxPointDate>
+          <Description>Processador INTEL CORE 2 DUO E6300 1.86GHZ</Description>
+          <DebitAmount>1198.10</DebitAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>Especial</ProductCode>
+          <ProductDescription>Linha especial</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>123</UnitPrice>
+          <TaxPointDate>2017-05-03</TaxPointDate>
+          <Description>Adiantamentos</Description>
+          <CreditAmount>123.00</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.00</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>410.15</TaxPayable>
+          <NetTotal>1953.10</NetTotal>
+          <GrossTotal>2363.25</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.00</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+    </SalesInvoices>
+    <MovementOfGoods>
+      <NumberOfMovementLines>1</NumberOfMovementLines>
+      <TotalQuantityIssued>1.00</TotalQuantityIssued>
+      <StockMovement>
+        <DocumentNumber>GR A/1</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <MovementStatus>F</MovementStatus>
+          <MovementStatusDate>2017-10-20T00:00:00</MovementStatusDate>
+          <SourceID>MANUEL.ARAUJO</SourceID>
+          <SourceBilling>M</SourceBilling>
+        </DocumentStatus>
+        <Hash>0</Hash>
+        <HashControl>0</HashControl>
+        <Period>12</Period>
+        <MovementDate>2017-12-02</MovementDate>
+        <MovementType>GR</MovementType>
+        <SystemEntryDate>2017-12-02T00:00:00</SystemEntryDate>
+        <CustomerID>Consumidor final</CustomerID>
+        <SourceID>MANUEL.ARAUJO</SourceID>
+        <ShipTo>
+          <DeliveryDate>1899-12-30</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <DeliveryDate>1899-12-30</DeliveryDate>
+          <Address>
+            <AddressDetail>Desconhecido</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Country>Desconhecido</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>1899-12-30T18:31:00</MovementStartTime>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>C0001</ProductCode>
+          <ProductDescription>Home Theater PC AMDx64 4200+</ProductDescription>
+          <Quantity>1</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>702.95</UnitPrice>
+          <Description>Home Theater PC AMDx64 4200+</Description>
+          <CreditAmount>702.95</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>21.00</TaxPercentage>
+          </Tax>
+          <SettlementAmount>94.05</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>147.62</TaxPayable>
+          <NetTotal>702.95</NetTotal>
+          <GrossTotal>850.57</GrossTotal>
+        </DocumentTotals>
+      </StockMovement>
+    </MovementOfGoods>
+  </SourceDocuments>
+</AuditFile>
