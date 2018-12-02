@@ -27,7 +27,7 @@ class KPIComponent extends Component {
             <Container className='kpiContainer componentBackground'>
                 <Row>
                     <Col>
-                        <span className='kpiValue'>{this.props.type === 'money' ? '€' : ''} {this.props.currentValue}{this.props.type === 'money' ? '' : '%'} {icon}</span>
+                        <span className='kpiValue'>{this.props.type === 'money' ? '€' : ''} {this.props.currentValue}{this.props.type === 'percentage' ? '%' : ''}{this.props.unit} {icon}</span>
                     </Col>
                 </Row>
                 <hr className='kpiHr'/>

@@ -7,10 +7,16 @@ const Flatted = require('flatted');
 const xmlQuery = require('xml-query');
 
 const app = express();
+var cors = require('cors')
+app.use(cors())
 
-let parsedXML;
+
+let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
+parsedXML = XmlReader.parseSync(xmlFile);
 
 let inventory = -1;
+
+
 
 // Sums the given balance nodes read from a SAF-T file
 function sumBalance(query) {

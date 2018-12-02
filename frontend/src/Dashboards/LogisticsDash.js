@@ -15,6 +15,10 @@ class LogisticsDash extends Component {
             artigos: {},
             year: '2018',
             month: '1',
+            previousInventory: 1000,
+            currentInventory: 1645,
+            previousInventoryPeriod: 1000,
+            currentInventoryPeriod: 834,
             previousShipmentsValue: '1000',
             currentShipmentsValue: '2075',
             deliveryStatus: {
@@ -88,8 +92,8 @@ class LogisticsDash extends Component {
         })
     }
     
-    listArticles() {
-      /*fetch('http://localhost:2018/WebApi/Base/Artigos/LstArtigos',
+    /*listArticles() {
+      fetch('http://localhost:2018/WebApi/Base/Artigos/LstArtigos',
           {
               headers: {
                   'Authorization' : `Bearer ${this.state.authentication['access_token']}`,
@@ -98,8 +102,35 @@ class LogisticsDash extends Component {
           })
           .then(response => response.json())
           .then(data => this.setState({ artigos: data }));*/
+
+    getInventory(){
+        fetch('http://localhost:5000/api/inventory',
+        {     
+
+            method: "GET",
+                      
+        })
+        .then(response => response.json())
+        .then(data =>{ 
+            this.setState({ currentInventory: data.toFixed(0) }); 
+            
+          } ); 
     }
 
+    getInventoryPeriod(){
+        fetch('http://localhost:5000/api/inventoryPeriod',
+        {     
+
+            method: "GET",
+                      
+        })
+        .then(response => response.json())
+        .then(data =>{ 
+            this.setState({ currentInventoryPeriod: data.toFixed(0) }); 
+            console.log(this.state)
+            
+          } ); 
+    }
     getShipments(){
         fetch('http://localhost:2018/WebApi/Administrador/Consulta',
           {     
@@ -127,8 +158,6 @@ class LogisticsDash extends Component {
         }
         
         this.setState({currentShipmentsValue: shipmentsValue.toFixed(0)})
-
-
     }
 
     updateDeliveryStatus(table){
@@ -147,7 +176,6 @@ class LogisticsDash extends Component {
         let deliveryStatusState = this.state["deliveryStatus"]
         deliveryStatusState["datasets"][0]["data"] = [delivered, notDelivered]
         this.setState({deliveryStatus:  deliveryStatusState})
-
     }
 
     updateDeliveriesDestinations(table){
@@ -196,6 +224,8 @@ class LogisticsDash extends Component {
         })
         .then(response => response.json())
         .then(data => this.setState({ authentication: data }))
+        .then(this.getInventory.bind(this))
+        .then(this.getInventoryPeriod.bind(this))
         .then(this.getShipments.bind(this));   
     }
 
@@ -212,10 +242,10 @@ class LogisticsDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Inventory Value'} type={'money'} currentValue={1645} previousValue={1000}/>
+                        <KPIComponent title={'Inventory Value'} type={'money'} currentValue={this.state['currentInventory']} previousValue={this.state['previousInventory']}/>
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Average Inventory Period'} type={'percentage'} currentValue={834} previousValue={1000}/>
+                        <KPIComponent title={'Average Inventory Period'} type={'none'} unit={' days'} currentValue={this.state['currentInventoryPeriod']} previousValue={this.state['previousInventoryPeriod']}/>
                     </Col>
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>
