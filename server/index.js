@@ -303,7 +303,6 @@ function calculateAccountsSum(accountID, sumFunction){
      //const accounts = ledgerAccounts[0].find("Account")
 
      ledgerAccounts
-     console.log(ledgerAccounts)
 
      const accounts = ledgerAccounts['ast'][0]['children']
      //console.log(accounts)
@@ -336,7 +335,6 @@ function sumInventory(account){
     const closingDebit = account['children'][4]['children'][0]['value']
     const closingCredit = account['children'][5]['children'][0]['value']
     
-    console.log(closingDebit)
     return (closingDebit - openingDebit) - (closingCredit - openingCredit)
 }
 
@@ -347,7 +345,6 @@ app.get('/api/inventoryPeriod', (req, res)=>{
     inventory = calculateAccountsSum("3", sumInventory)
 
     let costOfGoodsSold = calculateAccountsSum("6", sumInventory)
-    console.log(costOfGoodsSold)
     let inventoryTurnover = costOfGoodsSold / inventory
     let inventoryPeriod = 365.0 / inventoryTurnover
     
