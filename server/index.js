@@ -63,27 +63,64 @@ app.get('/api/salesTotals', (req, res) => {
     // res.send(closingDebitSum + '');
 });
 
-// TODO:
-app.get('/api/testQuery', (req, res) => {
-
-    let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
-    parsedXML = XmlReader.parseSync(xmlFile);
+// Sums the lines relative to the account ID supplied and returns
+// an array with [totalDebit, totalCredit]
+function sumLedgerEntries(accountIDToSum) {
 
     // Get whole document as xml-query object
     const xq = xmlQuery(parsedXML);
 
-    // Get sales totals
-    let journalQuery = xq.find('GeneralLedgerEntries').children().find('Journal');
+    let totalDebit = 0.0;
+    let totalCredit = 0.0;
 
     // For each journal entry
+    let journalQuery = xq.find('GeneralLedgerEntries').children().find('Journal');
     for(let i = 0; i < journalQuery.size(); i++) {
         let linesQuery = journalQuery.eq(i).find('Transaction').children().find('Lines');
 
         // For each line entry of the transaction
         for(let i = 0; i < linesQuery.size(); i++) {
-            console.log(linesQuery.children().eq(i).children().find('AccountID').text());
+
+            let line = linesQuery.children().eq(i).children();
+
+            // Sum credit amount to running total
+            if(line.has('CreditAmount')) {
+                
+                let accountID = line.find('AccountID').children().text();
+                accountID = accountID.substring(0, 4);
+                if(accountID.startsWith(accountIDToSum)) {
+                    totalCredit = parseFloat(line.find('CreditAmount').children().text());
+                }
+
+            // Sum debit amount to running total
+            } else if(line.has('DebitAmount')) {
+
+                let accountID = line.find('AccountID').children().text();
+                accountID = accountID.substring(0, 4);
+                if(accountID.startsWith(accountIDToSum)) {
+                    totalDebit = parseFloat(line.find('DebitAmount').children().text());
+                }
+            }
         }
     }
+
+    return [totalDebit, totalCredit];
+}
+
+// TODO:
+app.get('/api/sumLedgerEntries', (req, res) => {
+
+    let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
+    parsedXML = XmlReader.parseSync(xmlFile);
+
+    let accountIDToSum = req.query.id;
+    if (typeof accountIDToSum == 'undefined' && !accountIDToSum) {
+        res.send('Missing parameters for account ID!');
+    }
+
+    let result = sumLedgerEntries(accountIDToSum);
+    console.log(result[0]);
+    console.log(result[1]);
 
     // res.send();
 });
