@@ -115,11 +115,11 @@ class FinancialDash extends Component {
     componentDidMount() {
 
         // TODO: example fetch from server
-        fetch('http://localhost:5000/Api/printXML', {
+        fetch('http://localhost:5000/api/sumLedgerEntries?id=21', {
             method: 'GET',
             mode: 'no-cors'
         })
-            .then(response => console.log(response.body))
+            .then(response => console.log(response))
     }
 
     render() {

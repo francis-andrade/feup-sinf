@@ -122,7 +122,7 @@ app.get('/api/sumLedgerEntries', (req, res) => {
     console.log(result[0]);
     console.log(result[1]);
 
-    // res.send();
+    res.send(result);
 });
 
 
