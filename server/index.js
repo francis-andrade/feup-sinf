@@ -90,25 +90,137 @@ app.get('/api/testQuery', (req, res) => {
 
 
 //TODO: apply date limits
+//Gets Backlog Value
 app.get('/api/backlogValue', function(req, res) {
 
     const xq = xmlQuery(parsedXML);
 
     let result = 0;
 
-    //Get SalesInvoices 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
 
     for (let i = 0; i< allInvoices.size(); i++){
         let invoiceType = allInvoices.eq(i).find('InvoiceType').children().text();
         if (invoiceType == 'NC'){ // notas de crédito
-            console.log(invoiceType);
-            let invoiceTotal = parseFloat(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+            let invoiceTotal = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
             result += invoiceTotal;
         }
     }
+
+    //result = Math.round(result*100)/100;
     console.log(result);
     res.send(result.toString()); 
+});
+
+// Return Array of arrays with 
+app.get('/api/SalesByCity', function(req, res) {
+    const xq = xmlQuery(parsedXML);
+
+    let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+
+    var result = [[], []]; // [City, Quantity]
+
+    for (let i = 0; i < allInvoices.size(); i++){
+        let city = allInvoices.eq(i).find('ShipTo').children().find('City').text();
+
+        let j = result[0].findIndex(function(e) {
+            return e == city;
+        });
+
+        if (j != -1){
+            result[1][j] += 1;
+        }
+        else{
+            result[0].push(city);
+            result[1].push(1);
+        }
+    }
+    
+    console.log(result);
+
+    res.send(result);
+});
+
+app.get('/api/TopProductsSold', function(req, res) {
+    const xq = xmlQuery(parsedXML);
+
+    let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+
+    var result = [[], [], []]; // [Code, Description, Amount]
+
+    for (let i = 0; i < allInvoices.size(); i++){
+        let allLines = allInvoices.eq(i).find('Line');
+        
+        for (let j = 0; j < allLines.size(); j++){
+            let code = allLines.eq(j).find('ProductCode').text();
+            let description = allLines.eq(j).find('ProductDescription').text();
+            let amount = Number(allLines.eq(j).find('CreditAmount').text());
+
+            let k = result[0].findIndex(function(e) {
+                return e == code;
+            });
+
+            if (k != -1){
+                result[2][k] += Math.round(amount * 100) / 100;
+            }
+            else{
+                result[0].push(code);
+                result[1].push(description);
+                let amountRound = Math.round(amount * 100) / 100;
+                result[2].push(amountRound);
+            }
+        }
+    }
+
+    res.send([result[1], result[2]]);
+});
+
+app.get('/api/SalesPerMonthLastYear', function(req, res) {
+    const xq = xmlQuery(parsedXML);
+
+    let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+
+    let result = [[], []]; //[Year-Month, Amount]
+
+    var d = new Date();
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
+    
+
+    for (let i = 0; i < 12; i++){
+        var currentMonth = month + i;
+        var currentYear = year;
+        if (currentMonth >= month){
+            currentYear -= 1;
+        }
+        if (currentMonth < 10){
+            currentMonth = '0' + currentMonth;
+        }
+        
+        var currentDate = currentYear + "-" + currentMonth;
+
+        result[0].push(currentDate);
+        result[1].push(0);
+    }
+
+
+    for (let i = 0; i < allInvoices.size(); i++){
+        let day = allInvoices.eq(i).find('InvoiceDate').text();
+        let amount = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+        let pat = /(\d+-\d+)-\d+/;
+        let matcher = pat.exec(day);
+
+
+        let j = result[0].findIndex(function(e) {
+            return e == matcher[1];
+        });
+
+        if (j != -1){
+            result[1][j] += amount;
+        }
+    }
+
+    res.send(result);
 });
 
 // Parse a SAF-T file read from the file system and store it
