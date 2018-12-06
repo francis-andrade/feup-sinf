@@ -12,7 +12,7 @@ class LogisticsDash extends Component {
 
         this.state = {
             authentication: {},
-            artigos: {},
+            shipments: {},
             year: '2018',
             month: '1',
             previousInventory: 1000,
@@ -145,8 +145,9 @@ class LogisticsDash extends Component {
           })
           .then(response => response.json())
           .then(data =>{ 
-              this.setState({ artigos: data }); this.updateShipmentValue(data["DataSet"]["Table"]); 
-              this.updateDeliveryStatus(data["DataSet"]["Table"])
+              this.setState({shipments: data["DataSet"]["Table"] }); 
+              this.updateShipmentValue(data["DataSet"]["Table"]); 
+              this.updateDeliveryStatus(data["DataSet"]["Table"]);
               this.updateDeliveriesDestinations(data["DataSet"]["Table"])
             } ); 
     }
