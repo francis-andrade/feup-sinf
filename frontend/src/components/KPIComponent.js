@@ -9,8 +9,15 @@ class KPIComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+            expanded: false
         };
+
+        this.click = this.click.bind(this)
+
+    }
+
+    click() {
+        this.setState(() => ({ expanded: !this.state.expanded }))
     }
 
     render() {
@@ -24,7 +31,7 @@ class KPIComponent extends Component {
         }
 
         return(
-            <Container className='kpiContainer componentBackground'>
+            <Container className='kpiContainer componentBackground' onClick={this.click} style={{ height: this.state.expanded ? '55vh' : '22vh' }}>
                 <Row>
                     <Col>
                         <span className='kpiValue'>{this.props.type === 'money' ? '€' : ''} {this.props.currentValue}{this.props.type === 'percentage' ? '%' : ''}{this.props.unit} {icon}</span>
@@ -41,6 +48,7 @@ class KPIComponent extends Component {
                         <span className='kpiInfo'>{Number(((this.props.currentValue - this.props.previousValue) / this.props.previousValue * 100).toFixed(1))}% change from previous time frame</span>
                     </Col>
                 </Row>
+                {this.state.expanded && 'aaaaaa'}
             </Container>
         )
     }

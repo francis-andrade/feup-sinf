@@ -24,6 +24,7 @@
         flex-direction: column;
         justify-content: center;
         height: 22vh;
+        width: 100%;
     }
 }
 
@@ -33,6 +34,8 @@
         flex-direction: column;
         justify-content: center;
         height: 21.9vh;
+        width: 100%;
+        float: left;
     }
 
     .kpiHr {

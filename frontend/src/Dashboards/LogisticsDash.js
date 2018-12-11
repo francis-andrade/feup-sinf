@@ -165,7 +165,7 @@ class LogisticsDash extends Component {
         let delivered = 0
         let notDelivered = 0
         for(let index = 0; index < table.length; index++){
-           if(table[index]['linhasTrans'] == "T" && table[index]['cabecTrans'] == "T"){
+           if(table[index]['linhasTrans'] === "T" && table[index]['cabecTrans'] === "T"){
                notDelivered++
            }
            else{
