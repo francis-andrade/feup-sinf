@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Table } from 'reactstrap';
 import TimeSelectorComponent from '../components/TimeSelectorComponent';
 import GraphComponent from '../components/GraphComponent';
 import KPIComponent from '../components/KPIComponent';
@@ -72,14 +72,12 @@ class PurchasesDash extends Component {
                         data: [1843, 1928, 2058]
                     }
                 ]
-             
             }
         }
 
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
 
-        
     }
 
     changeYear = (value) => {
@@ -205,6 +203,38 @@ class PurchasesDash extends Component {
     }
 
     render() {
+        let testTable = 
+        <Table className='kpiExtraInfo' >
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+        </Table>
+
         return (
             <div className='dashboardBackground'>
                 <Row>
@@ -217,10 +247,10 @@ class PurchasesDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']}/>
+                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} isClickable kpiExtraInfo={testTable} />
                     </Col>
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']}/>
+                        <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']} isClickable kpiExtraInfo={testTable} />
                     </Col>
                     <Col xs={{ size: 1 }} />
                 </Row>

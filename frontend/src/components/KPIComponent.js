@@ -17,7 +17,9 @@ class KPIComponent extends Component {
     }
 
     click() {
-        this.setState(() => ({ expanded: !this.state.expanded }))
+        if(this.props.isClickable){
+            this.setState(() => ({ expanded: !this.state.expanded }))
+        }
     }
 
     render() {
@@ -34,7 +36,7 @@ class KPIComponent extends Component {
             <Container className='kpiContainer componentBackground' onClick={this.click} style={{ height: this.state.expanded ? '55vh' : '22vh' }}>
                 <Row>
                     <Col>
-                        <span className='kpiValue'>{this.props.type === 'money' ? '€' : ''} {this.props.currentValue}{this.props.type === 'percentage' ? '%' : ''}{this.props.unit} {icon}</span>
+                        <span className='kpiValue'>{this.props.type === 'money' ? '€' : ''} {Number(this.props.currentValue).toFixed(2)}{this.props.type === 'percentage' ? '%' : ' '}{this.props.unit} {icon}</span>
                     </Col>
                 </Row>
                 <hr className='kpiHr'/>
@@ -48,7 +50,13 @@ class KPIComponent extends Component {
                         <span className='kpiInfo'>{Number(((this.props.currentValue - this.props.previousValue) / this.props.previousValue * 100).toFixed(1))}% change from previous time frame</span>
                     </Col>
                 </Row>
-                {this.state.expanded && 'aaaaaa'}
+                <Row>
+                    <Col sm={{ size: 1 }} className='d-xs-none' />
+                    <Col sm>
+                        {this.state.expanded && this.props.kpiExtraInfo}
+                    </Col>
+                    <Col sm={{ size: 1 }} className='d-xs-none' />
+                </Row>
             </Container>
         )
     }
