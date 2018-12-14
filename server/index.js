@@ -10,46 +10,10 @@ const app = express();
 var cors = require('cors')
 app.use(cors())
 
-
 let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
 parsedXML = XmlReader.parseSync(xmlFile);
 
 let inventory = -1;
-
-
-
-// Sums the given balance nodes read from a SAF-T file
-function sumBalance(query) {
-
-    let sum = 0;
-    query.each(node => {
-        sum += parseFloat(node['children'][0]['value']);
-    });
-    
-    return sum;
-}
-
-// TODO: return the value, only console logging for now
-// TODO: fix start point of query to GeneralLedgerAccounts
-// Sums the General Ledger Accounts' balances
-app.get('/api/sumLedgerBalances', (req, res) => {
-
-    // Get whole document as xml-query object
-    const xq = xmlQuery(parsedXML);
-
-    // Calc sum for each relevant balance
-    let openingDebitBalanceSum = sumBalance(xq.find('OpeningDebitBalance'));
-    let closingDebitBalanceSum = sumBalance(xq.find('ClosingDebitBalance'));
-    let openingCreditBalanceSum = sumBalance(xq.find('OpeningCreditBalance'));
-    let closingCreditBalanceSum = sumBalance(xq.find('ClosingCreditBalance'));
-
-    console.log("openDebit: " + openingDebitBalanceSum);
-    console.log("closeDebit: " + closingDebitBalanceSum);
-    console.log("openCredit: " + openingCreditBalanceSum);
-    console.log("closeCredit: " + closingCreditBalanceSum);
-
-    // res.send(closingDebitSum + '');
-});
 
 // TODO: return the value, only console logging for now
 // Gets the debit and credit totals of the sales
@@ -69,42 +33,79 @@ app.get('/api/salesTotals', (req, res) => {
     // res.send(closingDebitSum + '');
 });
 
-// Sums the lines relative to the account ID supplied and returns
-// an array with [totalDebit, totalCredit]
-function sumLedgerEntries(accountIDToSum) {
+/**
+ * Converts a string in YYYY-MM-DD format to a Date object.
+ * 
+ * @param {*} dateStr a string in YYYY-MM-DD format
+ */
+function toDate(dateStr) {
+    const [year, month, day] = dateStr.split("-")
+    return new Date(year, month - 1, day)
+}
+
+/**
+ * Sums the lines relative to the account ID supplied whithin the year and month
+ * supplied. Month = 0 is a special case where the whole year is used instead.
+ * Returns an array with [totalDebit, totalCredit].
+ * 
+ * @param {*} accountIDToSum the account ID to sum
+ * @param {*} year the year in YYYY format to use
+ * @param {*} month the month in MM format to use (1-12), 0 is a special value that sums the whole year
+ */
+function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
 
     // Get whole document as xml-query object
     const xq = xmlQuery(parsedXML);
 
     let totalDebit = 0.0;
     let totalCredit = 0.0;
+    let year = parseInt(strYear);
+    let month = parseInt(strMonth);
 
     // For each journal entry
     let journalQuery = xq.find('GeneralLedgerEntries').children().find('Journal');
-    for(let i = 0; i < journalQuery.size(); i++) {
-        let linesQuery = journalQuery.eq(i).find('Transaction').children().find('Lines');
+    for (let a = 0; a < journalQuery.size(); a++) {
+        let transactionQuery = journalQuery.eq(a).find('Transaction');
 
-        // For each line entry of the transaction
-        for(let i = 0; i < linesQuery.size(); i++) {
+        // For each transaction entry
+        for (let b = 0; b < transactionQuery.size(); b++) {
 
-            let line = linesQuery.children().eq(i).children();
+            let linesQuery = transactionQuery.eq(b).find('Lines');
+            let dateQuery = transactionQuery.eq(b).find('TransactionDate');
 
-            // Sum credit amount to running total
-            if(line.has('CreditAmount')) {
-                
-                let accountID = line.find('AccountID').children().text();
-                accountID = accountID.substring(0, 4);
-                if(accountID.startsWith(accountIDToSum)) {
-                    totalCredit = parseFloat(line.find('CreditAmount').children().text());
-                }
+            // Check if date matches
+            let date = toDate(dateQuery.text());
 
-            // Sum debit amount to running total
-            } else if(line.has('DebitAmount')) {
+            if(month == 0) {
+                // Only match year since month was 0
+                if(date.getFullYear() != year) continue;
+            } else {
+                // Match both year and month
+                if(date.getFullYear() != year || date.getMonth() != (month - 1)) continue;
+            }
 
-                let accountID = line.find('AccountID').children().text();
-                accountID = accountID.substring(0, 4);
-                if(accountID.startsWith(accountIDToSum)) {
-                    totalDebit = parseFloat(line.find('DebitAmount').children().text());
+            // For each line entry of the transaction
+            for (let c = 0; c < linesQuery.children().size(); c++) {
+
+                let line = linesQuery.children().eq(c).children();
+
+                // Sum credit amount to running total
+                if (line.has('CreditAmount')) {
+
+                    let accountID = line.find('AccountID').children().text();
+                    accountID = accountID.substring(0, 4);
+                    if (accountID.startsWith(accountIDToSum)) {
+                        totalCredit = parseFloat(line.find('CreditAmount').children().text());
+                    }
+
+                // Sum debit amount to running total
+                } else if (line.has('DebitAmount')) {
+
+                    let accountID = line.find('AccountID').children().text();
+                    accountID = accountID.substring(0, 4);
+                    if (accountID.startsWith(accountIDToSum)) {
+                        totalDebit = parseFloat(line.find('DebitAmount').children().text());
+                    }
                 }
             }
         }
@@ -113,7 +114,7 @@ function sumLedgerEntries(accountIDToSum) {
     return [totalDebit, totalCredit];
 }
 
-// TODO:
+// TODO: change to POST with body having year and month
 app.get('/api/sumLedgerEntries', (req, res) => {
 
     let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
@@ -124,7 +125,8 @@ app.get('/api/sumLedgerEntries', (req, res) => {
         res.send('Missing parameters for account ID!');
     }
 
-    let result = sumLedgerEntries(accountIDToSum);
+    // TODO: receive month / year here from body of POST
+    let result = sumLedgerEntries(accountIDToSum, "2016", "0");
     console.log(result[0]);
     console.log(result[1]);
 
