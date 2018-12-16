@@ -15,35 +15,27 @@ class LogisticsDash extends Component {
             shipments: {},
             year: '2018',
             month: '1',
+
             previousInventory: 1000,
             currentInventory: 1645,
             previousInventoryPeriod: 1000,
             currentInventoryPeriod: 834,
             previousShipmentsValue: '1000',
             currentShipmentsValue: '2075',
+
             deliveryStatus: {
                 labels: ['Delivered', 'Not Delivered'],
                 datasets: [
                     {
                         label: 'Amount',
                         fill: true,
-                        lineTension: 0.1,
                         backgroundColor: 'rgba(75,192,192,0.4)',
                         borderColor: 'rgba(75,192,192,1)',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBackgroundColor: '#fff',
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
                         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                         pointHoverBorderColor: 'rgba(220,220,220,1)',
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [1593, 682]
+                        data: []
                     }
                 ]
             },
@@ -53,23 +45,13 @@ class LogisticsDash extends Component {
                     {
                         label: 'Amount',
                         fill: true,
-                        lineTension: 0.1,
                         backgroundColor: 'rgba(75,192,192,0.4)',
                         borderColor: 'rgba(75,192,192,1)',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBackgroundColor: '#fff',
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
                         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                         pointHoverBorderColor: 'rgba(220,220,220,1)',
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [1593, 1602, 1759]
+                        data: []
                     }
                 ]
             } 
@@ -261,7 +243,7 @@ class LogisticsDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'pie'} data={this.state['deliveryStatus']} title={'Deliveries\' Status'} />
+                                <GraphComponent type={'pie'} data={this.state['deliveryStatus']} title={'Deliveries\' Status'} yearly={false} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -270,7 +252,7 @@ class LogisticsDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='columnStack'>
-                                <GraphComponent type={'pie'} data={this.state['destinations']} title={'Deliveries by Destination'} />
+                                <GraphComponent type={'pie'} data={this.state['destinations']} title={'Deliveries by Destination'} yearly={false} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>

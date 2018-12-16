@@ -57,6 +57,11 @@ class GraphComponent extends Component {
                     </Col>
                 </Row>
                 <Row>
+                    <Col className='graphSubtitle'>
+                        <span>{this.props.yearly ? 'Yearly' : 'Periodic'} Analysis</span>
+                    </Col>
+                </Row>
+                <Row>
                     <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='graphCanvas'>
                        {this.graph} 
                     </Col>

@@ -9,6 +9,11 @@
     font-size: 2em;
     font-weight: bold;
     padding-top: 2%;
+}
+
+.graphSubtitle {
+    text-align: center;
+    font-size: 0.9em;
     padding-bottom: 3%;
 }
 
