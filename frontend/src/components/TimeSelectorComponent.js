@@ -72,6 +72,9 @@ class TimeSelectorComponent extends Component {
                                         </DropdownToggle>
 
                                         <DropdownMenu>
+                                            <DropdownItem onClick={this.changeMonth} value={0}>
+                                                ------
+                                            </DropdownItem>
                                             <DropdownItem onClick={this.changeMonth} value={1}>
                                                 January
                                             </DropdownItem>
