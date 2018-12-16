@@ -163,27 +163,32 @@ app.get('/api/SalesByCity', function(req, res) {
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
 
-    var result = [[], []]; // [City, Quantity]
+    var result = []; // [City, Quantity]
 
     for (let i = 0; i < allInvoices.size(); i++){
         let city = allInvoices.eq(i).find('ShipTo').children().find('City').text();
 
-        let j = result[0].findIndex(function(e) {
-            return e == city;
+        let j = result.findIndex(function(e) {
+            return e[0] == city;
         });
 
         if (j != -1){
-            result[1][j] += 1;
+            result[j][1] += 1;
         }
         else{
-            result[0].push(city);
-            result[1].push(1);
+            result.push([city, 1]);
         }
     }
     
-    console.log(result);
+    result.sort(function (a, b) {
+        return b[1]-a[1];
+    })
 
-    res.send(result);
+    var aux = result.slice(0, 5);
+
+    console.log(aux);
+
+    res.send(aux);
 });
 
 app.get('/api/TopProductsSold', function(req, res) {
@@ -193,6 +198,8 @@ app.get('/api/TopProductsSold', function(req, res) {
 
     var result = [[], [], []]; // [Code, Description, Amount]
 
+    var result = [];
+
     for (let i = 0; i < allInvoices.size(); i++){
         let allLines = allInvoices.eq(i).find('Line');
         
@@ -201,51 +208,62 @@ app.get('/api/TopProductsSold', function(req, res) {
             let description = allLines.eq(j).find('ProductDescription').text();
             let amount = Number(allLines.eq(j).find('CreditAmount').text());
 
-            let k = result[0].findIndex(function(e) {
-                return e == code;
+            let k = result.findIndex(function(e) {
+                return e[0] == code;
             });
 
             if (k != -1){
-                result[2][k] += Math.round(amount * 100) / 100;
+                result[k][2] += amount;
             }
             else{
-                result[0].push(code);
-                result[1].push(description);
-                let amountRound = Math.round(amount * 100) / 100;
-                result[2].push(amountRound);
+                result.push([code, description, amount]);
             }
         }
     }
 
-    res.send([result[1], result[2]]);
+    result.sort(function (a, b){
+        return b[2]-a[2];
+    })
+
+    aux = result.slice(0, 5);
+
+    console.log(aux);
+
+    res.send(aux);
 });
 
-app.get('/api/SalesPerMonthLastYear', function(req, res) {
+app.get('/api/SalesPerMonth', function(req, res) {
     const xq = xmlQuery(parsedXML);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
 
-    let result = [[], []]; //[Year-Month, Amount]
+    let result = []; //[Year-Month, Amount]
 
     var d = new Date();
     var month = d.getMonth() + 1;
-    var year = d.getFullYear();
+    var year = d.getFullYear() - 1;
     
 
     for (let i = 0; i < 12; i++){
-        var currentMonth = month + i;
-        var currentYear = year;
-        if (currentMonth >= month){
-            currentYear -= 1;
-        }
-        if (currentMonth < 10){
-            currentMonth = '0' + currentMonth;
-        }
-        
-        var currentDate = currentYear + "-" + currentMonth;
+        var currentDate;
+        var aux = month;
 
-        result[0].push(currentDate);
-        result[1].push(0);
+        if (month > 12){
+            if (month == 13){
+              year += 1;
+            }
+            aux = month - 12;
+        }
+        var currentDate;
+        if (aux < 10){
+            currentDate = year + "-" + '0' + aux;
+        }
+        else{
+            currentDate = year + "-" + aux;
+        }
+        month += 1;
+
+        result.push([currentDate, 0]);
     }
 
 
@@ -256,14 +274,16 @@ app.get('/api/SalesPerMonthLastYear', function(req, res) {
         let matcher = pat.exec(day);
 
 
-        let j = result[0].findIndex(function(e) {
-            return e == matcher[1];
+        let j = result.findIndex(function(e) {
+            return e[0] == matcher[1];
         });
 
         if (j != -1){
-            result[1][j] += amount;
+            result[j][1] += amount;
         }
     }
+
+    console.log(result);
 
     res.send(result);
 });
