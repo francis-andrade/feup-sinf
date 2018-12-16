@@ -33,6 +33,11 @@ app.get('/api/salesTotals', (req, res) => {
     // res.send(closingDebitSum + '');
 });
 
+app.post('/api/testPost', (req, res) =>  {
+
+    console.log("year: " + req.body);
+});
+
 /**
  * Converts a string in YYYY-MM-DD format to a Date object.
  * 
