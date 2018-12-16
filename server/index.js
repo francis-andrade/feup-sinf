@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const bodyParser = require('body-parser');
 
 const XmlReader = require('xml-reader');
 const Flatted = require('flatted');
@@ -8,7 +9,15 @@ const xmlQuery = require('xml-query');
 
 const app = express();
 var cors = require('cors')
-app.use(cors())
+
+app.use(bodyParser.json())
+const jsonParser = bodyParser.json();
+app.use(cors());
+
+const port = process.env.PORT || 5000;
+app.listen(port);
+
+console.log('App is listening on port ' + port);
 
 let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
 parsedXML = XmlReader.parseSync(xmlFile);
@@ -31,6 +40,10 @@ app.get('/api/salesTotals', (req, res) => {
     console.log("salesCredit: " + salesCreditTotal);
 
     // res.send(closingDebitSum + '');
+});
+
+app.post('/api/testPost', jsonParser, (req, res) =>  {
+    console.log("year: " + req.body.year);
 });
 
 /**
@@ -353,8 +366,3 @@ app.get('/api/inventoryPeriod', (req, res)=>{
     res.send(inventoryPeriod.toString())
     
 });
-
-const port = process.env.PORT || 5000;
-app.listen(port);
-
-console.log('App is listening on port ' + port);

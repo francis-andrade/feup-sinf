@@ -75,18 +75,22 @@ class FinancialDash extends Component {
     }
 
     changeYear = (value) => {
+
         this.setState({
             year: value
         })
 
         // TODO: adicionar POST request para o server e enviar a data
-        /* fetch('http://localhost:5000/<route>')({
+
+        fetch('http://localhost:5000/api/testPost', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
-                year: this.state.year
+                year: value
             })
-                .then(response => response.json())
-        }) */
+        })
     }
 
     changeMonth = (value) => {
