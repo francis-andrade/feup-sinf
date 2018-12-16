@@ -110,15 +110,16 @@ class FinancialDash extends Component {
             year: value
         })
 
-        let body = {};
-        body.year = value;
-
         // TODO: adicionar POST request para o server e enviar a data
 
         fetch('http://localhost:5000/api/testPost', {
             method: 'POST',
-            'Content-Type': 'application/json',
-            body: JSON.stringify(body)
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                year: value
+            })
         })
     }
 

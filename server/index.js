@@ -43,8 +43,7 @@ app.get('/api/salesTotals', (req, res) => {
 });
 
 app.post('/api/testPost', jsonParser, (req, res) =>  {
-
-    console.log("year: " + req.body);
+    console.log("year: " + req.body.year);
 });
 
 /**
