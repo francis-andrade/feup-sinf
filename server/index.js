@@ -22,12 +22,15 @@ console.log('App is listening on port ' + port);
 // Globals
 let xmlFile = '';
 let parsedXML;
-let inventory = -1;
+let inventory = 0;
 let currentYear = '';
 const company = 'DEMO';
 const saftDir = '/SAF-T/';
 
-// TODO: remove test POST
+/**
+ * Updates the parsed SAFT to the newly selected year, doesn't update
+ * if the year is the same as the previous one. 
+ */
 app.post('/api/updateYear', jsonParser, (req, res) =>  {
 
     if(currentYear !== req.body.year) {
@@ -174,6 +177,17 @@ function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
 }
 
 /**
+ * Checks if a SAFT file has been parsed.
+ * 
+ * @returns {boolean} whether a SAFT file is parsed
+ */
+function isParsed() {
+
+    if (typeof parsedXML == 'undefined' && !parsedXML) return false;
+    else return true;
+}
+
+/**
  * GET request that sums the requested ledger entries by AccountID using a timeframe specified
  * by a year and month pair. All parameters are sent through the URL of the GET, that is,
  * /api/sumLedgerEntries?id=6&year=2018&month=1.
@@ -185,19 +199,13 @@ app.get('/api/sumLedgerEntries', (req, res) => {
     console.log(req.query.year);
     console.log(req.query.month);
 
-    // Check if parsed SAFT exists
-    if (typeof parsedXML == 'undefined' && !parsedXML) {
+    if(!isParsed()) {
         res.send([0, 0]);
         return;
     }
 
-    let accountIDToSum = req.query.id;
-    if (typeof accountIDToSum == 'undefined' && !accountIDToSum) {
-        res.send('Missing parameters for account ID!');
-    }
-
-    // TODO: receive month / year here from body of POST
-    let result = sumLedgerEntries(accountIDToSum, req.query.year, req.query.month);
+    // Use account ID, year and month sent through URL to sum the Ledger Entries
+    let result = sumLedgerEntries(req.query.id, req.query.year, req.query.month);
     console.log(result[0]);
     console.log(result[1]);
 
@@ -344,11 +352,15 @@ app.get('/api/SalesPerMonthLastYear', function(req, res) {
 
 app.get('/api/inventory', (req, res) => {
 
-    if(inventory == -1)
-        inventory = calculateAccountsSum("3", sumInventory)
+    // Check SAFT is parsed
+    if(!isParsed()) {
+        res.send("0");
+        return;
+    }
+
+    inventory = calculateAccountsSum("3", sumInventory)
     
-    res.send(inventory.toString())
-    
+    res.send(inventory.toString()) 
 });
 
 // TODO: use sumLedgerEntries
@@ -359,8 +371,6 @@ function calculateAccountsSum(accountID, sumFunction){
 
      const ledgerAccounts = xq.find("GeneralLedgerAccounts")
      //const accounts = ledgerAccounts[0].find("Account")
-
-     ledgerAccounts
 
      const accounts = ledgerAccounts['ast'][0]['children']
      //console.log(accounts)
@@ -396,14 +406,24 @@ function sumInventory(account){
     return (closingDebit - openingDebit) - (closingCredit - openingCredit)
 }
 
-app.get('/api/inventoryPeriod', (req, res)=>{
-    if(inventory == -1)
+app.get('/api/inventoryPeriod', (req, res) => {
+
+    // Check SAFT is parsed
+    if(!isParsed()) {
+        res.send("0");
+        return;
+    }
+
     inventory = calculateAccountsSum("3", sumInventory)
+
+    if(inventory == 0) {
+        res.send("0");
+        return;
+    }
 
     let costOfGoodsSold = calculateAccountsSum("6", sumInventory)
     let inventoryTurnover = costOfGoodsSold / inventory
     let inventoryPeriod = 365.0 / inventoryTurnover
     
     res.send(inventoryPeriod.toString())
-    
 });
