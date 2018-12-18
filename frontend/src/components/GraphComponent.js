@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Container } from 'reactstrap';
+import Loader from 'react-loader-spinner';
 
 import '../styles/GraphComponent.style.css';
 import '../styles/Common.style.css';
@@ -15,6 +16,7 @@ class GraphComponent extends Component {
         }
 
         this.graph = null;
+        this.click = this.click.bind(this);
         this.selectGraph(this.props.data);
     }
 
@@ -54,35 +56,60 @@ class GraphComponent extends Component {
 
     click = () => {
         if(this.props.isClickable){
-            if(this.state.expanded){
-                this.selectGraph(this.props.extraData)
-            } else {
-                this.selectGraph(this.props.data)
-            }
-            this.setState(() => ({ expanded: !this.state.expanded }))
+            this.setState(() => ({ expanded: !this.state.expanded }), function() {
+                if(this.state.expanded){
+                    this.selectGraph(this.props.extraData)
+                    this.setState(() => this.state)
+                } else {
+                    this.selectGraph(this.props.data)
+                    this.setState(() => this.state)
+                }
+            })
         }
     }
 
     render() {
-        return(
-            <Container className='graphContainer componentBackground' onClick={this.click}>
-                <Row>
-                    <Col className='graphTitle'>
-                        <span>{this.props.title}</span>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col className='graphSubtitle'>
-                        <span>{this.props.yearly ? 'Yearly' : 'Periodic'} Analysis</span>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='graphCanvas'>
-                       {this.graph} 
-                    </Col>
-                </Row>
-            </Container>
-        )
+        if(this.props.loading){
+            return(
+                <Container className='graphContainer componentBackground' onClick={this.click}>
+                    <Row>
+                        <Col className='graphTitle'>
+                            <span>{this.props.title}</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className='graphSubtitle'>
+                            <span>{this.props.yearly ? 'Yearly' : 'Periodic'} Analysis</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='graphLoader'>
+                            <Loader type='Oval' color='lightgray' width='40' height='40' /> 
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        } else {
+            return(
+                <Container className='graphContainer componentBackground' onClick={this.click}>
+                    <Row>
+                        <Col className='graphTitle'>
+                            <span>{this.props.title}</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className='graphSubtitle'>
+                            <span>{this.props.yearly ? 'Yearly' : 'Periodic'} Analysis</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='graphCanvas'>
+                           {this.graph} 
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        }
     }
 }
 

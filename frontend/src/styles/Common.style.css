@@ -38,3 +38,16 @@
 .kpiExtraInfo {
     margin-top: 10%;
 }
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graphLoader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}

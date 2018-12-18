@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Table } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import TimeSelectorComponent from '../components/TimeSelectorComponent';
 import GraphComponent from '../components/GraphComponent';
 import KPIComponent from '../components/KPIComponent';
@@ -13,16 +13,20 @@ class PurchasesDash extends Component {
 
         this.state = {
             authentication: {},
-            year: '2018',
-            month: '1',
+            year: '',
+            month: '0',
             purchases: {},
             items: {},
+
             previousPurchasesValue: 0,
             currentPurchasesValue: 0,
+            currentPurchasesValueLoading: true,
             previousExpectedOrders: 0,
             currentExpectedOrders: 0,
+            currentExpectedOrdersLoading: true,
+
             topSuppliers: {
-                labels: ['Supplier1', 'Supplier2', 'Supplier3'],
+                labels: [],
                 datasets: [
                     {
                         label: 'Value',
@@ -37,6 +41,7 @@ class PurchasesDash extends Component {
                     }
                 ]
             },
+            topSuppliersLoading: true,
             topSuppliersExtraData: {
                 labels: ['Supplier1', 'Supplier2', 'Supplier3'],
                 datasets: [
@@ -68,25 +73,7 @@ class PurchasesDash extends Component {
                         data: []
                     }
                 ]
-            },
-            purchasedProducts: [
-                {
-                    name: 'Produto1',
-                    quantity: '10'
-                }, 
-                {
-                    name: 'Produto2',
-                    quantity: '12'
-                }, 
-                {
-                    name: 'Produto3',
-                    quantity: '14'
-                }, 
-                {
-                    name: 'Produto4',
-                    quantity: '17'
-                }, 
-            ]
+            }
             
         }
         this.setYear = this.setYear.bind(this);
@@ -153,7 +140,7 @@ class PurchasesDash extends Component {
         for(let index = 0; index < purchases.length; index++){
             purchasesValue = purchasesValue + purchases[index]['Quantidade']*purchases[index]['PrecUnit'];
         }
-        this.setState({currentPurchasesValue: purchasesValue.toFixed(0)})
+        this.setState({currentPurchasesValue: purchasesValue.toFixed(0), currentPurchasesValueLoading: false})
     }
 
     updateExpectedOrders(){
@@ -165,7 +152,7 @@ class PurchasesDash extends Component {
             expectedOrders = expectedOrders + (purchases[index]['Quantidade']-purchases[index]['QuantTrans'])*purchases[index]['PrecUnit'];
         }
        
-        this.setState({currentExpectedOrders: expectedOrders.toFixed(0)})
+        this.setState({currentExpectedOrders: expectedOrders.toFixed(0), currentExpectedOrdersLoading: false})
     }
 
     updateTopSuppliers(){
@@ -194,7 +181,7 @@ class PurchasesDash extends Component {
         let topSuppliersState = this.state['topSuppliers'];
         topSuppliersState['labels'] = suppliersLabels;
         topSuppliersState['datasets']['data'] = suppliersData;
-        this.setState({topSuppliers: topSuppliersState})
+        this.setState({topSuppliers: topSuppliersState, topSuppliersLoading: false})
         console.log(this.state);
         
     }
@@ -224,28 +211,6 @@ class PurchasesDash extends Component {
     }
 
     render() {
-        let productsTable = [];
-
-        for(let i = 0; i < this.state.purchasedProducts.length; i++) {
-            productsTable.push(<tr key={i}>
-                                    <th scope="row">{this.state.purchasedProducts[i].name}</th>
-                                    <td>{this.state.purchasedProducts[i].quantity}</td>
-                                </tr>)
-        }
-
-        console.log(productsTable)
-
-        let purchaseValueTable = 
-        <Table hover className='kpiExtraInfo'>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>{productsTable}</tbody>
-        </Table>
-
         return (
             <div className='dashboardBackground'>
                 <Row>
@@ -258,10 +223,10 @@ class PurchasesDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} isClickable kpiExtraInfo={purchaseValueTable} />
+                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} loading={this.state.currentPurchasesValueLoading} />
                     </Col>
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']} />
+                        <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']} loading={this.state.currentExpectedOrdersLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} />
                 </Row>
@@ -270,7 +235,7 @@ class PurchasesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'horizontalBar'} data={this.state['topSuppliers']} title={'Top Suppliers'} yearly={false} isClickable extraData={this.state.topSuppliersExtraData} />
+                                <GraphComponent type={'horizontalBar'} data={this.state['topSuppliers']} title={'Top Suppliers'} yearly={false} isClickable extraData={this.state.topSuppliersExtraData} loading={this.state.topSuppliersLoading} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>

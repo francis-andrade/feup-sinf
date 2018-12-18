@@ -11,12 +11,13 @@ class SalesDash extends Component {
         super(props);
         
         this.state = {
-            year: '2018',
-            month: '1',
-            
+            year: '',
+            month: '0',
+
+
             salesValue: 0,
             salesValueLoaded: false,
-
+            
             backlogValue : 10,
             backlogValueLoaded: false,
 

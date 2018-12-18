@@ -13,16 +13,25 @@ class FinancialDash extends Component {
         this.state = {
             year: '',
             month: '0',
+
             totalExpenses: 0.0,
+            totalExpensesLoading: true,
+
             totalAsset: 0.0,
+            totalAssetLoading: true,
+
             accPayable: 0.0,
-            accReceivable: 0.0
+            accPayableLoading: true,
+
+            accReceivable: 0.0,
+            accReceivableLoading: true
+
         };
 
         this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
-
+        
         this.revenue = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [
@@ -87,7 +96,17 @@ class FinancialDash extends Component {
             year: value
         })
 
-        fetch('http://localhost:5000/api/testPost', {
+        this.updateYear(value);
+    }
+
+    async updateYear(value) {
+
+        await this.updateYearFetch(value);
+        this.updateKPI(value, this.state.month);
+    }
+
+    updateYearFetch(value) {
+        return fetch('http://localhost:5000/api/updateYear', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,45 +118,55 @@ class FinancialDash extends Component {
     }
 
     changeMonth = (value) => {
+
         this.setState({
             month: value
         })
+
+        this.updateKPI(this.state.year, value);
+    }
+
+    updateKPI(year, month) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        // Get total expenses
+        fetch(API + funcToUse + '?id=6' + parameters, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => this.setState({ totalExpenses: data[0] - data[1], totalExpensesLoading: false }))
+
+        // Get total asset value
+        fetch(API + funcToUse + '?id=4' + parameters, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => this.setState({ totalAsset: data[0] - data[1], totalAssetLoading: false }))
+
+        // Get total accounts payable
+        fetch(API + funcToUse + '?id=22' + parameters, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => this.setState({ accPayable: data[1] - data[0], accPayableLoading: false }))
+
+        // Get total accounts receivable
+        fetch(API + funcToUse + '?id=21' + parameters, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => this.setState({ accReceivable: data[0] - data[1], accReceivableLoading: false }))
     }
 
     componentDidMount() {
-
-        // Get total revenue
-        fetch('http://localhost:5000/api/sumLedgerEntries?id=6', {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => this.setState({ totalExpenses: data[0] - data[1] }))
-
-        // Get total asset value
-        fetch('http://localhost:5000/api/sumLedgerEntries?id=4', {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => this.setState({ totalAsset: data[0] - data[1] }))
-
-        // Get total accounts payable
-        fetch('http://localhost:5000/api/sumLedgerEntries?id=22', {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => this.setState({ accPayable: data[1] - data[0] }))
-
-        // Get total accounts receivable
-        fetch('http://localhost:5000/api/sumLedgerEntries?id=21', {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => this.setState({ accReceivable: data[0] - data[1] }))
-        
+        this.updateKPI(this.state.year, this.state.month);
     }
 
     render() {
-        console.log(this.state.year)
+
         return (
             <div className='dashboardBackground'>
                 <Row>
@@ -153,7 +182,7 @@ class FinancialDash extends Component {
                         <KPIComponent title={'Total Income'} type={'money'} currentValue={1645} previousValue={1000} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Expenses'} type={'money'} currentValue={this.state.totalExpenses} previousValue={1000} />
+                        <KPIComponent title={'Total Expenses'} type={'money'} currentValue={this.state.totalExpenses} previousValue={1000} loading={this.state.totalExpensesLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} className='d-xl-none' />
                     <Col xs={{ size: 1 }} className='d-xl-none' />
@@ -161,7 +190,7 @@ class FinancialDash extends Component {
                         <KPIComponent title={'Total Revenue'} type={'money'} currentValue={2075} previousValue={1000} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Asset Value'} type={'money'} currentValue={this.state.totalAsset} previousValue={1000} />
+                        <KPIComponent title={'Total Asset Value'} type={'money'} currentValue={this.state.totalAsset} previousValue={1000} loading={this.state.totalAssetLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} />
                 </Row>
@@ -170,10 +199,10 @@ class FinancialDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col md className='columnStack'>
-                                <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={1000} />
+                                <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={1000} loading={this.state.accPayableLoading} />
                             </Col>
                             <Col md className='columnStack'>
-                                <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={1000} />
+                                <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={1000} loading={this.state.accReceivableLoading} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>

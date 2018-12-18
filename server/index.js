@@ -20,15 +20,51 @@ app.listen(port);
 console.log('App is listening on port ' + port);
 
 // Globals
-// TODO: remove hardcoded SAFT
-let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
-let parsedXML = XmlReader.parseSync(xmlFile);
-let inventory = -1;
-const company = "DEMO";
+let xmlFile = '';
+let parsedXML;
+let inventory = 0;
+let currentYear = '';
+const company = 'DEMO';
+const saftDir = '/SAF-T/';
 
-// TODO: remove test POST
-app.post('/api/testPost', jsonParser, (req, res) =>  {
-    console.log("year: " + req.body.year);
+/**
+ * Updates the parsed SAFT to the newly selected year, doesn't update
+ * if the year is the same as the previous one. 
+ */
+app.post('/api/updateYear', jsonParser, (req, res) =>  {
+
+    if(currentYear !== req.body.year) {
+        currentYear = req.body.year;
+    } else {
+        console.log("not updating");
+        res.send("no update");
+        return;
+    }
+
+    let dirContents = fs.readdirSync(path.join(__dirname + '/SAF-T'), 'utf8');
+    let matchingSAFT = [];
+    let fileToLoad = '';
+
+    // For each file in the SAFT directory look for the company name (exact match)
+    for (i in dirContents) {
+        let splitStr = dirContents[i].split("_");
+        if (splitStr[1] === company) matchingSAFT.push(dirContents[i]);
+    }
+
+    // For each result find the corresponding year
+    for (i in matchingSAFT) {
+        let fieldSplit = matchingSAFT[i].split("_");
+        let yearSplit = fieldSplit[2].split("-");
+
+        if(yearSplit[2] === currentYear) {
+            fileToLoad = matchingSAFT[i];
+        }
+    }
+
+    console.log("changing SAFT to: " + fileToLoad);
+    xmlFile = fs.readFileSync(path.join(__dirname + saftDir + fileToLoad), 'utf8');
+    parsedXML = XmlReader.parseSync(xmlFile);
+    res.send("updated");
 });
 
 /**
@@ -140,19 +176,36 @@ function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
     return [totalDebit, totalCredit];
 }
 
-// TODO: change to POST with body having year and month
+/**
+ * Checks if a SAFT file has been parsed.
+ * 
+ * @returns {boolean} whether a SAFT file is parsed
+ */
+function isParsed() {
+
+    if (typeof parsedXML == 'undefined' && !parsedXML) return false;
+    else return true;
+}
+
+/**
+ * GET request that sums the requested ledger entries by AccountID using a timeframe specified
+ * by a year and month pair. All parameters are sent through the URL of the GET, that is,
+ * /api/sumLedgerEntries?id=6&year=2018&month=1.
+ */
 app.get('/api/sumLedgerEntries', (req, res) => {
 
-    let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
-    parsedXML = XmlReader.parseSync(xmlFile);
+    // TODO: remove log
+    console.log("year/month");
+    console.log(req.query.year);
+    console.log(req.query.month);
 
-    let accountIDToSum = req.query.id;
-    if (typeof accountIDToSum == 'undefined' && !accountIDToSum) {
-        res.send('Missing parameters for account ID!');
+    if(!isParsed()) {
+        res.send([0, 0]);
+        return;
     }
 
-    // TODO: receive month / year here from body of POST
-    let result = sumLedgerEntries(accountIDToSum, "2016", "0");
+    // Use account ID, year and month sent through URL to sum the Ledger Entries
+    let result = sumLedgerEntries(req.query.id, req.query.year, req.query.month);
     console.log(result[0]);
     console.log(result[1]);
 
@@ -338,22 +391,17 @@ app.post('/api/SalesPerMonth', function(req, res) {
     res.send(result);
 });
 
-// Parse a SAF-T file read from the file system and store it
-app.get('/api/parseXML', (req, res) => {
-    
-    // TODO: arbitrary SAF-T file
-    let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
-    parsedXML = XmlReader.parseSync(xmlFile);
-    res.send('Parsed!');
-});
-
 app.get('/api/inventory', (req, res) => {
 
-    if(inventory == -1)
-        inventory = calculateAccountsSum("3", sumInventory)
+    // Check SAFT is parsed
+    if(!isParsed()) {
+        res.send("0");
+        return;
+    }
+
+    inventory = calculateAccountsSum("3", sumInventory)
     
-    res.send(inventory.toString())
-    
+    res.send(inventory.toString()) 
 });
 
 // TODO: use sumLedgerEntries
@@ -364,8 +412,6 @@ function calculateAccountsSum(accountID, sumFunction){
 
      const ledgerAccounts = xq.find("GeneralLedgerAccounts")
      //const accounts = ledgerAccounts[0].find("Account")
-
-     ledgerAccounts
 
      const accounts = ledgerAccounts['ast'][0]['children']
      //console.log(accounts)
@@ -401,14 +447,24 @@ function sumInventory(account){
     return (closingDebit - openingDebit) - (closingCredit - openingCredit)
 }
 
-app.get('/api/inventoryPeriod', (req, res)=>{
-    if(inventory == -1)
+app.get('/api/inventoryPeriod', (req, res) => {
+
+    // Check SAFT is parsed
+    if(!isParsed()) {
+        res.send("0");
+        return;
+    }
+
     inventory = calculateAccountsSum("3", sumInventory)
+
+    if(inventory == 0) {
+        res.send("0");
+        return;
+    }
 
     let costOfGoodsSold = calculateAccountsSum("6", sumInventory)
     let inventoryTurnover = costOfGoodsSold / inventory
     let inventoryPeriod = 365.0 / inventoryTurnover
     
     res.send(inventoryPeriod.toString())
-    
 });
