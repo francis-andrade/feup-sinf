@@ -19,6 +19,7 @@ class GenericDash extends Component {
         this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
+        this.updateYear = this.updateYear.bind(this);
 
         this.topCategories = {
             labels: ['Category1', 'Category2', 'Category3'],
@@ -73,13 +74,17 @@ class GenericDash extends Component {
         })
     }
 
+    updateYear() {
+
+    }
+
     render() {
         return (
             <div className='dashboardBackground'>
                 <Row>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                     <Col>
-                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
+                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} updateYear={this.updateYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
                     </Col>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                 </Row>
