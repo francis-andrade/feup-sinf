@@ -103,11 +103,11 @@ class FinancialDash extends Component {
     async updateYear(value) {
 
         await this.updateYearFetch(value);
-        await this.updateKPI(value);
+        this.updateKPI(value);
     }
 
     updateYearFetch(value) {
-        fetch('http://localhost:5000/api/updateYear', {
+        return fetch('http://localhost:5000/api/updateYear', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
