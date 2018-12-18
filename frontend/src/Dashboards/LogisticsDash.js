@@ -13,8 +13,8 @@ class LogisticsDash extends Component {
         this.state = {
             authentication: {},
             shipments: {},
-            year: '2018',
-            month: '1',
+            year: '',
+            month: '0',
 
             previousInventory: 1000,
             currentInventory: 1645,

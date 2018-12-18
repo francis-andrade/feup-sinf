@@ -13,14 +13,18 @@ class PurchasesDash extends Component {
 
         this.state = {
             authentication: {},
-            year: '2018',
-            month: '1',
+            year: '',
+            month: '0',
             purchases: {},
             items: {},
+
             previousPurchasesValue: 0,
             currentPurchasesValue: 0,
+            currentPurchasesValueLoading: true,
             previousExpectedOrders: 0,
             currentExpectedOrders: 0,
+            currentExpectedOrdersLoading: true,
+
             topSuppliers: {
                 labels: ['Supplier1', 'Supplier2', 'Supplier3'],
                 datasets: [
@@ -153,7 +157,7 @@ class PurchasesDash extends Component {
         for(let index = 0; index < purchases.length; index++){
             purchasesValue = purchasesValue + purchases[index]['Quantidade']*purchases[index]['PrecUnit'];
         }
-        this.setState({currentPurchasesValue: purchasesValue.toFixed(0)})
+        this.setState({currentPurchasesValue: purchasesValue.toFixed(0), currentPurchasesValueLoading: false})
     }
 
     updateExpectedOrders(){
@@ -165,7 +169,7 @@ class PurchasesDash extends Component {
             expectedOrders = expectedOrders + (purchases[index]['Quantidade']-purchases[index]['QuantTrans'])*purchases[index]['PrecUnit'];
         }
        
-        this.setState({currentExpectedOrders: expectedOrders.toFixed(0)})
+        this.setState({currentExpectedOrders: expectedOrders.toFixed(0), currentExpectedOrdersLoading: false})
     }
 
     updateTopSuppliers(){
@@ -258,10 +262,10 @@ class PurchasesDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} isClickable kpiExtraInfo={purchaseValueTable} />
+                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} isClickable kpiExtraInfo={purchaseValueTable} loading={this.state.currentPurchasesValueLoading} />
                     </Col>
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']} />
+                        <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']} loading={this.state.currentExpectedOrdersLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} />
                 </Row>

@@ -12,8 +12,8 @@ class GenericDash extends Component {
         super(props);
 
         this.state = {
-            year: '2018',
-            month: '1'
+            year: '',
+            month: '0'
         };
 
         this.setYear = this.setYear.bind(this);

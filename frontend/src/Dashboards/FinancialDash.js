@@ -13,10 +13,19 @@ class FinancialDash extends Component {
         this.state = {
             year: '',
             month: '0',
+
             totalExpenses: 0.0,
+            totalExpensesLoading: true,
+
             totalAsset: 0.0,
+            totalAssetLoading: true,
+
             accPayable: 0.0,
-            accReceivable: 0.0
+            accPayableLoading: true,
+
+            accReceivable: 0.0,
+            accReceivableLoading: true
+
         };
 
         this.setYear = this.setYear.bind(this);
@@ -111,28 +120,28 @@ class FinancialDash extends Component {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ totalExpenses: data[0] - data[1] }))
+            .then(data => this.setState({ totalExpenses: data[0] - data[1], totalExpensesLoading: false }))
 
         // Get total asset value
         fetch('http://localhost:5000/api/sumLedgerEntries?id=4', {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ totalAsset: data[0] - data[1] }))
+            .then(data => this.setState({ totalAsset: data[0] - data[1], totalAssetLoading: false }))
 
         // Get total accounts payable
         fetch('http://localhost:5000/api/sumLedgerEntries?id=22', {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ accPayable: data[1] - data[0] }))
+            .then(data => this.setState({ accPayable: data[1] - data[0], accPayableLoading: false }))
 
         // Get total accounts receivable
         fetch('http://localhost:5000/api/sumLedgerEntries?id=21', {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ accReceivable: data[0] - data[1] }))
+            .then(data => this.setState({ accReceivable: data[0] - data[1], accReceivableLoading: false }))
         
     }
 
@@ -153,7 +162,7 @@ class FinancialDash extends Component {
                         <KPIComponent title={'Total Income'} type={'money'} currentValue={1645} previousValue={1000} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Expenses'} type={'money'} currentValue={this.state.totalExpenses} previousValue={1000} />
+                        <KPIComponent title={'Total Expenses'} type={'money'} currentValue={this.state.totalExpenses} previousValue={1000} loading={this.state.totalExpensesLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} className='d-xl-none' />
                     <Col xs={{ size: 1 }} className='d-xl-none' />
@@ -161,7 +170,7 @@ class FinancialDash extends Component {
                         <KPIComponent title={'Total Revenue'} type={'money'} currentValue={2075} previousValue={1000} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Asset Value'} type={'money'} currentValue={this.state.totalAsset} previousValue={1000} />
+                        <KPIComponent title={'Total Asset Value'} type={'money'} currentValue={this.state.totalAsset} previousValue={1000} loading={this.state.totalAssetLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} />
                 </Row>
@@ -170,10 +179,10 @@ class FinancialDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col md className='columnStack'>
-                                <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={1000} />
+                                <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={1000} loading={this.state.accPayableLoading} />
                             </Col>
                             <Col md className='columnStack'>
-                                <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={1000} />
+                                <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={1000} loading={this.state.accReceivableLoading} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>

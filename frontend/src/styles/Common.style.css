@@ -38,3 +38,9 @@
 .kpiExtraInfo {
     margin-top: 10%;
 }
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
