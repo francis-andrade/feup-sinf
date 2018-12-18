@@ -26,7 +26,7 @@ class PurchasesDash extends Component {
             currentExpectedOrdersLoading: true,
 
             topSuppliers: {
-                labels: ['Supplier1', 'Supplier2', 'Supplier3'],
+                labels: [],
                 datasets: [
                     {
                         label: 'Value',
@@ -41,6 +41,7 @@ class PurchasesDash extends Component {
                     }
                 ]
             },
+            topSuppliersLoading: true,
             topSuppliersExtraData: {
                 labels: ['Supplier1', 'Supplier2', 'Supplier3'],
                 datasets: [
@@ -198,7 +199,7 @@ class PurchasesDash extends Component {
         let topSuppliersState = this.state['topSuppliers'];
         topSuppliersState['labels'] = suppliersLabels;
         topSuppliersState['datasets']['data'] = suppliersData;
-        this.setState({topSuppliers: topSuppliersState})
+        this.setState({topSuppliers: topSuppliersState, topSuppliersLoading: false})
         console.log(this.state);
         
     }
@@ -274,7 +275,7 @@ class PurchasesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'horizontalBar'} data={this.state['topSuppliers']} title={'Top Suppliers'} yearly={false} isClickable extraData={this.state.topSuppliersExtraData} />
+                                <GraphComponent type={'horizontalBar'} data={this.state['topSuppliers']} title={'Top Suppliers'} yearly={false} isClickable extraData={this.state.topSuppliersExtraData} loading={this.state.topSuppliersLoading} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
