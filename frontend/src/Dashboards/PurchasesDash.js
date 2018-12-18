@@ -79,6 +79,7 @@ class PurchasesDash extends Component {
         this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
+        this.updateYear = this.updateYear.bind(this);
 
     }
 
@@ -98,6 +99,10 @@ class PurchasesDash extends Component {
         this.setState({
             month: value
         })
+    }
+
+    updateYear() {
+
     }
 
     getPurchases(){
@@ -216,7 +221,7 @@ class PurchasesDash extends Component {
                 <Row>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                     <Col>
-                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
+                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} updateYear={this.updateYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
                     </Col>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                 </Row>
