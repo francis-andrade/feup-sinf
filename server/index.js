@@ -232,7 +232,7 @@ app.post('/api/SalesValue', function(req, res){
         }
     }
 
-    console.log(result);
+    //console.log(result);
     res.send(result.toString()); 
 
 });
@@ -255,31 +255,43 @@ app.post('/api/backlogValue', function(req, res) {
     }
 
     //result = Math.round(result*100)/100;
-    console.log(result);
+    //console.log(result);
     res.send(result.toString()); 
 });
 
 // Return Array of arrays with 
-app.post('/api/SalesByCity', function(req, res) {
+app.post('/api/SalesByCountry', function(req, res) {
     const xq = xmlQuery(parsedXML);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
 
-    var result = []; // [City, Quantity]
+    var result = []; // [Country, Amount]
 
     for (let i = 0; i < allInvoices.size(); i++){
-        let city = allInvoices.eq(i).find('ShipTo').children().find('City').text();
+
+        let customerID = allInvoices.eq(i).find('CustomerID').children().text();
+        let allCustomers = xq.find('MasterFiles').first().children().find('Customer');
+        let country;
+
+        for(let j = 0; j < allCustomers.size(); j++){
+            let aux = allCustomers.eq(j).find('CustomerID').children().text();
+
+            if (aux == customerID){
+                country = allCustomers.eq(j).find('ShipToAddress').children().find('Country').children().text();
+            }
+        }
+
         let amount = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
 
         let j = result.findIndex(function(e) {
-            return e[0] == city;
+            return e[0] == country;
         });
 
         if (j != -1){
             result[j][1] += amount;
         }
         else{
-            result.push([city, amount]);
+            result.push([country, amount]);
         }
     }
     
@@ -287,11 +299,11 @@ app.post('/api/SalesByCity', function(req, res) {
         return b[1]-a[1];
     })
 
-    var aux = result.slice(0, 5);
+    //var aux = result.slice(0, 5);
 
-    console.log(aux);
+    //console.log(result);
 
-    res.send(aux);
+    res.send(result);
 });
 
 app.post('/api/TopProductsSold', function(req, res) {
@@ -330,7 +342,7 @@ app.post('/api/TopProductsSold', function(req, res) {
 
     aux = result.slice(0, 5);
 
-    console.log(aux);
+    //console.log(aux);
 
     res.send(aux);
 });
@@ -342,9 +354,8 @@ app.post('/api/SalesPerMonth', function(req, res) {
 
     let result = []; //[Year-Month, Amount]
 
-    var d = new Date();
-    var month = d.getMonth() + 1;
-    var year = d.getFullYear() - 1;
+    var month = 1;
+    var year = req.body.year;
     
 
     for (let i = 0; i < 12; i++){
@@ -386,7 +397,7 @@ app.post('/api/SalesPerMonth', function(req, res) {
         }
     }
 
-    console.log(result);
+    //console.log(result);
 
     res.send(result);
 });
