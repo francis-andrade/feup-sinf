@@ -18,10 +18,13 @@ class LogisticsDash extends Component {
 
             previousInventory: 1000,
             currentInventory: 1645,
+            currentInventoryLoading: true,
             previousInventoryPeriod: 1000,
             currentInventoryPeriod: 834,
+            currentInventoryPeriodLoading: true,
             previousShipmentsValue: '1000',
             currentShipmentsValue: '2075',
+            currentShipmentsValueLoading: true,
 
             deliveryStatus: {
                 labels: ['Delivered', 'Not Delivered'],
@@ -39,8 +42,9 @@ class LogisticsDash extends Component {
                     }
                 ]
             },
+            deliveryStatusLoading: true,
             destinations: {
-                labels: ['Portugal', 'Espanha', 'França'],
+                labels: [],
                 datasets: [
                     {
                         label: 'Amount',
@@ -54,7 +58,8 @@ class LogisticsDash extends Component {
                         data: []
                     }
                 ]
-            } 
+            },
+            destinationsLoading: true
         };
 
         this.setYear = this.setYear.bind(this);
@@ -101,7 +106,7 @@ class LogisticsDash extends Component {
         })
         .then(response => response.json())
         .then(data =>{ 
-            this.setState({ currentInventory: data.toFixed(0) }); 
+            this.setState({ currentInventory: data.toFixed(0), currentInventoryLoading: false }); 
             
           } ); 
     }
@@ -115,7 +120,7 @@ class LogisticsDash extends Component {
         })
         .then(response => response.json())
         .then(data =>{ 
-            this.setState({ currentInventoryPeriod: data.toFixed(0) }); 
+            this.setState({ currentInventoryPeriod: data.toFixed(0), currentInventoryPeriodLoading: false }); 
             console.log(this.state)
             
           } ); 
@@ -137,7 +142,7 @@ class LogisticsDash extends Component {
               this.setState({shipments: data["DataSet"]["Table"] }); 
               this.updateShipmentValue(data["DataSet"]["Table"]); 
               this.updateDeliveryStatus(data["DataSet"]["Table"]);
-              this.updateDeliveriesDestinations(data["DataSet"]["Table"])
+              this.updateDeliveriesDestinations(data["DataSet"]["Table"]);
             } ); 
     }
 
@@ -147,7 +152,7 @@ class LogisticsDash extends Component {
             shipmentsValue += table[index]["Quantidade"]*table[index]["PrecUnit"]
         }
         
-        this.setState({currentShipmentsValue: shipmentsValue.toFixed(0)})
+        this.setState({currentShipmentsValue: shipmentsValue.toFixed(0), currentShipmentsValueLoading: false})
     }
 
     updateDeliveryStatus(table){
@@ -165,7 +170,7 @@ class LogisticsDash extends Component {
 
         let deliveryStatusState = this.state["deliveryStatus"]
         deliveryStatusState["datasets"][0]["data"] = [delivered, notDelivered]
-        this.setState({deliveryStatus:  deliveryStatusState})
+        this.setState({deliveryStatus:  deliveryStatusState, deliveryStatusLoading: false})
     }
 
     updateDeliveriesDestinations(table){
@@ -190,7 +195,7 @@ class LogisticsDash extends Component {
         destinationsState["labels"] = countries
         destinationsState["datasets"][0]["data"] = countriesCount
 
-        this.setState({destinations: destinationsState})
+        this.setState({destinations: destinationsState, destinationsLoading: false})
     }
     
     componentDidMount() {
@@ -232,15 +237,15 @@ class LogisticsDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Inventory Value'} type={'money'} currentValue={this.state['currentInventory']} previousValue={this.state['previousInventory']}/>
+                        <KPIComponent title={'Inventory Value'} type={'money'} currentValue={this.state['currentInventory']} previousValue={this.state['previousInventory']} loading={this.state.currentInventoryLoading} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Average Inventory Period'} type={'none'} unit={' days'} currentValue={this.state['currentInventoryPeriod']} previousValue={this.state['previousInventoryPeriod']}/>
+                        <KPIComponent title={'Average Inventory Period'} type={'none'} unit={' days'} currentValue={this.state['currentInventoryPeriod']} previousValue={this.state['previousInventoryPeriod']} loading={this.state.currentInventoryPeriodLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Shipments Value'} type={'money'} currentValue={this.state['currentShipmentsValue']} previousValue={this.state['previousShipmentsValue']}/>
+                        <KPIComponent title={'Total Shipments Value'} type={'money'} currentValue={this.state['currentShipmentsValue']} previousValue={this.state['previousShipmentsValue']} loading={this.state.currentShipmentsValueLoading} />
                     </Col>
                     <Col md className='d-xl-none columnStack' />
                     <Col xl={{ size: 1 }} />
@@ -250,7 +255,7 @@ class LogisticsDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'pie'} data={this.state['deliveryStatus']} title={'Deliveries\' Status'} yearly={false} />
+                                <GraphComponent type={'pie'} data={this.state['deliveryStatus']} title={'Deliveries\' Status'} yearly={false} loading={this.state.deliveryStatusLoading} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -259,7 +264,7 @@ class LogisticsDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='columnStack'>
-                                <GraphComponent type={'pie'} data={this.state['destinations']} title={'Deliveries by Destination'} yearly={false} />
+                                <GraphComponent type={'pie'} data={this.state['destinations']} title={'Deliveries by Destination'} yearly={false} loading={this.state.destinationsLoading} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>

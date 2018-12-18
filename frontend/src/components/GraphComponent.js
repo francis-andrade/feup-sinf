@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Container } from 'reactstrap';
+import Loader from 'react-loader-spinner';
 
 import '../styles/GraphComponent.style.css';
 import '../styles/Common.style.css';
@@ -64,25 +65,47 @@ class GraphComponent extends Component {
     }
 
     render() {
-        return(
-            <Container className='graphContainer componentBackground' onClick={this.click}>
-                <Row>
-                    <Col className='graphTitle'>
-                        <span>{this.props.title}</span>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col className='graphSubtitle'>
-                        <span>{this.props.yearly ? 'Yearly' : 'Periodic'} Analysis</span>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='graphCanvas'>
-                       {this.graph} 
-                    </Col>
-                </Row>
-            </Container>
-        )
+        if(this.props.loading){
+            return(
+                <Container className='graphContainer componentBackground' onClick={this.click}>
+                    <Row>
+                        <Col className='graphTitle'>
+                            <span>{this.props.title}</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className='graphSubtitle'>
+                            <span>{this.props.yearly ? 'Yearly' : 'Periodic'} Analysis</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='loader'>
+                            <Loader type='Oval' color='lightgray' width='40' height='40' /> 
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        } else {
+            return(
+                <Container className='graphContainer componentBackground' onClick={this.click}>
+                    <Row>
+                        <Col className='graphTitle'>
+                            <span>{this.props.title}</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className='graphSubtitle'>
+                            <span>{this.props.yearly ? 'Yearly' : 'Periodic'} Analysis</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='graphCanvas'>
+                           {this.graph} 
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        }
     }
 }
 
