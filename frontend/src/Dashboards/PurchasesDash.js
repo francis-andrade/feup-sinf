@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Table } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import TimeSelectorComponent from '../components/TimeSelectorComponent';
 import GraphComponent from '../components/GraphComponent';
 import KPIComponent from '../components/KPIComponent';
@@ -73,25 +73,7 @@ class PurchasesDash extends Component {
                         data: []
                     }
                 ]
-            },
-            purchasedProducts: [
-                {
-                    name: 'Produto1',
-                    quantity: '10'
-                }, 
-                {
-                    name: 'Produto2',
-                    quantity: '12'
-                }, 
-                {
-                    name: 'Produto3',
-                    quantity: '14'
-                }, 
-                {
-                    name: 'Produto4',
-                    quantity: '17'
-                }, 
-            ]
+            }
             
         }
         this.setYear = this.setYear.bind(this);
@@ -229,28 +211,6 @@ class PurchasesDash extends Component {
     }
 
     render() {
-        let productsTable = [];
-
-        for(let i = 0; i < this.state.purchasedProducts.length; i++) {
-            productsTable.push(<tr key={i}>
-                                    <th scope="row">{this.state.purchasedProducts[i].name}</th>
-                                    <td>{this.state.purchasedProducts[i].quantity}</td>
-                                </tr>)
-        }
-
-        console.log(productsTable)
-
-        let purchaseValueTable = 
-        <Table hover className='kpiExtraInfo'>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>{productsTable}</tbody>
-        </Table>
-
         return (
             <div className='dashboardBackground'>
                 <Row>
@@ -263,7 +223,7 @@ class PurchasesDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} isClickable kpiExtraInfo={purchaseValueTable} loading={this.state.currentPurchasesValueLoading} />
+                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} loading={this.state.currentPurchasesValueLoading} />
                     </Col>
                     <Col md className='columnStack'>
                         <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']} loading={this.state.currentExpectedOrdersLoading} />

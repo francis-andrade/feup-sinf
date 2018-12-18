@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Table } from 'reactstrap';
 import TimeSelectorComponent from '../components/TimeSelectorComponent';
 import GraphComponent from '../components/GraphComponent';
 import KPIComponent from '../components/KPIComponent';
@@ -59,7 +59,26 @@ class LogisticsDash extends Component {
                     }
                 ]
             },
-            destinationsLoading: true
+            destinationsLoading: true,
+
+            purchasedProducts: [
+                {
+                    name: 'Produto1',
+                    quantity: '10'
+                }, 
+                {
+                    name: 'Produto2',
+                    quantity: '12'
+                }, 
+                {
+                    name: 'Produto3',
+                    quantity: '14'
+                }, 
+                {
+                    name: 'Produto4',
+                    quantity: '17'
+                }, 
+            ]
         };
 
         this.setYear = this.setYear.bind(this);
@@ -225,6 +244,28 @@ class LogisticsDash extends Component {
     }
 
     render() {
+        let productsTable = [];
+
+        for(let i = 0; i < this.state.purchasedProducts.length; i++) {
+            productsTable.push(<tr key={i}>
+                                    <th scope="row">{this.state.purchasedProducts[i].name}</th>
+                                    <td>{this.state.purchasedProducts[i].quantity}</td>
+                                </tr>)
+        }
+
+        console.log(productsTable)
+
+        let purchaseValueTable = 
+        <Table hover className='kpiExtraInfo'>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>{productsTable}</tbody>
+        </Table>
+
         return(
             <div className='dashboardBackground'>
                 <Row>
@@ -237,7 +278,7 @@ class LogisticsDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Inventory Value'} type={'money'} currentValue={this.state['currentInventory']} previousValue={this.state['previousInventory']} loading={this.state.currentInventoryLoading} />
+                        <KPIComponent title={'Inventory Value'} type={'money'} currentValue={this.state['currentInventory']} previousValue={this.state['previousInventory']} isClickable kpiExtraInfo={purchaseValueTable} loading={this.state.currentInventoryLoading} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
                         <KPIComponent title={'Average Inventory Period'} type={'none'} unit={' days'} currentValue={this.state['currentInventoryPeriod']} previousValue={this.state['previousInventoryPeriod']} loading={this.state.currentInventoryPeriodLoading} />
