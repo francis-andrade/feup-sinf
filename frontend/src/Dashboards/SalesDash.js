@@ -15,6 +15,7 @@ class SalesDash extends Component {
             month: '1'
         };
 
+        this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
 
@@ -70,6 +71,12 @@ class SalesDash extends Component {
         };
     }
 
+    setYear(value) {
+        this.setState({
+            year: value
+        })
+    }
+
     changeYear = (value) => {
         this.setState({
             year: value
@@ -88,7 +95,7 @@ class SalesDash extends Component {
                 <Row>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                     <Col>
-                        <TimeSelectorComponent year={this.state.year} month={this.state.month} changeYear={this.changeYear} changeMonth={this.changeMonth} />
+                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
                     </Col>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                 </Row>

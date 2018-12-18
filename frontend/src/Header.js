@@ -21,7 +21,7 @@ export default class Header extends React.Component {
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">360º Dash</NavbarBrand>
+                    <NavbarBrand href="/generic">360º Dash</NavbarBrand>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
                                 <NavLink href="/generic">Generic Dash</NavLink>
@@ -37,9 +37,6 @@ export default class Header extends React.Component {
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/logistics">Logistics Dash</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/humanresources">Human Resources Dash</NavLink>
                             </NavItem>
                         </Nav>
                 </Navbar>

@@ -11,11 +11,20 @@ class TimeSelectorComponent extends Component {
         super(props);
         this.state = {
             yearDropdownOpen: false,
-            monthDropdownOpen: false
+            monthDropdownOpen: false,
+            availableYears: []
         }
 
         this.toggleYearDropdown = this.toggleYearDropdown.bind(this);
         this.toggleMonthDropdown = this.toggleMonthDropdown.bind(this);
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:5000/api/SAFTYears', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => {this.setState({ availableYears: [...data] }); this.props.setYear(data[data.length - 1])})
     }
 
     toggleYearDropdown() {
@@ -39,6 +48,16 @@ class TimeSelectorComponent extends Component {
     }
 
     render() {
+        let years = [];
+
+        for (let i = 0; i < this.state.availableYears.length; i++){
+            years.push(
+                <DropdownItem key={i} onClick={this.changeYear} value={this.state.availableYears[i]}>
+                    {this.state.availableYears[i]}
+                </DropdownItem>
+            )
+        }
+
         return(
             <Container>
                 <Row>
@@ -49,16 +68,11 @@ class TimeSelectorComponent extends Component {
                                     <span className='timeSelectorText'>Year:</span>
                                     <ButtonDropdown isOpen={this.state.monthDropdownOpen} toggle={this.toggleMonthDropdown}>
                                         <DropdownToggle caret outline color='info' size='lg'>
-                                            {this.props.year}
+                                            {this.props.year !== '' ? this.props.year : this.state.availableYears[this.state.availableYears.length - 1]}
                                         </DropdownToggle>
 
                                         <DropdownMenu>
-                                            <DropdownItem onClick={this.changeYear} value={2017}>
-                                                2017
-                                            </DropdownItem>
-                                            <DropdownItem onClick={this.changeYear} value={2018}>
-                                                2018
-                                            </DropdownItem>
+                                            {years}
                                         </DropdownMenu>
                                     </ButtonDropdown>
                                 </span>

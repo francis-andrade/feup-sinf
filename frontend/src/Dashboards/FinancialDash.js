@@ -11,14 +11,15 @@ class FinancialDash extends Component {
         super(props);
 
         this.state = {
-            year: '2018',
-            month: '1',
+            year: '',
+            month: '0',
             totalExpenses: 0.0,
             totalAsset: 0.0,
             accPayable: 0.0,
             accReceivable: 0.0
         };
 
+        this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
 
@@ -74,13 +75,17 @@ class FinancialDash extends Component {
         };
     }
 
+    setYear(value) {
+        this.setState({
+            year: value
+        })
+    }
+
     changeYear = (value) => {
 
         this.setState({
             year: value
         })
-
-        // TODO: adicionar POST request para o server e enviar a data
 
         fetch('http://localhost:5000/api/testPost', {
             method: 'POST',
@@ -128,15 +133,17 @@ class FinancialDash extends Component {
         })
             .then(response => response.json())
             .then(data => this.setState({ accReceivable: data[0] - data[1] }))
+        
     }
 
     render() {
+        console.log(this.state.year)
         return (
             <div className='dashboardBackground'>
                 <Row>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }} />
                     <Col>
-                        <TimeSelectorComponent year={this.state.year} month={this.state.month} changeYear={this.changeYear} changeMonth={this.changeMonth} />
+                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
                     </Col>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }} />
                 </Row>
