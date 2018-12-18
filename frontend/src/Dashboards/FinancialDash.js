@@ -33,41 +33,7 @@ class FinancialDash extends Component {
         this.changeMonth = this.changeMonth.bind(this);
         this.updateYear = this.updateYear.bind(this);
         
-        this.revenue = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [
-                {
-                    label: 'Income',
-                    fill: true,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    data: []
-                }
-            ]
-        };
-
-        this.costs = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [
-                {
-                    label: 'Income',
-                    fill: true,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    data: []
-                }
-            ]
-        };
-
-        this.income = {
+        this.cash = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [
                 {
@@ -180,69 +146,41 @@ class FinancialDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Income'} type={'money'} currentValue={1645} previousValue={1000} />
+                        <KPIComponent title={'Cash'} type={'money'} currentValue={1645} previousValue={1000}/>
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Expenses'} type={'money'} currentValue={this.state.totalExpenses} previousValue={1000} loading={this.state.totalExpensesLoading} />
+                        <KPIComponent title={'Total Assets'} type={'money'} currentValue={834} previousValue={1000}/>
                     </Col>
-                    <Col xs={{ size: 1 }} className='d-xl-none' />
-                    <Col xs={{ size: 1 }} className='d-xl-none' />
-                    <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Revenue'} type={'money'} currentValue={2075} previousValue={1000} />
+                    <Col xs={{ size: 1 }} className='d-xl-none'/>
+                    <Col xs={{ size: 1 }} md className='d-xl-none'/>
+                    <Col md={{ size: 5 }} xl >
+                        <KPIComponent title={'Total Liabilities'} type={'money'} currentValue={2075} previousValue={1000}/>
                     </Col>
-                    <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Asset Value'} type={'money'} currentValue={this.state.totalAsset} previousValue={1000} loading={this.state.totalAssetLoading} />
-                    </Col>
+                    <Col md className='d-xl-none' />
+                    <Col xl={{ size: 1 }} />
+                </Row>
+                <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
+                    <Col md={{ size: 5 }} xl className='columnStack'>
+                        <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={1000} loading={this.state.accPayableLoading} />
+                    </Col>
+                    <Col md={{ size: 5 }} xl className='columnStack'>
+                        <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={1000} loading={this.state.accReceivableLoading} />
+                    </Col>
+                    <Col xs={{ size: 1 }} className='d-xl-none'/>
+                    <Col xs={{ size: 1 }} md className='d-xl-none'/>
+                    <Col md={{ size: 5 }} xl className='columnStack'>
+                        <KPIComponent title={'Gross Profit Margin'} type={'money'} currentValue={2075} previousValue={1000}/>
+                    </Col>
+                    <Col md className='d-xl-none columnStack' />
+                    <Col xl={{ size: 1 }} />
                 </Row>
                 <Row className='rowStack'>
-                    <Col xl={{ size: 6 }}>
+                    <Col>
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
-                            <Col md className='columnStack'>
-                                <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={1000} loading={this.state.accPayableLoading} />
-                            </Col>
-                            <Col md className='columnStack'>
-                                <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={1000} loading={this.state.accReceivableLoading} />
-                            </Col>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
-                        </Row>
-                        <Row className='rowStack'>
-                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
-                            <Col md className='columnStack'>
-                                <KPIComponent title={'Financial Autonomy'} type={'percentage'} currentValue={140} previousValue={126} />
-                            </Col >
-                            <Col md className='columnStack'>
-                                <KPIComponent title={'General Liquidity'} type={'percentage'} currentValue={106} previousValue={102} />
-                            </Col>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
-                        </Row>
-                    </Col>
-                    <Col xl={{ size: 6 }}>
-                        <Row>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
-                            <Col className='columnStack'>
-                                <GraphComponent type={'line'} data={this.revenue} title={'Revenue History'} yearly={true} />
-                            </Col>
-                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
-                        </Row>
-                    </Col>
-                </Row>
-                <Row className='rowStack'>
-                    <Col xl={{ size: 6 }}>
-                        <Row>
-                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
-                            <Col className='columnStack'>
-                                <GraphComponent type={'line'} data={this.costs} title={'Costs History'} yearly={true} />
-                            </Col>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
-                        </Row>
-                    </Col>
-                    <Col xl={{ size: 6 }}>
-                        <Row>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='lastElement'>
-                                <GraphComponent type={'line'} data={this.income} title={'Income History'} yearly={true} />
+                                <GraphComponent type={'line'} data={this.cash} title={'Cash Graph'} yearly={true} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
