@@ -9,96 +9,97 @@ import '../styles/Common.style.css';
 class SalesDash extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             year: '2018',
-            month: '1'
+            month: '1',
+            
+            backlogValue : 10,
 
+        
+            salesPerRegion : {
+                labels: ['Portugal', 'Espanha', 'França'],
+                datasets: [
+                    {
+                        label: 'Amount',
+                        fill: true,
+                        lineTension: 0.1,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: [1593, 1602, 1759]
+                    }
+                ]
+            },
+
+            topProducts : {
+                labels: ['Product1', 'Product2', 'Product3'],
+                datasets: [
+                    {
+                        label: 'Quantity',
+                        fill: true,
+                        lineTension: 0.1,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: [1843, 1928, 2058]
+                    }
+                ]
+            },
+
+            sales : {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [
+                    {
+                        label: 'Sales',
+                        fill: true,
+                        lineTension: 0.1,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: [1843, 1928, 2058, 2185, 1956, 1856, 2075]
+                    }
+                ]
+            }
         };
 
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
-
-        this.salesPerRegion = {
-            labels: ['Portugal', 'Espanha', 'França'],
-            datasets: [
-                {
-                    label: 'Amount',
-                    fill: true,
-                    lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [1593, 1602, 1759]
-                }
-            ]
-        };
-
-        this.topProducts = {
-            labels: ['Category1', 'Category2', 'Category3'],
-            datasets: [
-                {
-                    label: 'Quantity',
-                    fill: true,
-                    lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [1843, 1928, 2058]
-                }
-            ]
-        };
-
-        this.sales = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'Sales',
-                    fill: true,
-                    lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [1843, 1928, 2058, 2185, 1956, 1856, 2075]
-                }
-            ]
-        };
     }
 
     changeYear = (value) => {
@@ -113,33 +114,33 @@ class SalesDash extends Component {
         })
     }
 
-    setSalesPerRegion(res){
-        this.salesPerRegion.labels = res.map(function(a){
+    /*setSalesPerRegion(res){
+        this.setState(salesPerRegion.labels = res.map(function(a){
             return a[0];
-        })
-        this.salesPerRegion.datasets[0].data = res.map(function (a) {
+        }));
+        this.setState(salesPerRegion.datasets[0].data = res.map(function (a) {
             return a[1];
-        });
+        }));
+
     }
 
     setTopProductsSold(res){
-        this.topProducts.labels = res.map(function(a){
+        this.state.topProducts.labels = res.map(function(a){
             return a[1];
         })
-        this.topProducts.datasets[0].data = res.map(function (a) {
+        this.state.topProducts.datasets[0].data = res.map(function (a) {
             return a[2];
         });
     }
 
     setSalesPerMonth(res){
-        this.sales.labels = res.map(function(a){
+        this.state.sales.labels = res.map(function(a){
             return a[0];
         })
-        this.sales.datasets[0].data = res.map(function (a) {
+        this.state.sales.datasets[0].data = res.map(function (a) {
             return a[1];
         });
-    }
-
+    }*/
 
     componentDidMount(){
 
@@ -155,25 +156,55 @@ class SalesDash extends Component {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(res => this.setSalesPerRegion(res))
+            .then(data => {
+                let newState = Object.assign({}, this.state);
+                newState.salesPerRegion.labels = data.map(function(a){
+                    return a[0];
+                });
+                newState.salesPerRegion.datasets[0].data = data.map(function(a){
+                    return a[1];
+                });
+                this.setState(newState);  
+                console.log(this.state);        
+            });
 
         //Get top product sales
         fetch('http://localhost:5000/api/TopProductsSold',{
             method: 'GET',
         })
             .then(response => response.json())
-            .then(res => this.setTopProductsSold(res))
+            .then(data => {
+                let newState = Object.assign({}, this.state);
+                newState.topProducts.labels = data.map(function(a){
+                    return a[1];
+                });
+                newState.topProducts.datasets[0].data = data.map(function(a){
+                    return a[2];
+                });
+                this.setState(newState);  
+                console.log(this.state);        
+            });
 
         //Get Sales Per Month
         fetch('http://localhost:5000/api/SalesPerMonth',{
             method: 'GET',
         })
             .then(response => response.json())
-            .then(res => this.setSalesPerMonth(res))
+            .then(data => {
+                let newState = Object.assign({}, this.state);
+                newState.sales.labels = data.map(function(a){
+                    return a[0];
+                });
+                newState.sales.datasets[0].data = data.map(function(a){
+                    return a[1];
+                });
+                this.setState(newState);  
+                console.log(this.state);        
+            });
     }
 
 
-    render() {
+    render(){
         return (
             <div className='dashboardBackground'>
                 <Row>
@@ -204,7 +235,7 @@ class SalesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'pie'} data={this.salesPerRegion} title={'Sales per Region'} />
+                                <GraphComponent type={'pie'} data={this.state.salesPerRegion} title={'Sales per Region'} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -213,7 +244,7 @@ class SalesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='columnStack'>
-                                <GraphComponent type={'horizontalBar'} data={this.topProducts} title={'Top Best Selling Products'} />
+                                <GraphComponent type={'horizontalBar'} data={this.state.topProducts} title={'Top Best Selling Products'} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
@@ -224,7 +255,7 @@ class SalesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='lastElement'>
-                                <GraphComponent type={'line'} data={this.sales} title={'Sales History'} />
+                                <GraphComponent type={'line'} data={this.state.sales} title={'Sales History'} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
