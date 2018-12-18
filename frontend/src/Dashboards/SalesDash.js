@@ -14,7 +14,6 @@ class SalesDash extends Component {
             year: '',
             month: '0',
 
-
             salesValue: 0,
             salesValueLoaded: false,
             
@@ -91,7 +90,29 @@ class SalesDash extends Component {
 
     changeYear = (value) => {
         this.setState({
-            year: value
+            year: value,
+            salesPerRegionLoaded: false,
+            topProductsLoaded: false,
+            salesLoaded: false,
+        })
+
+        this.updateYear(value);
+
+    }
+
+    async updateYear(value){
+        await this.updateYearFetch(value);
+    }
+
+    updateYearFetch(value) {
+        return fetch('http://localhost:5000/api/updateYear', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                year: value
+            })
         })
     }
 
@@ -99,6 +120,8 @@ class SalesDash extends Component {
         this.setState({
             month: value
         })
+
+
     }
 
     shouldComponentUpdate(){
@@ -176,7 +199,6 @@ class SalesDash extends Component {
     }*/
 
     componentDidUpdate(){
-
         //Get Sales Value
 
         fetch('http://localhost:5000/api/salesValue', {
@@ -198,9 +220,15 @@ class SalesDash extends Component {
                 backlogValueLoaded : true,
             }))
 
-         //Get Sales By City
-         fetch('http://localhost:5000/api/SalesByCity',{
+         //Get Sales By Country
+         fetch('http://localhost:5000/api/SalesByCountry',{
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                month: this.state.month,
+            })
         })
             .then(response => response.json())
             .then(data => {
@@ -235,6 +263,12 @@ class SalesDash extends Component {
         //Get Sales Per Month
         fetch('http://localhost:5000/api/SalesPerMonth',{
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                year: this.state.year,
+            })
         })
             .then(response => response.json())
             .then(data => {
