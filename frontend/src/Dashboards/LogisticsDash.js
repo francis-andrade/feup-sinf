@@ -263,7 +263,7 @@ class LogisticsDash extends Component {
                     <Col xl={{ size: 6 }}>
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
-                            <Col className='columnStack'>
+                            <Col className='columnStack lastElement'>
                                 <GraphComponent type={'pie'} data={this.state['destinations']} title={'Deliveries by Destination'} yearly={false} loading={this.state.destinationsLoading} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />

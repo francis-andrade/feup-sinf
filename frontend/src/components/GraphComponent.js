@@ -79,7 +79,7 @@ class GraphComponent extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='loader'>
+                        <Col xs={{ size: 12 }} sm={{ size: 10, offset: 1 }} className='graphLoader'>
                             <Loader type='Oval' color='lightgray' width='40' height='40' /> 
                         </Col>
                     </Row>
