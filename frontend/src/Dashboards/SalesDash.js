@@ -22,23 +22,13 @@ class SalesDash extends Component {
                     {
                         label: 'Amount',
                         fill: true,
-                        lineTension: 0.1,
                         backgroundColor: 'rgba(75,192,192,0.4)',
                         borderColor: 'rgba(75,192,192,1)',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBackgroundColor: '#fff',
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
                         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                         pointHoverBorderColor: 'rgba(220,220,220,1)',
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [1593, 1602, 1759]
+                        data: []
                     }
                 ]
             },
@@ -49,57 +39,45 @@ class SalesDash extends Component {
                     {
                         label: 'Quantity',
                         fill: true,
-                        lineTension: 0.1,
                         backgroundColor: 'rgba(75,192,192,0.4)',
                         borderColor: 'rgba(75,192,192,1)',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBackgroundColor: '#fff',
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
                         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                         pointHoverBorderColor: 'rgba(220,220,220,1)',
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [1843, 1928, 2058]
+                        data: []
                     }
                 ]
             },
 
             sales : {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'August', 'September', 'October', 'November', 'December'],
                 datasets: [
                     {
-                        label: 'Sales',
+                        label: 'Income',
                         fill: true,
-                        lineTension: 0.1,
                         backgroundColor: 'rgba(75,192,192,0.4)',
                         borderColor: 'rgba(75,192,192,1)',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBackgroundColor: '#fff',
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
                         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                         pointHoverBorderColor: 'rgba(220,220,220,1)',
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [1843, 1928, 2058, 2185, 1956, 1856, 2075]
+                        data: []
                     }
                 ]
             }
         };
 
+        
+        this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
+    }
+
+    setYear(value) {
+        this.setState({
+            year: value
+        })
     }
 
     changeYear = (value) => {
@@ -210,7 +188,7 @@ class SalesDash extends Component {
                 <Row>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                     <Col>
-                        <TimeSelectorComponent year={this.state.year} month={this.state.month} changeYear={this.changeYear} changeMonth={this.changeMonth} />
+                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
                     </Col>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                 </Row>
@@ -235,7 +213,7 @@ class SalesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'pie'} data={this.state.salesPerRegion} title={'Sales per Region'} />
+                                <GraphComponent type={'pie'} data={this.state.salesPerRegion} title={'Sales per Region'} yearly={false} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -244,7 +222,7 @@ class SalesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='columnStack'>
-                                <GraphComponent type={'horizontalBar'} data={this.state.topProducts} title={'Top Best Selling Products'} />
+                                <GraphComponent type={'horizontalBar'} data={this.state.topProducts} title={'Top Best Selling Products'} yearly={false} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
@@ -255,7 +233,7 @@ class SalesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='lastElement'>
-                                <GraphComponent type={'line'} data={this.state.sales} title={'Sales History'} />
+                                <GraphComponent type={'line'} data={this.state.sales} title={'Sales History'} yearly={true} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>

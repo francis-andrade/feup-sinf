@@ -24,23 +24,13 @@ class HumanResourcesDash extends Component {
                 {
                     label: 'Amount',
                     fill: true,
-                    lineTension: 0.1,
                     backgroundColor: 'rgba(75,192,192,0.4)',
                     borderColor: 'rgba(75,192,192,1)',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
                     pointBorderColor: 'rgba(75,192,192,1)',
                     pointBackgroundColor: '#fff',
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
                     pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                     pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [1593, 682]
+                    data: []
                 }
             ]
         };
@@ -51,23 +41,13 @@ class HumanResourcesDash extends Component {
                 {
                     label: 'Amount',
                     fill: true,
-                    lineTension: 0.1,
                     backgroundColor: 'rgba(75,192,192,0.4)',
                     borderColor: 'rgba(75,192,192,1)',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
                     pointBorderColor: 'rgba(75,192,192,1)',
                     pointBackgroundColor: '#fff',
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
                     pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                     pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [1054, 682, 472]
+                    data: []
                 }
             ]
         };
@@ -78,50 +58,30 @@ class HumanResourcesDash extends Component {
                 {
                     label: 'Quantity',
                     fill: true,
-                    lineTension: 0.1,
                     backgroundColor: 'rgba(75,192,192,0.4)',
                     borderColor: 'rgba(75,192,192,1)',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
                     pointBorderColor: 'rgba(75,192,192,1)',
                     pointBackgroundColor: '#fff',
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
                     pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                     pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [1843, 1928, 2058]
+                    data: []
                 }
             ]
         };
 
         this.satisfaction = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [
                 {
-                    label: 'Income',
+                    label: 'Satisfaction',
                     fill: true,
-                    lineTension: 0.1,
                     backgroundColor: 'rgba(75,192,192,0.4)',
                     borderColor: 'rgba(75,192,192,1)',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
                     pointBorderColor: 'rgba(75,192,192,1)',
                     pointBackgroundColor: '#fff',
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
                     pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                     pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [76, 84, 68, 91, 86, 89, 85]
+                    data: []
                 }
             ]
         };
@@ -161,7 +121,7 @@ class HumanResourcesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'horizontalBar'} data={this.position} title={'Job Position'} />
+                                <GraphComponent type={'horizontalBar'} data={this.position} title={'Job Position'} yearly={true} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -170,7 +130,7 @@ class HumanResourcesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col>
-                                <GraphComponent type={'pie'} data={this.gender} title={'Employees\' Gender'} />
+                                <GraphComponent type={'pie'} data={this.gender} title={'Employees\' Gender'} yearly={true} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
@@ -181,7 +141,7 @@ class HumanResourcesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'pie'} data={this.experience} title={'Employees\' Experience'} />
+                                <GraphComponent type={'pie'} data={this.experience} title={'Employees\' Experience'} yearly={true} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -190,7 +150,7 @@ class HumanResourcesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='lastElement'>
-                                <GraphComponent type={'line'} data={this.satisfaction} title={'Employees\' Satisfaction'} />
+                                <GraphComponent type={'line'} data={this.satisfaction} title={'Employees\' Satisfaction'} yearly={true} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>

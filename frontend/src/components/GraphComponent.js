@@ -10,50 +10,70 @@ class GraphComponent extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            expanded: false
+        }
+
         this.graph = null;
-        this.selectGraph();
+        this.selectGraph(this.props.data);
     }
 
-    selectGraph() {
+    selectGraph(data) {
         switch(this.props.type){
             case 'line':
-                this.graph = <Line data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                this.graph = <Line data={data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             case 'bar':
-                this.graph = <Bar data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                this.graph = <Bar data={data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             case 'radar':
-                this.graph = <Radar data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                this.graph = <Radar data={data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             case 'doughnut':
-                this.graph = <Doughnut data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                this.graph = <Doughnut data={data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             case 'pie':
-                this.graph = <Pie data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                this.graph = <Pie data={data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             case 'polar':
-                this.graph = <Polar data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                this.graph = <Polar data={data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             case 'bubble':
-                this.graph = <Bubble data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                this.graph = <Bubble data={data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             case 'horizontalBar':
-                this.graph = <HorizontalBar data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                this.graph = <HorizontalBar data={data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             case 'scatter':
-                this.graph = <Scatter data={this.props.data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
+                this.graph = <Scatter data={data} options={{ maintainAspectRatio: false }} height={this.props.height} />;
                 break;
             default:
                 break;
         }
     }
 
+    click = () => {
+        if(this.props.isClickable){
+            if(this.state.expanded){
+                this.selectGraph(this.props.extraData)
+            } else {
+                this.selectGraph(this.props.data)
+            }
+            this.setState(() => ({ expanded: !this.state.expanded }))
+        }
+    }
+
     render() {
         return(
-            <Container className='graphContainer componentBackground'>
+            <Container className='graphContainer componentBackground' onClick={this.click}>
                 <Row>
                     <Col className='graphTitle'>
                         <span>{this.props.title}</span>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className='graphSubtitle'>
+                        <span>{this.props.yearly ? 'Yearly' : 'Periodic'} Analysis</span>
                     </Col>
                 </Row>
                 <Row>

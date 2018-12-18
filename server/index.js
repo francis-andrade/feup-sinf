@@ -1,42 +1,40 @@
+// Requires
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-
+const bodyParser = require('body-parser');
 const XmlReader = require('xml-reader');
 const Flatted = require('flatted');
 const xmlQuery = require('xml-query');
+const cors = require('cors')
 
+// Config
 const app = express();
-var cors = require('cors')
-app.use(cors())
+app.use(cors());
+app.use(bodyParser.json())
+const jsonParser = bodyParser.json();
 
+const port = process.env.PORT || 5000;
+app.listen(port);
+
+console.log('App is listening on port ' + port);
+
+// Globals
+// TODO: remove hardcoded SAFT
 let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
-parsedXML = XmlReader.parseSync(xmlFile);
-
+let parsedXML = XmlReader.parseSync(xmlFile);
 let inventory = -1;
+const company = "DEMO";
 
-// TODO: return the value, only console logging for now
-// Gets the debit and credit totals of the sales
-app.get('/api/salesTotals', (req, res) => {
-
-    // Get whole document as xml-query object
-    const xq = xmlQuery(parsedXML);
-
-    // Get sales totals
-    let salesInvoiceQuery = xq.find('SalesInvoices');
-    let salesDebitTotal = parseFloat(salesInvoiceQuery.children().find('TotalDebit').children().text());
-    let salesCreditTotal = parseFloat(salesInvoiceQuery.children().find('TotalCredit').children().text());
-
-    console.log("salesDebit: " + salesDebitTotal);
-    console.log("salesCredit: " + salesCreditTotal);
-
-    // res.send(closingDebitSum + '');
+// TODO: remove test POST
+app.post('/api/testPost', jsonParser, (req, res) =>  {
+    console.log("year: " + req.body.year);
 });
 
 /**
  * Converts a string in YYYY-MM-DD format to a Date object.
  * 
- * @param {*} dateStr a string in YYYY-MM-DD format
+ * @param {string} dateStr a string in YYYY-MM-DD format
  */
 function toDate(dateStr) {
     const [year, month, day] = dateStr.split("-")
@@ -44,13 +42,41 @@ function toDate(dateStr) {
 }
 
 /**
+ * Gets the available SAFT years for the company hardcoded in this file,
+ * must be in DD-MM-YYYY format. SAFT follows the following format
+ * "SAFT_<company-name>_<init-date>_<final-date>.xml".
+ */
+app.get('/api/SAFTYears', (req, res) => {
+
+    let dirContents = fs.readdirSync(path.join(__dirname + '/SAF-T'), 'utf8');
+    let matchingSAFT = [];
+    let years = [];
+
+    // For each file in the SAFT directory look for the company name (exact match)
+    for (i in dirContents) {
+        let splitStr = dirContents[i].split("_");
+        if (splitStr[1] === company) matchingSAFT.push(dirContents[i]);
+    }
+
+    // For each result find the corresponding year
+    for (i in matchingSAFT) {
+        let fieldSplit = matchingSAFT[i].split("_");
+        let yearSplit = fieldSplit[2].split("-");
+        years.push(yearSplit[2]);
+    }
+
+    res.send(years);
+});
+
+/**
  * Sums the lines relative to the account ID supplied whithin the year and month
  * supplied. Month = 0 is a special case where the whole year is used instead.
  * Returns an array with [totalDebit, totalCredit].
  * 
- * @param {*} accountIDToSum the account ID to sum
- * @param {*} year the year in YYYY format to use
- * @param {*} month the month in MM format to use (1-12), 0 is a special value that sums the whole year
+ * @param {number} accountIDToSum the account ID to sum
+ * @param {number} year the year in YYYY format to use
+ * @param {number} month the month in MM format to use (1-12), 0 is a special value that sums the whole year
+ * @returns {Array} array of [totalDebit, totalCredit]
  */
 function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
 
@@ -297,16 +323,6 @@ app.get('/api/parseXML', (req, res) => {
     res.send('Parsed!');
 });
 
-// Print a previously parsed SAF-T file
-app.get('/api/printXML', (req, res) => {
-
-    if (typeof parsedXML !== 'undefined' && parsedXML) {
-        res.send(Flatted.stringify(parsedXML));
-    } else {
-        res.send('No SAF-T file parsed!')
-    }
-});
-
 app.get('/api/inventory', (req, res) => {
 
     if(inventory == -1)
@@ -316,6 +332,7 @@ app.get('/api/inventory', (req, res) => {
     
 });
 
+// TODO: use sumLedgerEntries
 function calculateAccountsSum(accountID, sumFunction){
     
     // Get whole document as xml-query object
@@ -360,8 +377,6 @@ function sumInventory(account){
     return (closingDebit - openingDebit) - (closingCredit - openingCredit)
 }
 
-
-
 app.get('/api/inventoryPeriod', (req, res)=>{
     if(inventory == -1)
     inventory = calculateAccountsSum("3", sumInventory)
@@ -373,8 +388,3 @@ app.get('/api/inventoryPeriod', (req, res)=>{
     res.send(inventoryPeriod.toString())
     
 });
-
-const port = process.env.PORT || 5000;
-app.listen(port);
-
-console.log('App is listening on port ' + port);

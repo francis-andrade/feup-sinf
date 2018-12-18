@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "flatted": "^2.0.0",
+    "jsdoc": "^3.5.5",
     "xml-query": "^1.5.0",
     "xml-reader": "^2.4.3"
   }

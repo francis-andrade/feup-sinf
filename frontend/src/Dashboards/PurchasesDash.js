@@ -27,57 +27,78 @@ class PurchasesDash extends Component {
                     {
                         label: 'Value',
                         fill: true,
-                        lineTension: 0.1,
                         backgroundColor: 'rgba(75,192,192,0.4)',
                         borderColor: 'rgba(75,192,192,1)',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBackgroundColor: '#fff',
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
                         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                         pointHoverBorderColor: 'rgba(220,220,220,1)',
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [1843, 1928, 2058]
+                        data: []
                     }
                 ]
             },
-            topCategories : {
+            topSuppliersExtraData: {
+                labels: ['Supplier1', 'Supplier2', 'Supplier3'],
+                datasets: [
+                    {
+                        label: 'Value',
+                        fill: true,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        data: [300, 400, 500]
+                    }
+                ]
+            },
+            topCategories: {
                 labels: ['Category1', 'Category2', 'Category3'],
                 datasets: [
                     {
                         label: 'Value',
                         fill: true,
-                        lineTension: 0.1,
                         backgroundColor: 'rgba(75,192,192,0.4)',
                         borderColor: 'rgba(75,192,192,1)',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBackgroundColor: '#fff',
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
                         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                         pointHoverBorderColor: 'rgba(220,220,220,1)',
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [1843, 1928, 2058]
+                        data: []
                     }
                 ]
-            }
+            },
+            purchasedProducts: [
+                {
+                    name: 'Produto1',
+                    quantity: '10'
+                }, 
+                {
+                    name: 'Produto2',
+                    quantity: '12'
+                }, 
+                {
+                    name: 'Produto3',
+                    quantity: '14'
+                }, 
+                {
+                    name: 'Produto4',
+                    quantity: '17'
+                }, 
+            ]
+            
         }
-
+        this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
 
+    }
+
+    setYear(value) {
+        this.setState({
+            year: value
+        })
     }
 
     changeYear = (value) => {
@@ -203,36 +224,26 @@ class PurchasesDash extends Component {
     }
 
     render() {
-        let testTable = 
-        <Table className='kpiExtraInfo' >
+        let productsTable = [];
+
+        for(let i = 0; i < this.state.purchasedProducts.length; i++) {
+            productsTable.push(<tr key={i}>
+                                    <th scope="row">{this.state.purchasedProducts[i].name}</th>
+                                    <td>{this.state.purchasedProducts[i].quantity}</td>
+                                </tr>)
+        }
+
+        console.log(productsTable)
+
+        let purchaseValueTable = 
+        <Table hover className='kpiExtraInfo'>
             <thead>
               <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
+            <tbody>{productsTable}</tbody>
         </Table>
 
         return (
@@ -240,17 +251,17 @@ class PurchasesDash extends Component {
                 <Row>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                     <Col>
-                        <TimeSelectorComponent year={this.state.year} month={this.state.month} changeYear={this.changeYear} changeMonth={this.changeMonth} />
+                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
                     </Col>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }}/>
                 </Row>
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} isClickable kpiExtraInfo={testTable} />
+                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} isClickable kpiExtraInfo={purchaseValueTable} />
                     </Col>
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']} isClickable kpiExtraInfo={testTable} />
+                        <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']} />
                     </Col>
                     <Col xs={{ size: 1 }} />
                 </Row>
@@ -259,7 +270,7 @@ class PurchasesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'horizontalBar'} data={this.state['topSuppliers']} title={'Top Suppliers'} />
+                                <GraphComponent type={'horizontalBar'} data={this.state['topSuppliers']} title={'Top Suppliers'} yearly={false} isClickable extraData={this.state.topSuppliersExtraData} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -268,7 +279,7 @@ class PurchasesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='lastElement'>
-                                <GraphComponent type={'horizontalBar'} data={this.state['topCategories']} title={'Top Categories'} />
+                                <GraphComponent type={'horizontalBar'} data={this.state['topCategories']} title={'Top Categories'} yearly={false} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
