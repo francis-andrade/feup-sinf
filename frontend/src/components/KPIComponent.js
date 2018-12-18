@@ -35,7 +35,7 @@ class KPIComponent extends Component {
 
         if (this.props.loading) {
             return(
-                <Container className='kpiContainer componentBackground' onClick={this.click} style={{ height: this.state.expanded ? '55vh' : '22vh' }}>
+                <Container className='kpiContainer componentBackground'>
                     <Row>
                         <Col className='loader'>
                             <Loader type='Oval' color='lightgray' width='40' height='40' />

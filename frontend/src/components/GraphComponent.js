@@ -16,6 +16,7 @@ class GraphComponent extends Component {
         }
 
         this.graph = null;
+        this.click = this.click.bind(this);
         this.selectGraph(this.props.data);
     }
 
@@ -55,12 +56,15 @@ class GraphComponent extends Component {
 
     click = () => {
         if(this.props.isClickable){
-            if(this.state.expanded){
-                this.selectGraph(this.props.extraData)
-            } else {
-                this.selectGraph(this.props.data)
-            }
-            this.setState(() => ({ expanded: !this.state.expanded }))
+            this.setState(() => ({ expanded: !this.state.expanded }), function() {
+                if(this.state.expanded){
+                    this.selectGraph(this.props.extraData)
+                    this.setState(() => this.state)
+                } else {
+                    this.selectGraph(this.props.data)
+                    this.setState(() => this.state)
+                }
+            })
         }
     }
 
