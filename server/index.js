@@ -157,7 +157,7 @@ function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
                     let accountID = line.find('AccountID').children().text();
                     accountID = accountID.substring(0, 4);
                     if (accountID.startsWith(accountIDToSum)) {
-                        totalCredit = parseFloat(line.find('CreditAmount').children().text());
+                        totalCredit += parseFloat(line.find('CreditAmount').children().text());
                     }
 
                 // Sum debit amount to running total
@@ -166,7 +166,7 @@ function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
                     let accountID = line.find('AccountID').children().text();
                     accountID = accountID.substring(0, 4);
                     if (accountID.startsWith(accountIDToSum)) {
-                        totalDebit = parseFloat(line.find('DebitAmount').children().text());
+                        totalDebit += parseFloat(line.find('DebitAmount').children().text());
                     }
                 }
             }
@@ -174,6 +174,17 @@ function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
     }
 
     return [totalDebit, totalCredit];
+}
+
+/**
+ * Returns the previous month of the given date.
+ * 
+ * @param {Date} date the date object representing the date to find the previous month of
+ * @returns {Date} the date representing the previous month of the given date
+ */
+function previousMonth(date) {
+    date.setDate(0);
+    return date;
 }
 
 /**
@@ -204,12 +215,27 @@ app.get('/api/sumLedgerEntries', (req, res) => {
         return;
     }
 
-    // Use account ID, year and month sent through URL to sum the Ledger Entries
-    let result = sumLedgerEntries(req.query.id, req.query.year, req.query.month);
-    console.log(result[0]);
-    console.log(result[1]);
+    let prevYear = 0;
+    let prevMonth = 0;
+    if(req.query.month != 0) {
+       let previousDate = new Date(req.query.year, req.query.month - 1);
+       previousDate = previousMonth(previousDate);
+       prevYear = previousDate.getFullYear();
+       prevMonth = previousDate.getMonth() + 1;
+    } else {
+        prevYear = req.query.year - 1;
+        prevMonth = 0;
+    }
 
-    res.send(result);
+    // Use account ID, year and month sent through URL to sum the Ledger Entries
+    let currentTimeFrame = sumLedgerEntries(req.query.id, req.query.year, req.query.month);
+    let previousTimeFrame = sumLedgerEntries(req.query.id, prevYear, prevMonth);
+    console.log(currentTimeFrame[0]);
+    console.log(currentTimeFrame[1]);
+    console.log(previousTimeFrame[0]);
+    console.log(previousTimeFrame[1]);
+
+    res.send(currentTimeFrame);
 });
 
 
