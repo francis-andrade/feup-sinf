@@ -31,8 +31,7 @@ class FinancialDash extends Component {
         this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
-        this.updateKPI = this.updateKPI.bind(this);
-
+        
         this.revenue = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [
@@ -103,7 +102,7 @@ class FinancialDash extends Component {
     async updateYear(value) {
 
         await this.updateYearFetch(value);
-        this.updateKPI(value);
+        this.updateKPI(value, this.state.month);
     }
 
     updateYearFetch(value) {
@@ -119,16 +118,19 @@ class FinancialDash extends Component {
     }
 
     changeMonth = (value) => {
+
         this.setState({
             month: value
         })
+
+        this.updateKPI(this.state.year, value);
     }
 
-    updateKPI(year) {
+    updateKPI(year, month) {
 
         const API = 'http://localhost:5000/api/';
         const funcToUse = 'sumLedgerEntries';
-        const parameters = '&year=' + year + '&month=' + this.state.month;
+        const parameters = '&year=' + year + '&month=' + month;
 
         // Get total expenses
         fetch(API + funcToUse + '?id=6' + parameters, {
@@ -160,7 +162,7 @@ class FinancialDash extends Component {
     }
 
     componentDidMount() {
-        this.updateKPI(this.state.year);
+        this.updateKPI(this.state.year, this.state.month);
     }
 
     render() {
