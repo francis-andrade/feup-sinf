@@ -20,15 +20,48 @@ app.listen(port);
 console.log('App is listening on port ' + port);
 
 // Globals
-// TODO: remove hardcoded SAFT
-let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
-let parsedXML = XmlReader.parseSync(xmlFile);
+let xmlFile = '';
+let parsedXML;
 let inventory = -1;
-const company = "DEMO";
+let currentYear = '';
+const company = 'DEMO';
+const saftDir = '/SAF-T/';
 
 // TODO: remove test POST
-app.post('/api/testPost', jsonParser, (req, res) =>  {
-    console.log("year: " + req.body.year);
+app.post('/api/updateYear', jsonParser, (req, res) =>  {
+
+    if(currentYear !== req.body.year) {
+        currentYear = req.body.year;
+    } else {
+        console.log("not updating");
+        res.send("no update");
+        return;
+    }
+
+    let dirContents = fs.readdirSync(path.join(__dirname + '/SAF-T'), 'utf8');
+    let matchingSAFT = [];
+    let fileToLoad = '';
+
+    // For each file in the SAFT directory look for the company name (exact match)
+    for (i in dirContents) {
+        let splitStr = dirContents[i].split("_");
+        if (splitStr[1] === company) matchingSAFT.push(dirContents[i]);
+    }
+
+    // For each result find the corresponding year
+    for (i in matchingSAFT) {
+        let fieldSplit = matchingSAFT[i].split("_");
+        let yearSplit = fieldSplit[2].split("-");
+
+        if(yearSplit[2] === currentYear) {
+            fileToLoad = matchingSAFT[i];
+        }
+    }
+
+    console.log("changing SAFT to: " + fileToLoad);
+    xmlFile = fs.readFileSync(path.join(__dirname + saftDir + fileToLoad), 'utf8');
+    parsedXML = XmlReader.parseSync(xmlFile);
+    res.send("updated");
 });
 
 /**
@@ -140,11 +173,23 @@ function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
     return [totalDebit, totalCredit];
 }
 
-// TODO: change to POST with body having year and month
+/**
+ * GET request that sums the requested ledger entries by AccountID using a timeframe specified
+ * by a year and month pair. All parameters are sent through the URL of the GET, that is,
+ * /api/sumLedgerEntries?id=6&year=2018&month=1.
+ */
 app.get('/api/sumLedgerEntries', (req, res) => {
 
-    let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
-    parsedXML = XmlReader.parseSync(xmlFile);
+    // TODO: remove log
+    console.log("year/month");
+    console.log(req.query.year);
+    console.log(req.query.month);
+
+    // Check if parsed SAFT exists
+    if (typeof parsedXML == 'undefined' && !parsedXML) {
+        res.send([0, 0]);
+        return;
+    }
 
     let accountIDToSum = req.query.id;
     if (typeof accountIDToSum == 'undefined' && !accountIDToSum) {
@@ -152,7 +197,7 @@ app.get('/api/sumLedgerEntries', (req, res) => {
     }
 
     // TODO: receive month / year here from body of POST
-    let result = sumLedgerEntries(accountIDToSum, "2016", "0");
+    let result = sumLedgerEntries(accountIDToSum, req.query.year, req.query.month);
     console.log(result[0]);
     console.log(result[1]);
 
@@ -185,6 +230,7 @@ app.get('/api/backlogValue', function(req, res) {
 
 // Return Array of arrays with 
 app.get('/api/SalesByCity', function(req, res) {
+
     const xq = xmlQuery(parsedXML);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
@@ -213,6 +259,7 @@ app.get('/api/SalesByCity', function(req, res) {
 });
 
 app.get('/api/TopProductsSold', function(req, res) {
+
     const xq = xmlQuery(parsedXML);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
@@ -247,6 +294,7 @@ app.get('/api/TopProductsSold', function(req, res) {
 });
 
 app.get('/api/SalesPerMonthLastYear', function(req, res) {
+
     const xq = xmlQuery(parsedXML);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
@@ -292,15 +340,6 @@ app.get('/api/SalesPerMonthLastYear', function(req, res) {
     }
 
     res.send(result);
-});
-
-// Parse a SAF-T file read from the file system and store it
-app.get('/api/parseXML', (req, res) => {
-    
-    // TODO: arbitrary SAF-T file
-    let xmlFile = fs.readFileSync(path.join(__dirname + '/SAF-T/SAFT_DEMOSINF_01-01-2016_31-12-2016.xml'), 'utf8');
-    parsedXML = XmlReader.parseSync(xmlFile);
-    res.send('Parsed!');
 });
 
 app.get('/api/inventory', (req, res) => {

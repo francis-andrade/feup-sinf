@@ -31,6 +31,7 @@ class FinancialDash extends Component {
         this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
+        this.updateKPI = this.updateKPI.bind(this);
 
         this.revenue = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -96,7 +97,17 @@ class FinancialDash extends Component {
             year: value
         })
 
-        fetch('http://localhost:5000/api/testPost', {
+        this.updateYear(value);
+    }
+
+    async updateYear(value) {
+
+        await this.updateYearFetch(value);
+        await this.updateKPI(value);
+    }
+
+    updateYearFetch(value) {
+        fetch('http://localhost:5000/api/updateYear', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -113,40 +124,47 @@ class FinancialDash extends Component {
         })
     }
 
-    componentDidMount() {
+    updateKPI(year) {
 
-        // Get total revenue
-        fetch('http://localhost:5000/api/sumLedgerEntries?id=6', {
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + this.state.month;
+
+        // Get total expenses
+        fetch(API + funcToUse + '?id=6' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
             .then(data => this.setState({ totalExpenses: data[0] - data[1], totalExpensesLoading: false }))
 
         // Get total asset value
-        fetch('http://localhost:5000/api/sumLedgerEntries?id=4', {
+        fetch(API + funcToUse + '?id=4' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
             .then(data => this.setState({ totalAsset: data[0] - data[1], totalAssetLoading: false }))
 
         // Get total accounts payable
-        fetch('http://localhost:5000/api/sumLedgerEntries?id=22', {
+        fetch(API + funcToUse + '?id=22' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
             .then(data => this.setState({ accPayable: data[1] - data[0], accPayableLoading: false }))
 
         // Get total accounts receivable
-        fetch('http://localhost:5000/api/sumLedgerEntries?id=21', {
+        fetch(API + funcToUse + '?id=21' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
             .then(data => this.setState({ accReceivable: data[0] - data[1], accReceivableLoading: false }))
-        
+    }
+
+    componentDidMount() {
+        this.updateKPI(this.state.year);
     }
 
     render() {
-        console.log(this.state.year)
+
         return (
             <div className='dashboardBackground'>
                 <Row>
