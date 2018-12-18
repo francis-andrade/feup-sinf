@@ -161,8 +161,31 @@ app.get('/api/sumLedgerEntries', (req, res) => {
 
 
 //TODO: apply date limits
+
+
+app.post('/api/SalesValue', function(req, res){
+
+    const xq = xmlQuery(parsedXML);
+
+    let result = 0;
+
+    let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+
+    for (let i = 0; i< allInvoices.size(); i++){
+        let invoiceType = allInvoices.eq(i).find('InvoiceType').children().text();
+        if (invoiceType != 'NC'){ // notas de crédito
+            let invoiceTotal = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+            result += invoiceTotal;
+        }
+    }
+
+    console.log(result);
+    res.send(result.toString()); 
+
+});
+
 //Gets Backlog Value
-app.get('/api/backlogValue', function(req, res) {
+app.post('/api/backlogValue', function(req, res) {
 
     const xq = xmlQuery(parsedXML);
 
@@ -184,7 +207,7 @@ app.get('/api/backlogValue', function(req, res) {
 });
 
 // Return Array of arrays with 
-app.get('/api/SalesByCity', function(req, res) {
+app.post('/api/SalesByCity', function(req, res) {
     const xq = xmlQuery(parsedXML);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
@@ -193,16 +216,17 @@ app.get('/api/SalesByCity', function(req, res) {
 
     for (let i = 0; i < allInvoices.size(); i++){
         let city = allInvoices.eq(i).find('ShipTo').children().find('City').text();
+        let amount = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
 
         let j = result.findIndex(function(e) {
             return e[0] == city;
         });
 
         if (j != -1){
-            result[j][1] += 1;
+            result[j][1] += amount;
         }
         else{
-            result.push([city, 1]);
+            result.push([city, amount]);
         }
     }
     
@@ -217,7 +241,7 @@ app.get('/api/SalesByCity', function(req, res) {
     res.send(aux);
 });
 
-app.get('/api/TopProductsSold', function(req, res) {
+app.post('/api/TopProductsSold', function(req, res) {
     const xq = xmlQuery(parsedXML);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
@@ -258,7 +282,7 @@ app.get('/api/TopProductsSold', function(req, res) {
     res.send(aux);
 });
 
-app.get('/api/SalesPerMonth', function(req, res) {
+app.post('/api/SalesPerMonth', function(req, res) {
     const xq = xmlQuery(parsedXML);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');

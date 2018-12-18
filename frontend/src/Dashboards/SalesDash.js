@@ -9,11 +9,16 @@ import '../styles/Common.style.css';
 class SalesDash extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             year: '2018',
             month: '1',
             
+            salesValue: 0,
+            salesValueLoaded: false,
+
             backlogValue : 10,
+            backlogValueLoaded: false,
 
         
             salesPerRegion : {
@@ -32,6 +37,7 @@ class SalesDash extends Component {
                     }
                 ]
             },
+            salesPerRegionLoaded: false,
 
             topProducts : {
                 labels: ['Product1', 'Product2', 'Product3'],
@@ -49,6 +55,7 @@ class SalesDash extends Component {
                     }
                 ]
             },
+            topProductsLoaded: false,
 
             sales : {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'August', 'September', 'October', 'November', 'December'],
@@ -65,7 +72,8 @@ class SalesDash extends Component {
                         data: []
                     }
                 ]
-            }
+            },
+            salesLoaded: false,
         };
 
         
@@ -92,46 +100,34 @@ class SalesDash extends Component {
         })
     }
 
-    /*setSalesPerRegion(res){
-        this.setState(salesPerRegion.labels = res.map(function(a){
-            return a[0];
-        }));
-        this.setState(salesPerRegion.datasets[0].data = res.map(function (a) {
-            return a[1];
-        }));
-
+    shouldComponentUpdate(){
+        return !(this.state.salesLoaded && this.state.salesPerRegionLoaded && this.state.salesValueLoaded && this.state.backlogValueLoaded && this.state.topProducts);
     }
 
-    setTopProductsSold(res){
-        this.state.topProducts.labels = res.map(function(a){
-            return a[1];
-        })
-        this.state.topProducts.datasets[0].data = res.map(function (a) {
-            return a[2];
-        });
-    }
+    /*componentDidMount(){
 
-    setSalesPerMonth(res){
-        this.state.sales.labels = res.map(function(a){
-            return a[0];
-        })
-        this.state.sales.datasets[0].data = res.map(function (a) {
-            return a[1];
-        });
-    }*/
+        //Get Sales Value
 
-    componentDidMount(){
+        fetch('http://localhost:5000/api/salesValue', {
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => this.setState({
+                salesValue : data,
+            }))
 
         //Get Backlog Value
         fetch('http://localhost:5000/api/backlogValue', {
-            method: 'GET',
+            method: 'POST',
         })
             .then(response => response.json())
-            .then(data => this.setState({backlogValue : data}))
+            .then(data => this.setState({
+                backlogValue : data
+            }))
         
-            //Get Sales By City
+        //Get Sales By City
         fetch('http://localhost:5000/api/SalesByCity',{
-            method: 'GET',
+            method: 'POST',
         })
             .then(response => response.json())
             .then(data => {
@@ -140,15 +136,14 @@ class SalesDash extends Component {
                     return a[0];
                 });
                 newState.salesPerRegion.datasets[0].data = data.map(function(a){
-                    return a[1];
+                    return Math.round(a[1] * 100) /100;
                 });
-                this.setState(newState);  
-                console.log(this.state);        
+                this.setState(newState);        
             });
 
         //Get top product sales
         fetch('http://localhost:5000/api/TopProductsSold',{
-            method: 'GET',
+            method: 'POST',
         })
             .then(response => response.json())
             .then(data => {
@@ -157,15 +152,14 @@ class SalesDash extends Component {
                     return a[1];
                 });
                 newState.topProducts.datasets[0].data = data.map(function(a){
-                    return a[2];
+                    return Math.round(a[2] * 100) /100;
                 });
-                this.setState(newState);  
-                console.log(this.state);        
+                this.setState(newState);          
             });
 
         //Get Sales Per Month
         fetch('http://localhost:5000/api/SalesPerMonth',{
-            method: 'GET',
+            method: 'POST',
         })
             .then(response => response.json())
             .then(data => {
@@ -174,15 +168,93 @@ class SalesDash extends Component {
                     return a[0];
                 });
                 newState.sales.datasets[0].data = data.map(function(a){
+                    return Math.round(a[1] * 100) /100;
+                });
+                this.setState(newState);         
+            });
+    }*/
+
+    componentDidUpdate(){
+
+        //Get Sales Value
+
+        fetch('http://localhost:5000/api/salesValue', {
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => this.setState({
+                salesValue : data,
+                salesValueLoaded : true,
+            }))
+
+        //Get Backlog Value
+        fetch('http://localhost:5000/api/backlogValue', {
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => this.setState({
+                backlogValue : data,
+                backlogValueLoaded : true,
+            }))
+
+         //Get Sales By City
+         fetch('http://localhost:5000/api/SalesByCity',{
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => {
+                let newState = Object.assign({}, this.state);
+                newState.salesPerRegion.labels = data.map(function(a){
+                    return a[0];
+                });
+                newState.salesPerRegion.datasets[0].data = data.map(function(a){
+                    return Math.round(a[1] * 100) /100;
+                });
+                newState.salesPerRegionLoaded = true;
+                this.setState(newState);        
+            });
+
+        //Get top product sales
+        fetch('http://localhost:5000/api/TopProductsSold',{
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => {
+                let newState = Object.assign({}, this.state);
+                newState.topProducts.labels = data.map(function(a){
                     return a[1];
                 });
-                this.setState(newState);  
-                console.log(this.state);        
+                newState.topProducts.datasets[0].data = data.map(function(a){
+                    return Math.round(a[2] * 100) /100;
+                });
+                newState.topProductsLoaded = true;
+                this.setState(newState);          
+            });
+
+        //Get Sales Per Month
+        fetch('http://localhost:5000/api/SalesPerMonth',{
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => {
+                let newState = Object.assign({}, this.state);
+                newState.sales.labels = data.map(function(a){
+                    return a[0];
+                });
+                newState.sales.datasets[0].data = data.map(function(a){
+                    return Math.round(a[1] * 100) /100;
+                });
+                newState.salesLoaded = true;
+                this.setState(newState);         
             });
     }
 
 
-    render(){
+    render() {
+
+        console.log('Render');
+        console.log(this.state);
+
         return (
             <div className='dashboardBackground'>
                 <Row>
@@ -195,7 +267,7 @@ class SalesDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Sales Value'} type={'money'} currentValue={1645} previousValue={1000}/>
+                        <KPIComponent title={'Sales Value'} type={'money'} currentValue={this.state.salesValue} previousValue={1000}/>
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
                         <KPIComponent title={'Expected Orders Value'} type={'money'} currentValue={this.state.backlogValue} previousValue={1000}/>
