@@ -21,29 +21,36 @@ console.log('App is listening on port ' + port);
 
 // Globals
 let xmlFile = '';
-let parsedXML;
+let parsedXML = ['null', 'null'];
 let inventory = 0;
 let currentYear = '';
+let isCurrentAvailable = false;
+let isPreviousAvailable = false;
 const company = 'DEMO';
 const saftDir = '/SAF-T/';
+const currSAFT = 0;
+const previousSAFT = 1;
 
 /**
  * Updates the parsed SAFT to the newly selected year, doesn't update
- * if the year is the same as the previous one. 
+ * if the year is the same as the previous one. Also stores the previous
+ * year if it exists.
  */
 app.post('/api/updateYear', jsonParser, (req, res) =>  {
 
+    // Check if same year requested
     if(currentYear !== req.body.year) {
         currentYear = req.body.year;
     } else {
-        console.log("not updating");
-        res.send("no update");
+        console.log("Log: no SAFT update needed");
+        res.send('');
         return;
     }
 
     let dirContents = fs.readdirSync(path.join(__dirname + '/SAF-T'), 'utf8');
     let matchingSAFT = [];
-    let fileToLoad = '';
+    let filesToLoad = [];
+    let prevYear = (parseInt(currentYear) - 1).toString();
 
     // For each file in the SAFT directory look for the company name (exact match)
     for (i in dirContents) {
@@ -52,20 +59,57 @@ app.post('/api/updateYear', jsonParser, (req, res) =>  {
     }
 
     // For each result find the corresponding year
-    for (i in matchingSAFT) {
-        let fieldSplit = matchingSAFT[i].split("_");
+    filesToLoad.push(findSAFT(matchingSAFT, currentYear));
+    filesToLoad.push(findSAFT(matchingSAFT, prevYear));
+
+    // Load requested year
+    loadSAFT(filesToLoad[0], currSAFT);
+    isCurrentAvailable = true;
+
+    // Load previous if found
+    if(filesToLoad[1] !== 'null') {
+        loadSAFT(filesToLoad[1], previousSAFT);
+        isPreviousAvailable = true;
+    } else isPreviousAvailable = false;
+
+    console.log("Log: current SAFT - " + filesToLoad[0] + " and " + filesToLoad[1]);
+    console.log("Log: is previous SAFT available? " + isPreviousAvailable);
+    res.send('');
+});
+
+/**
+ * Loads a SAFT file to the parsedXML array at the specified index.
+ * 
+ * @param {string} filename the filename of the SAFT to load
+ * @param {number} index the index to load SAFT file to
+ */
+function loadSAFT(filename, index) {
+
+    xmlFile = fs.readFileSync(path.join(__dirname + saftDir + filename), 'utf8');
+    parsedXML[index] = XmlReader.parseSync(xmlFile);
+}
+
+/**
+ * Returns a filename of the SAFT corresponding to the requested year. Returns 'null'
+ * if year not found in the filenames.
+ * 
+ * @param {Array} list array containing SAFT filenames 
+ * @param {string} year the year to look for in the SAFT filenames
+ * @returns the filename of the corresponding SAFT year, 'null' if not found
+ */
+function findSAFT(list, year) {
+
+    for (i in list) {
+        let fieldSplit = list[i].split("_");
         let yearSplit = fieldSplit[2].split("-");
 
-        if(yearSplit[2] === currentYear) {
-            fileToLoad = matchingSAFT[i];
+        if(yearSplit[2] === year) {
+            return list[i];
         }
     }
 
-    console.log("changing SAFT to: " + fileToLoad);
-    xmlFile = fs.readFileSync(path.join(__dirname + saftDir + fileToLoad), 'utf8');
-    parsedXML = XmlReader.parseSync(xmlFile);
-    res.send("updated");
-});
+    return 'null';
+}
 
 /**
  * Converts a string in YYYY-MM-DD format to a Date object.
@@ -117,7 +161,7 @@ app.get('/api/SAFTYears', (req, res) => {
 function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
 
     // Get whole document as xml-query object
-    const xq = xmlQuery(parsedXML);
+    const xq = xmlQuery(parsedXML[currSAFT]);
 
     let totalDebit = 0.0;
     let totalCredit = 0.0;
@@ -188,29 +232,13 @@ function previousMonth(date) {
 }
 
 /**
- * Checks if a SAFT file has been parsed.
- * 
- * @returns {boolean} whether a SAFT file is parsed
- */
-function isParsed() {
-
-    if (typeof parsedXML == 'undefined' && !parsedXML) return false;
-    else return true;
-}
-
-/**
  * GET request that sums the requested ledger entries by AccountID using a timeframe specified
  * by a year and month pair. All parameters are sent through the URL of the GET, that is,
  * /api/sumLedgerEntries?id=6&year=2018&month=1.
  */
 app.get('/api/sumLedgerEntries', (req, res) => {
 
-    // TODO: remove log
-    console.log("year/month");
-    console.log(req.query.year);
-    console.log(req.query.month);
-
-    if(!isParsed()) {
+    if(!isCurrentAvailable) {
         res.send([0, 0]);
         return;
     }
@@ -243,7 +271,7 @@ app.get('/api/sumLedgerEntries', (req, res) => {
 //Gets Backlog Value
 app.get('/api/backlogValue', function(req, res) {
 
-    const xq = xmlQuery(parsedXML);
+    const xq = xmlQuery(parsedXML[currSAFT]);
 
     let result = 0;
 
@@ -265,7 +293,7 @@ app.get('/api/backlogValue', function(req, res) {
 // Return Array of arrays with 
 app.get('/api/SalesByCity', function(req, res) {
 
-    const xq = xmlQuery(parsedXML);
+    const xq = xmlQuery(parsedXML[currSAFT]);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
 
@@ -294,7 +322,7 @@ app.get('/api/SalesByCity', function(req, res) {
 
 app.get('/api/TopProductsSold', function(req, res) {
 
-    const xq = xmlQuery(parsedXML);
+    const xq = xmlQuery(parsedXML[currSAFT]);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
 
@@ -329,7 +357,7 @@ app.get('/api/TopProductsSold', function(req, res) {
 
 app.get('/api/SalesPerMonthLastYear', function(req, res) {
 
-    const xq = xmlQuery(parsedXML);
+    const xq = xmlQuery(parsedXML[currSAFT]);
 
     let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
 
@@ -379,7 +407,7 @@ app.get('/api/SalesPerMonthLastYear', function(req, res) {
 app.get('/api/inventory', (req, res) => {
 
     // Check SAFT is parsed
-    if(!isParsed()) {
+    if(!isCurrentAvailable) {
         res.send("0");
         return;
     }
@@ -393,15 +421,12 @@ app.get('/api/inventory', (req, res) => {
 function calculateAccountsSum(accountID, sumFunction){
     
     // Get whole document as xml-query object
-     const xq = xmlQuery(parsedXML);
+     const xq = xmlQuery(parsedXML[currSAFT]);
 
      const ledgerAccounts = xq.find("GeneralLedgerAccounts")
      //const accounts = ledgerAccounts[0].find("Account")
 
      const accounts = ledgerAccounts['ast'][0]['children']
-     //console.log(accounts)
-     //console.log(accounts[1])
-     //console.log(accounts[1]['children'][0])
 
      let totalSum = 0
 
@@ -415,9 +440,6 @@ function calculateAccountsSum(accountID, sumFunction){
             if(accountValue.substring(0, accountID.length).valueOf() == accountID.valueOf() && accountValue.length == 4){
                 totalSum += sumFunction(account)
             }
-            /*else{
-                console.log(accountID['children'][0]['value'].substring(0, inventoryAccID.length))
-            }*/
          }
      }
      return totalSum
@@ -435,7 +457,7 @@ function sumInventory(account){
 app.get('/api/inventoryPeriod', (req, res) => {
 
     // Check SAFT is parsed
-    if(!isParsed()) {
+    if(!isCurrentAvailable) {
         res.send("0");
         return;
     }
