@@ -4,7 +4,7 @@ import { Row, Col, Container, DropdownItem, DropdownToggle, DropdownMenu, Button
 import '../styles/Common.style.css';
 import '../styles/TimeSelector.style.css';
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const months = ['------', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 class TimeSelectorComponent extends Component {
     constructor(props) {
@@ -82,7 +82,7 @@ class TimeSelectorComponent extends Component {
                                     <span className='timeSelectorText'>Month:</span>
                                     <ButtonDropdown isOpen={this.state.yearDropdownOpen} toggle={this.toggleYearDropdown}>
                                         <DropdownToggle caret outline color='info' size='lg'>
-                                            {months[this.props.month - 1]}
+                                            {months[this.props.month]}
                                         </DropdownToggle>
 
                                         <DropdownMenu>
