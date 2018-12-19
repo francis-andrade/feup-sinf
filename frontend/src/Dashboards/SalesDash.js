@@ -16,7 +16,6 @@ class SalesDash extends Component {
 
             salesValue: [0, 0],
             salesValueLoaded: false,
-            
             backlogValue : [0, 0],
             backlogValueLoaded: false,
 
@@ -98,9 +97,8 @@ class SalesDash extends Component {
             topProductsLoaded: false,
             salesLoaded: false,
         })
-
         this.updateYear(value);
-        this.update();
+        this.update(this.state.month);
 
     }
 
@@ -127,119 +125,176 @@ class SalesDash extends Component {
             backlogValueLoaded: false,
             salesPerRegionLoaded: false,
             topProductsLoaded: false,
+            salesLoaded: false,
         })
 
-        this.update();
+        this.update(value);
     }
 
-    update(){
-        //Get Sales Value
-        if (!this.state.salesValueLoaded){
-            fetch('http://localhost:5000/api/salesValue', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    month: this.state.month,
-                })
-            })
-                .then(response => response.json())
-                .then(data => this.setState({
-                    salesValue : data,
-                    salesValueLoaded : true,
-                }))
-        }
+
+    async update(m){
+
+        let salesVal = await this.requestServer('http://localhost:5000/api/salesValue', m);
+        let backlogVal = await this.requestServer('http://localhost:5000/api/backlogValue', m);
+        let salesByReg = await this.requestServer('http://localhost:5000/api/SalesByCountry', m);
+        let topProd = await this.requestServer('http://localhost:5000/api/TopProductsSold', m);
+        let salesMon = await this.requestServer('http://localhost:5000/api/SalesPerMonth', m);
+
+        let newState = Object.assign({}, this.state);
+        newState.salesValue = salesVal;
+        newState.backlogValue = backlogVal;
+        newState.salesPerRegion.labels = salesByReg.map(function(a){
+            return a[0];
+        });
+        newState.salesPerRegion.datasets[0].data = salesByReg.map(function(a){
+            return Math.round(a[1] * 100) /100;
+        });
+        newState.topProducts.labels = topProd.map(function(a){
+            return a[1];
+        });
+        newState.topProducts.datasets[0].data = topProd.map(function(a){
+            return Math.round(a[2] * 100) /100;
+        });
+        newState.sales.labels = salesMon.map(function(a){
+            return a[0];
+        });
+        newState.sales.datasets[0].data = salesMon.map(function(a){
+            return Math.round(a[1] * 100) /100;
+        });
+        newState.salesValueLoaded = true;
+        newState.backlogValueLoaded = true;
+        newState.salesPerRegionLoaded = true;
+        newState.topProductsLoaded = true;
+        newState.salesLoaded = true;
+
+        this.setState(newState);
+
+        console.log(newState);
+
+
+
+        /*//Get Sales Value
         
-        //Get Backlog Value
-        if (!this.state.backlogValueLoaded){
-          fetch('http://localhost:5000/api/backlogValue', {
+        await fetch('http://localhost:5000/api/salesValue', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                month: this.state.month,
+                month: m,
             })
         })
             .then(response => response.json())
             .then(data => this.setState({
-                backlogValue : data,
-                backlogValueLoaded : true,
-            }))  
-        }
+                salesValue : data,
+                salesValueLoaded : true,
+            }))
+        
+    
+        //Get Backlog Value
+        
+        await fetch('http://localhost:5000/api/backlogValue', {
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                month: m,
+            })
+        })
+        .then(response => response.json())
+        .then(data => this.setState({
+            backlogValue : data,
+            backlogValueLoaded : true,
+        }))  
+        
 
          //Get Sales By Country
-         if (!this.state.salesPerRegionLoaded){
-            fetch('http://localhost:5000/api/SalesByCountry',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    month: this.state.month,
-                })
+        
+        await fetch('http://localhost:5000/api/SalesByCountry',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                month: m,
             })
-                .then(response => response.json())
-                .then(data => {
-                    let newState = Object.assign({}, this.state);
-                    newState.salesPerRegion.labels = data.map(function(a){
-                        return a[0];
-                    });
-                    newState.salesPerRegion.datasets[0].data = data.map(function(a){
-                        return Math.round(a[1] * 100) /100;
-                    });
-                    newState.salesPerRegionLoaded = true;
-                    this.setState(newState);        
-                });    
-         }
+        })
+            .then(response => response.json())
+            .then(data => {
+                let newState = Object.assign({}, this.state);
+                newState.salesPerRegion.labels = data.map(function(a){
+                    return a[0];
+                });
+                newState.salesPerRegion.datasets[0].data = data.map(function(a){
+                    return Math.round(a[1] * 100) /100;
+                });
+                newState.salesPerRegionLoaded = true;
+                this.setState(newState);        
+            });    
+    
          
 
         //Get top product sales
-        if (!this.state.topProductsLoaded){
-            fetch('http://localhost:5000/api/TopProductsSold',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    month: this.state.month,
-                })
+        
+        await fetch('http://localhost:5000/api/TopProductsSold',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                month: m,
             })
-                .then(response => response.json())
-                .then(data => {
-                    let newState = Object.assign({}, this.state);
-                    newState.topProducts.labels = data.map(function(a){
-                        return a[1];
-                    });
-                    newState.topProducts.datasets[0].data = data.map(function(a){
-                        return Math.round(a[2] * 100) /100;
-                    });
-                    newState.topProductsLoaded = true;
-                    this.setState(newState);          
-                });    
-        }
+        })
+            .then(response => response.json())
+            .then(data => {
+                let newState = Object.assign({}, this.state);
+                newState.topProducts.labels = data.map(function(a){
+                    return a[1];
+                });
+                newState.topProducts.datasets[0].data = data.map(function(a){
+                    return Math.round(a[2] * 100) /100;
+                });
+                newState.topProductsLoaded = true;
+                this.setState(newState);          
+            });    
+        
         
 
         //Get Sales Per Month
-        if (!this.state.salesLoaded){
-            fetch('http://localhost:5000/api/SalesPerMonth',{
-                method: 'POST',
-            })
-                .then(response => response.json())
-                .then(data => {
-                    let newState = Object.assign({}, this.state);
-                    newState.sales.labels = data.map(function(a){
-                        return a[0];
-                    });
-                    newState.sales.datasets[0].data = data.map(function(a){
-                        return Math.round(a[1] * 100) /100;
-                    });
-                    newState.salesLoaded = true;
-                    this.setState(newState);         
-                });    
-        }
         
+        await fetch('http://localhost:5000/api/SalesPerMonth',{
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => {
+                let newState = Object.assign({}, this.state);
+                newState.sales.labels = data.map(function(a){
+                    return a[0];
+                });
+                newState.sales.datasets[0].data = data.map(function(a){
+                    return Math.round(a[1] * 100) /100;
+                });
+                newState.salesLoaded = true;
+                this.setState(newState);         
+            });*/    
+        
+        
+    }
+
+    async requestServer(URL, m) {
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                month: m,
+            })
+        })
+
+        const json = await response.json();
+        return json;
     }
 
     componentDidMount(){
@@ -260,7 +315,7 @@ class SalesDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Sales Value'} type={'money'} currentValue={this.state.salesValue[0]} previousValue={this.state.salesValue[1]} loading={!this.state.salesLoaded} />
+                        <KPIComponent title={'Sales Value'} type={'money'} currentValue={this.state.salesValue[0]} previousValue={this.state.salesValue[1]} loading={!this.state.salesValueLoaded} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
                         <KPIComponent title={'Expected Orders Value'} type={'money'} currentValue={this.state.backlogValue[0]} previousValue={this.state.backlogValue[1]} loading={!this.state.backlogValueLoaded} />
