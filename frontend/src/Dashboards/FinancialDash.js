@@ -5,6 +5,7 @@ import GraphComponent from '../components/GraphComponent';
 import KPIComponent from '../components/KPIComponent';
 import '../App.css';
 import '../styles/Common.style.css';
+import { graphBorderColors, graphFillColors } from '../constants/GraphConstants';
 
 class FinancialDash extends Component {
 
@@ -45,11 +46,11 @@ class FinancialDash extends Component {
                     {
                         label: 'Cash',
                         fill: true,
-                        backgroundColor: 'rgba(75,192,192,0.4)',
-                        borderColor: 'rgba(75,192,192,1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
+                        backgroundColor: graphFillColors[0],
+                        borderColor: graphBorderColors[0],
+                        pointBorderColor: graphBorderColors[0],
                         pointBackgroundColor: '#fff',
-                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBackgroundColor: graphBorderColors[0],
                         pointHoverBorderColor: 'rgba(220,220,220,1)',
                         data: []
                     }
@@ -62,7 +63,6 @@ class FinancialDash extends Component {
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
         this.updateYear = this.updateYear.bind(this);
-        
 
     }
 
@@ -167,10 +167,16 @@ class FinancialDash extends Component {
         let cashGraphAux = this.state.cashGraph;
         cashGraphAux.datasets[0].data = [dataset[0], dataset[1], dataset[2], dataset[3], dataset[4], dataset[5], dataset[6], dataset[7], dataset[8], dataset[9], dataset[10], dataset[11]];
 
-        this.setState({
-            cashGraph: cashGraphAux,
-            cashGraphLoading: false
-        })
+        setTimeout(
+            function() {
+                this.setState({
+                    cashGraph: cashGraphAux,
+                    cashGraphLoading: false
+                });
+            }
+            .bind(this),
+            100
+        );
     }
 
     async calcGrossProfitMargin(year, month) {
@@ -317,7 +323,7 @@ class FinancialDash extends Component {
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Gross Profit Margin'} type={'percentage'} currentValue={this.state.profitMargin} previousValue={1000} loading={this.state.profitMarginLoading} />
+                        <KPIComponent title={'Gross Profit Margin'} type={'percentage'} currentValue={this.state.profitMargin} previousValue={0} loading={this.state.profitMarginLoading} />
                     </Col>
                     <Col md className='d-xl-none columnStack' />
                     <Col xl={{ size: 1 }} />
