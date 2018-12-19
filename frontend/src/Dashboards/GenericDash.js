@@ -54,9 +54,17 @@ class GenericDash extends Component {
             },
             salesLoading : true,
 
+            cash : '0',
+            cashPrev : '0',
+            cashLoading: true,
+
+            profitMargin: '0',
+            profitMarginLoading: true,
+
 
 
         };
+
 
         this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
@@ -72,6 +80,8 @@ class GenericDash extends Component {
             salesValueLoading: true,
             topProductsLoading: true,
             salesLoading: true,
+            cashLoading: true,
+            profitMarginLoading: true,
         })
     }
 
@@ -81,12 +91,15 @@ class GenericDash extends Component {
             salesValueLoading: true,
             topProductsLoading: true,
             salesLoading: true,
+            cashLoading: true,
+            profitMarginLoading: true,
         })
 
         this.updateYear(value);
         setTimeout(
             function() {
                 this.updateSales(this.state.month);
+                this.updateFinancial(value, this.state.month);
             }
             .bind(this),
             100
@@ -99,11 +112,14 @@ class GenericDash extends Component {
             salesValueLoading: true,
             topProductsLoading: true,
             salesLoading: true,
+            cashLoading: true,
+            profitMarginLoading: true,
         })
         
         setTimeout(
             function() {
                 this.updateSales(value);
+                this.updateFinancial(this.state.year, this.state.month);
             }
             .bind(this),
             100
@@ -167,9 +183,59 @@ class GenericDash extends Component {
         return json;
     }
 
+    updateFinancial(year, month){
+        this.calcCash(year, month);
+        this.calcGrossProfitMargin(year, month);
+    }
+
+    calcCash(year, month){
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        fetch(API + funcToUse + '?id=11' + parameters, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => this.setState({ cash: data[0] - data[1], cashPrev: data[2] - data[3], cashLoading: false }))
+    }
+
+    async calcGrossProfitMargin(year, month) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        let account61Sum = await this.syncLedgerSum(API + funcToUse + '?id=61' + parameters);
+        let account71Sum = await this.syncLedgerSum(API + funcToUse + '?id=71' + parameters);
+
+        let account61Value = account61Sum[0] - account61Sum[1];
+        let account71Value = account71Sum[0] - account71Sum[1];
+
+        let margin;
+        if(account71Value !== 0) margin = account61Value / account71Value * 100
+        else margin = 0;
+
+        this.setState({
+            profitMargin: margin,
+            profitMarginLoading: false
+        })   
+    }
+
+    async syncLedgerSum(URL) {
+
+        const response = await fetch(URL, {
+            method: 'GET',
+        })
+
+        const json = await response.json();
+        return json;
+    }
+
     componentDidMount() {
         this.updateYear('2018');
         this.updateSales(this.state.month);
+        this.updateFinancial('2018', this.state.month);
     }
 
     render() {
@@ -195,7 +261,7 @@ class GenericDash extends Component {
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Revenue'} type={'money'} currentValue={2075} previousValue={1000}/>
+                        <KPIComponent title={'Cash'} type={'money'} currentValue={this.state.cash} previousValue={this.state.cashPrev} loading={this.state.cashLoading}/>
                     </Col>
                     <Col md className='d-xl-none' />
                     <Col xl={{ size: 1 }} />
@@ -203,7 +269,7 @@ class GenericDash extends Component {
                 <Row className='rowStack'>
                     <Col xs={{ size: 1 }} />
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Financial Autonomy'} type={'percentage'} currentValue={1645} previousValue={1000}/>
+                        <KPIComponent title={'Gross Profit Margin'} type={'percentage'} currentValue={this.state.profitMargin} previousValue={0} loading={this.state.profitMarginLoading}/>
                     </Col>
                     <Col md className='columnStack'>
                         <KPIComponent title={'Inventory Value'} type={'money'} currentValue={834} previousValue={1000}/>
