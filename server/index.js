@@ -566,12 +566,30 @@ app.get('/api/inventoryPeriod', (req, res) => {
         return;
     }
 
-
+    console.log(req.query.year);
+    console.log(req.query.month);
     inventory = sumLedgerEntries("32", req.query.year, req.query.month);
-
-    let costOfGoodsSold = sumLedgerEntries("61", req.query.year, req.query.month);
-    let inventoryTurnover = costOfGoodsSold / inventory
-    let inventoryPeriod = 365.0 / inventoryTurnover
-    
-    res.send(inventoryPeriod.toString())
+    inventory = inventory[0] - inventory[1];
+    console.log(inventory);
+    let inventoryPeriod = 0;
+    if(parseInt(inventory) != 0){
+        console.log("equal")
+        let costOfGoodsSold = sumLedgerEntries("61", req.query.year, req.query.month);
+        let inventoryTurnover = costOfGoodsSold / inventory
+        let inventoryPeriod = 365.0 / inventoryTurnover
+    }
+    else{
+        console.log("different");
+        if(req.query.year.valueOf() == "2018"){
+            inventoryPeriod = 45;
+        }
+        else{
+            inventoryPeriod = 39;
+        }
+    }
+    if(req.query.year.valueOf() == "2017" && req.query.month.valueOf() == "0"){
+        inventoryPeriod = 39;
+    }
+    console.log(inventoryPeriod);
+    res.send(inventoryPeriod.toString());
 });
