@@ -161,7 +161,13 @@ app.get('/api/SAFTYears', (req, res) => {
 function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
 
     // Get whole document as xml-query object
-    const xq = xmlQuery(parsedXML[currSAFT]);
+    let xq;
+    if(strYear === currentYear) {
+        xq = xmlQuery(parsedXML[currSAFT]);
+    } else {
+        if(!isPreviousAvailable) return [0, 0];
+        xq = xmlQuery(parsedXML[previousSAFT]);
+    }
 
     let totalDebit = 0.0;
     let totalCredit = 0.0;
