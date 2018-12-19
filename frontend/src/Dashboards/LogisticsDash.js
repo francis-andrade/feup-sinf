@@ -382,8 +382,8 @@ class LogisticsDash extends Component {
         })
         .then(response => response.json())
         .then(data => this.setState({ authentication: data }))
-        .then(this.getInventory.bind(this))
-        .then(this.getInventoryPeriod.bind(this, this.state.year, this.state.month))
+        .then(this.updateInventory.bind(this))
+        .then(this.getInventoryPeriod.bind(this, '2018', this.state.month))
         .then(this.getShipments.bind(this));   
     }
 
