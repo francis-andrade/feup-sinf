@@ -84,6 +84,8 @@ class SalesDash extends Component {
             topProductsLoaded: false,
             salesLoaded: false,
         })
+
+        this.updateYear(value);
     }
 
     changeYear = (value) => {
@@ -191,12 +193,13 @@ class SalesDash extends Component {
     }
 
     componentDidMount(){
-        this.updateYear('2018');
+        //this.updateYear('2018');
         this.update(0);
     }
 
 
     render() {
+        console.log(this.state);
         return (
             <div className='dashboardBackground'>
                 <Row>

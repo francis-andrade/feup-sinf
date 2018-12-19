@@ -13,7 +13,45 @@ class GenericDash extends Component {
 
         this.state = {
             year: '',
-            month: '0'
+            month: '0',
+            topProducts : {
+                labels: ['Category1', 'Category2', 'Category3'],
+                datasets: [
+                    {
+                        label: 'Quantity',
+                        fill: true,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        data: []
+                    }
+                ]
+            },
+            topProductsLoading : true,
+    
+            sales : {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [
+                    {
+                        label: 'Income',
+                        fill: true,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        data: []
+                    }
+                ]
+            },
+            salesLoading : true,
+
+
+
         };
 
         this.setYear = this.setYear.bind(this);
@@ -21,61 +59,80 @@ class GenericDash extends Component {
         this.changeMonth = this.changeMonth.bind(this);
         this.updateYear = this.updateYear.bind(this);
 
-        this.topCategories = {
-            labels: ['Category1', 'Category2', 'Category3'],
-            datasets: [
-                {
-                    label: 'Quantity',
-                    fill: true,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    data: []
-                }
-            ]
-        };
-
-        this.sales = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [
-                {
-                    label: 'Income',
-                    fill: true,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    data: []
-                }
-            ]
-        };
+        
     }
 
     setYear(value) {
         this.setState({
-            year: value
+            year: value,
+            topProductsLoading: false,
+            salesLoading: false,
         })
+
+        this.updateYear(value);
+        this.updateSales(this.state.month);
     }
 
     changeYear = (value) => {
         this.setState({
-            year: value
+            year: value,
+            topProductsLoading: false,
+            salesLoading: false,
         })
+
+        this.updateYear(value);
+        this.updateSales(this.state.month);
     }
 
     changeMonth = (value) => {
         this.setState({
-            month: value
+            month: value,
+            topProductsLoading: false,
+            salesLoading: false,
         })
+
+        this.updateSales(value);
     }
 
-    updateYear() {
+    async updateYear() {
+        await this.updateYearFetch(value);
+    }
 
+    async updateSales(m) {
+        let salesHist = await this.requestServer('http://localhost:5000/api/SalesPerMonth', m);
+        let topProd = await this.requestSales('http://localhost:5000/api/TopProductsSold', m);
+        
+        let newState = Object.assign({}, this.state);
+        newState.sales.labels = salesMon.map(function(a){
+            return a[0];
+        });
+        newState.sales.datasets[0].data = salesMon.map(function(a){
+            return Math.round(a[1] * 100) /100;
+        });
+        newState.topProducts.labels = topProd.map(function(a){
+            return a[1];
+        });
+        newState.topProducts.datasets[0].data = topProd.map(function(a){
+            return Math.round(a[2] * 100) /100;
+        });
+        newState.salesLoading = false;
+        newState.topProductsLoading = false;
+        this.setState(newState);
+    }
+
+    async requestSales(URL) {
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                month: m,
+            })
+        })
+
+        const json = await response.json();
+        return json;
     }
 
     render() {
@@ -119,7 +176,7 @@ class GenericDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'line'} data={this.sales} title={'Sales History'} yearly={true} />
+                                <GraphComponent type={'line'} data={this.sales} title={'Sales History'} yearly={true} loading={this.state.salesLoading} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -128,7 +185,7 @@ class GenericDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='lastElement'>
-                                <GraphComponent type={'horizontalBar'} data={this.topCategories} title={'Top Categories'} yearly={false} />
+                                <GraphComponent type={'horizontalBar'} data={this.topProducts} title={'Top Categories'} yearly={false} loading={this.state.topProductsLoading} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>

@@ -377,6 +377,8 @@ app.post('/api/backlogValue', function(req, res) {
         }    
     }
     
+    console.log("Current Sales Value: " + result);
+    console.log("Previous Sales Value: " + previousResult);
 
     //console.log(result);
     res.send([result, previousResult]); 
