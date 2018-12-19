@@ -277,139 +277,232 @@ app.get('/api/sumLedgerEntries', (req, res) => {
 });
 
 
-//TODO: apply date limits
-//Gets Backlog Value
-app.get('/api/backlogValue', function(req, res) {
+function getSalesMonth(d){
+    let pat = /\d+-(\d+)-\d+/;
+    let matcher = pat.exec(d);
+    return Number(matcher[1]);
+}
 
-    const xq = xmlQuery(parsedXML[currSAFT]);
+//Sales Value
+app.post('/api/SalesValue', function(req, res){
+
+    let month = Number(req.body.month);
 
     let result = 0;
 
-    let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+    let previousResult = 0;
 
-    for (let i = 0; i< allInvoices.size(); i++){
-        let invoiceType = allInvoices.eq(i).find('InvoiceType').children().text();
-        if (invoiceType == 'NC'){ // notas de crédito
-            let invoiceTotal = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
-            result += invoiceTotal;
+    if (isCurrentAvailable){
+        const xq = xmlQuery(parsedXML[currSAFT]);
+        let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+        
+        for (let i = 0; i< allInvoices.size(); i++){
+            let invoiceMonth = getSalesMonth(allInvoices.eq(i).find('InvoiceDate').text());
+            console.log('Current Month: ' + invoiceMonth);
+            let invoiceType = allInvoices.eq(i).find('InvoiceType').children().text();
+            if (invoiceType != 'NC'){
+                if (invoiceMonth == month || month == 0){
+                    let invoiceTotal = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+                    result += invoiceTotal;  
+                }
+                if (invoiceMonth == month - 1){
+                    let invoiceTotal = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+                    previousResult += invoiceTotal;
+                }
+                else if ((month == 1 || month == 0) && isPreviousAvailable){
+                    const lastYear = xmlQuery(parsedXML[previousSAFT]);
+                    let lastAllInvoices = lastYear.find('SalesInvoices').first().children().find('Invoice');
+
+                    for (let j=0; j < lastAllInvoices.size(); j++){
+                        invoiceMonth = getSalesMonth(lastAllInvoices.eq(j).find('InvoiceDate').text());
+                        invoiceType = lastAllInvoices.eq(j).find('InvoiceType').children().text();
+                        console.log("Month : " + invoiceMonth);
+                        if (invoiceType != 'NC'){
+                            
+                            if (invoiceMonth == 12 || month == 0){
+                                let invoiceTotal = Number(lastAllInvoices.eq(j).find('DocumentTotals').children().find('NetTotal').text());
+                                previousResult += invoiceTotal;  
+                            }
+                        }    
+                    }
+                    
+                }
+            }    
         }
     }
+    //console.log(result);
+    res.send([result, previousResult]); 
 
-    //result = Math.round(result*100)/100;
-    console.log(result);
-    res.send(result.toString()); 
+});
+
+//Gets Backlog Value
+app.post('/api/backlogValue', function(req, res) {
+
+    let month = Number(req.body.month);
+    let result = 0;
+    let previousResult = 0;
+
+    if (isCurrentAvailable){
+        const xq = xmlQuery(parsedXML[currSAFT]);
+        let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+
+        for (let i = 0; i< allInvoices.size(); i++){
+            let invoiceMonth = getSalesMonth(allInvoices.eq(i).find('InvoiceDate').text());
+            let invoiceType = allInvoices.eq(i).find('InvoiceType').children().text();
+            if (invoiceType == 'NC'){ // notas de crédito
+                if (invoiceMonth == month || month == 0){
+                    let invoiceTotal = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+                    result += invoiceTotal;
+                }
+                if (invoiceMonth == month - 1){
+                    let invoiceTotal = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+                    previousResult += invoiceTotal;
+                }
+                else if ((month == 1 || month == 0) && isPreviousAvailable){
+                    const lastYear = xmlQuery(parsedXML[previousSAFT]);
+                    let lastAllInvoices = lastYear.find('SalesInvoices').first().children().find('Invoice');
+
+                    for (let j = 0; j < lastAllInvoices.size(); j++){
+                        invoiceMonth = getSalesMonth(lastAllInvoices.eq(j).find('InvoiceDate').text());
+                        invoiceType = lastAllInvoices.eq(j).find('InvoiceType').children().text();
+                        
+                        if (invoiceType = 'NC'){ //notas de Crédito
+                            if (invoiceMonth == 12 || month == 0){
+                                let invoiceTotal = Number(lastAllInvoices.eq(j).find('DocumentTotals').children().find('NetTotal').text());
+                                previousResult += invoiceTotal;  
+                            }
+                        }  
+                    }
+                    
+                }
+            }
+        }    
+    }
+    
+
+    //console.log(result);
+    res.send([result, previousResult]); 
 });
 
 // Return Array of arrays with 
-app.get('/api/SalesByCity', function(req, res) {
+app.post('/api/SalesByCountry', function(req, res) {
+    
 
-    const xq = xmlQuery(parsedXML[currSAFT]);
+    let month = Number(req.body.month);
 
-    let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+   
 
-    var result = [[], []]; // [City, Quantity]
+    let result = []; // [Country, Amount]
 
-    for (let i = 0; i < allInvoices.size(); i++){
-        let city = allInvoices.eq(i).find('ShipTo').children().find('City').text();
+    if (isCurrentAvailable){
+        const xq = xmlQuery(parsedXML[currSAFT]);
+        let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+        for (let i = 0; i < allInvoices.size(); i++){
+            let invoiceMonth = getSalesMonth(allInvoices.eq(i).find('InvoiceDate').text());
+            if (invoiceMonth == month || month == 0){
+                let customerID = allInvoices.eq(i).find('CustomerID').children().text();
+                let allCustomers = xq.find('MasterFiles').first().children().find('Customer');
+                let country;
 
-        let j = result[0].findIndex(function(e) {
-            return e == city;
-        });
+                for(let j = 0; j < allCustomers.size(); j++){
+                    let aux = allCustomers.eq(j).find('CustomerID').children().text();
 
-        if (j != -1){
-            result[1][j] += 1;
-        }
-        else{
-            result[0].push(city);
-            result[1].push(1);
-        }
+                    if (aux == customerID){
+                        country = allCustomers.eq(j).find('ShipToAddress').children().find('Country').children().text();
+                    }
+                }
+
+                let amount = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+
+                let j = result.findIndex(function(e) {
+                    return e[0] == country;
+                });
+
+                if (j != -1){
+                    result[j][1] += amount;
+                }
+                else{
+                    result.push([country, amount]);
+                }    
+            }
+        }    
     }
     
-    console.log(result);
+    result.sort(function (a, b) {
+        return b[1]-a[1];
+    })
+
+    //var aux = result.slice(0, 5);
+
+    //console.log(result);
 
     res.send(result);
 });
 
-app.get('/api/TopProductsSold', function(req, res) {
-
-    const xq = xmlQuery(parsedXML[currSAFT]);
-
-    let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
-
-    var result = [[], [], []]; // [Code, Description, Amount]
-
-    for (let i = 0; i < allInvoices.size(); i++){
-        let allLines = allInvoices.eq(i).find('Line');
-        
-        for (let j = 0; j < allLines.size(); j++){
-            let code = allLines.eq(j).find('ProductCode').text();
-            let description = allLines.eq(j).find('ProductDescription').text();
-            let amount = Number(allLines.eq(j).find('CreditAmount').text());
-
-            let k = result[0].findIndex(function(e) {
-                return e == code;
-            });
-
-            if (k != -1){
-                result[2][k] += Math.round(amount * 100) / 100;
-            }
-            else{
-                result[0].push(code);
-                result[1].push(description);
-                let amountRound = Math.round(amount * 100) / 100;
-                result[2].push(amountRound);
-            }
-        }
-    }
-
-    res.send([result[1], result[2]]);
-});
-
-app.get('/api/SalesPerMonthLastYear', function(req, res) {
-
-    const xq = xmlQuery(parsedXML[currSAFT]);
-
-    let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
-
-    let result = [[], []]; //[Year-Month, Amount]
-
-    var d = new Date();
-    var month = d.getMonth() + 1;
-    var year = d.getFullYear();
+app.post('/api/TopProductsSold', function(req, res) {
     
 
-    for (let i = 0; i < 12; i++){
-        var currentMonth = month + i;
-        var currentYear = year;
-        if (currentMonth >= month){
-            currentYear -= 1;
-        }
-        if (currentMonth < 10){
-            currentMonth = '0' + currentMonth;
-        }
-        
-        var currentDate = currentYear + "-" + currentMonth;
+    let month = Number(req.body.month);
 
-        result[0].push(currentDate);
-        result[1].push(0);
+    let result = [];
+
+
+    if (isCurrentAvailable){
+        const xq = xmlQuery(parsedXML[currSAFT]);
+        let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+        for (let i = 0; i < allInvoices.size(); i++){
+            let invoiceMonth = getSalesMonth(allInvoices.eq(i).find('InvoiceDate').text());
+            if (invoiceMonth == month || month == 0){
+                let allLines = allInvoices.eq(i).find('Line');
+                
+                for (let j = 0; j < allLines.size(); j++){
+                    let code = allLines.eq(j).find('ProductCode').text();
+                    let description = allLines.eq(j).find('ProductDescription').text();
+                    let amount = Number(allLines.eq(j).find('CreditAmount').text());
+
+                    let k = result.findIndex(function(e) {
+                        return e[0] == code;
+                    });
+
+                    if (k != -1){
+                        result[k][2] += amount;
+                    }
+                    else{
+                        result.push([code, description, amount]);
+                    }
+                }    
+            }    
+        }
     }
+    
 
+    result.sort(function (a, b){
+        return b[2]-a[2];
+    })
 
-    for (let i = 0; i < allInvoices.size(); i++){
-        let day = allInvoices.eq(i).find('InvoiceDate').text();
-        let amount = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
-        let pat = /(\d+-\d+)-\d+/;
-        let matcher = pat.exec(day);
+    let aux = result.slice(0, 5);
 
+    //console.log(aux);
 
-        let j = result[0].findIndex(function(e) {
-            return e == matcher[1];
-        });
+    res.send(aux);
+});
 
-        if (j != -1){
-            result[1][j] += amount;
-        }
+app.post('/api/SalesPerMonth', function(req, res) {
+
+    let result = [['January', 0], ['February', 0], ['March', 0], ['April', 0], ['May', 0], ['June', 0], ['July', 0], ['August', 0], ['September', 0], ['October', 0], ['November', 0], ['December', 0]]; //[Year-Month, Amount]
+
+    if (isCurrentAvailable){
+        const xq = xmlQuery(parsedXML[currSAFT]);
+        let allInvoices = xq.find('SalesInvoices').first().children().find('Invoice');
+        for (let i = 0; i < allInvoices.size(); i++){
+            let invoiceMonth = getSalesMonth(allInvoices.eq(i).find('InvoiceDate').text());
+            let amount = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
+            result[invoiceMonth - 1][1] += amount;
+        }    
     }
+    
+
+    //console.log(result);
 
     res.send(result);
 });
