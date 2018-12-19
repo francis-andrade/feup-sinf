@@ -17,6 +17,7 @@ class GraphComponent extends Component {
 
         this.graph = null;
         this.click = this.click.bind(this);
+        this.selectGraph = this.selectGraph.bind(this);
         this.selectGraph(this.props.data);
     }
 
@@ -52,6 +53,7 @@ class GraphComponent extends Component {
             default:
                 break;
         }
+        console.log(data)
     }
 
     click = () => {

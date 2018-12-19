@@ -38,7 +38,7 @@ class FinancialDash extends Component {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 datasets: [
                     {
-                        label: 'Income',
+                        label: 'Cash',
                         fill: true,
                         backgroundColor: 'rgba(75,192,192,0.4)',
                         borderColor: 'rgba(75,192,192,1)',
@@ -49,7 +49,8 @@ class FinancialDash extends Component {
                         data: []
                     }
                 ]
-            }
+            },
+            cashGraphLoading: true
         }
 
         this.setYear = this.setYear.bind(this);
@@ -62,14 +63,28 @@ class FinancialDash extends Component {
 
     setYear(value) {
         this.setState({
-            year: value
+            year: value,
+            accPayableLoading: true,
+            accReceivableLoading: true,
+            assetsLoading: true,
+            cashLoading: true,
+            liabilitiesLoading: true,
+            profitMarginLoading: true,
+            cashGraphLoading: true
         })
     }
 
     changeYear = (value) => {
 
         this.setState({
-            year: value
+            year: value,
+            accPayableLoading: true,
+            accReceivableLoading: true,
+            assetsLoading: true,
+            cashLoading: true,
+            liabilitiesLoading: true,
+            profitMarginLoading: true,
+            cashGraphLoading: true
         })
 
         this.updateYear(value);
@@ -96,7 +111,13 @@ class FinancialDash extends Component {
     changeMonth = (value) => {
 
         this.setState({
-            month: value
+            month: value,
+            accPayableLoading: true,
+            accReceivableLoading: true,
+            assetsLoading: true,
+            cashLoading: true,
+            liabilitiesLoading: true,
+            profitMarginLoading: true
         })
 
         this.updateKPI(this.state.year, value, false);
@@ -120,6 +141,7 @@ class FinancialDash extends Component {
 
         // Calculate total assets
         this.calcAssets(year, month);
+
     }
 
     async updateCashGraph(year) {
@@ -137,10 +159,12 @@ class FinancialDash extends Component {
         }
 
         let cashGraphAux = this.state.cashGraph;
-        cashGraphAux.datasets[0].data = [dataset[0], dataset[1], dataset[2], dataset[3], dataset[4], dataset[5], dataset[6], dataset[7], dataset[8], dataset[9], dataset[10], dataset[11], dataset[12]];
+        cashGraphAux.datasets[0].data = [dataset[0], dataset[1], dataset[2], dataset[3], dataset[4], dataset[5], dataset[6], dataset[7], dataset[8], dataset[9], dataset[10], dataset[11]];
+
         this.setState({
-             cashGraph: cashGraphAux
-         })
+            cashGraph: cashGraphAux,
+            cashGraphLoading: false
+        })
     }
 
     async calcGrossProfitMargin(year, month) {
@@ -294,7 +318,7 @@ class FinancialDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='lastElement'>
-                                <GraphComponent type={'line'} data={this.state.cashGraph} title={'Cash Graph'} yearly={true} />
+                                <GraphComponent type={'line'} data={this.state.cashGraph} title={'Cash Graph'} yearly={true} loading={this.state.cashGraphLoading} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
