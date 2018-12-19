@@ -5,6 +5,7 @@ import GraphComponent from '../components/GraphComponent';
 import KPIComponent from '../components/KPIComponent';
 import '../App.css';
 import '../styles/Common.style.css';
+import { graphBorderColors, graphFillColors } from '../constants/GraphConstants';
 
 class SalesDash extends Component {
     constructor(props) {
@@ -21,17 +22,13 @@ class SalesDash extends Component {
 
         
             salesPerRegion : {
-                labels: ['Portugal', 'Espanha', 'França'],
+                labels: [],
                 datasets: [
                     {
-                        label: 'Amount',
+                        label: 'Amount (€)',
                         fill: true,
-                        backgroundColor: 'rgba(75,192,192,0.4)',
-                        borderColor: 'rgba(75,192,192,1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBackgroundColor: '#fff',
-                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        backgroundColor: [],
+                        borderColor: [],
                         data: []
                     }
                 ]
@@ -39,17 +36,13 @@ class SalesDash extends Component {
             salesPerRegionLoaded: false,
 
             topProducts : {
-                labels: ['Product1', 'Product2', 'Product3'],
+                labels: [],
                 datasets: [
                     {
-                        label: 'Quantity',
+                        label: 'Amount (€)',
                         fill: true,
-                        backgroundColor: 'rgba(75,192,192,0.4)',
-                        borderColor: 'rgba(75,192,192,1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBackgroundColor: '#fff',
-                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        backgroundColor: graphFillColors[0],
+                        borderColor: graphBorderColors[0],
                         data: []
                     }
                 ]
@@ -60,14 +53,14 @@ class SalesDash extends Component {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'August', 'September', 'October', 'November', 'December'],
                 datasets: [
                     {
-                        label: 'Income',
+                        label: 'Amount (€)',
                         fill: true,
-                        backgroundColor: 'rgba(75,192,192,0.4)',
-                        borderColor: 'rgba(75,192,192,1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
+                        backgroundColor: graphFillColors[0],
+                        borderColor: graphBorderColors[0],
+                        pointBorderColor: graphBorderColors[0],
                         pointBackgroundColor: '#fff',
-                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        pointHoverBackgroundColor: graphBorderColors[0],
+                        pointHoverBorderColor: graphBorderColors[0],
                         data: []
                     }
                 ]
@@ -84,7 +77,12 @@ class SalesDash extends Component {
 
     setYear(value) {
         this.setState({
-            year: value
+            year: value,
+            salesValueLoaded: false,
+            backlogValueLoaded: false,
+            salesPerRegionLoaded: false,
+            topProductsLoaded: false,
+            salesLoaded: false,
         })
     }
 
@@ -161,6 +159,12 @@ class SalesDash extends Component {
         newState.sales.datasets[0].data = salesMon.map(function(a){
             return Math.round(a[1] * 100) /100;
         });
+
+        for(let i = 0; i < newState.salesPerRegion.labels.length; i++){
+            newState.salesPerRegion.datasets[0].backgroundColor.push(graphFillColors[i+1])
+            newState.salesPerRegion.datasets[0].borderColor.push(graphBorderColors[i+1])
+        }
+
         newState.salesValueLoaded = true;
         newState.backlogValueLoaded = true;
         newState.salesPerRegionLoaded = true;
@@ -168,117 +172,6 @@ class SalesDash extends Component {
         newState.salesLoaded = true;
 
         this.setState(newState);
-
-        console.log(newState);
-
-
-
-        /*//Get Sales Value
-        
-        await fetch('http://localhost:5000/api/salesValue', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                month: m,
-            })
-        })
-            .then(response => response.json())
-            .then(data => this.setState({
-                salesValue : data,
-                salesValueLoaded : true,
-            }))
-        
-    
-        //Get Backlog Value
-        
-        await fetch('http://localhost:5000/api/backlogValue', {
-        method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                month: m,
-            })
-        })
-        .then(response => response.json())
-        .then(data => this.setState({
-            backlogValue : data,
-            backlogValueLoaded : true,
-        }))  
-        
-
-         //Get Sales By Country
-        
-        await fetch('http://localhost:5000/api/SalesByCountry',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                month: m,
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                let newState = Object.assign({}, this.state);
-                newState.salesPerRegion.labels = data.map(function(a){
-                    return a[0];
-                });
-                newState.salesPerRegion.datasets[0].data = data.map(function(a){
-                    return Math.round(a[1] * 100) /100;
-                });
-                newState.salesPerRegionLoaded = true;
-                this.setState(newState);        
-            });    
-    
-         
-
-        //Get top product sales
-        
-        await fetch('http://localhost:5000/api/TopProductsSold',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                month: m,
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                let newState = Object.assign({}, this.state);
-                newState.topProducts.labels = data.map(function(a){
-                    return a[1];
-                });
-                newState.topProducts.datasets[0].data = data.map(function(a){
-                    return Math.round(a[2] * 100) /100;
-                });
-                newState.topProductsLoaded = true;
-                this.setState(newState);          
-            });    
-        
-        
-
-        //Get Sales Per Month
-        
-        await fetch('http://localhost:5000/api/SalesPerMonth',{
-            method: 'POST',
-        })
-            .then(response => response.json())
-            .then(data => {
-                let newState = Object.assign({}, this.state);
-                newState.sales.labels = data.map(function(a){
-                    return a[0];
-                });
-                newState.sales.datasets[0].data = data.map(function(a){
-                    return Math.round(a[1] * 100) /100;
-                });
-                newState.salesLoaded = true;
-                this.setState(newState);         
-            });*/    
-        
         
     }
 
