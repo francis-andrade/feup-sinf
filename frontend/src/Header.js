@@ -24,7 +24,7 @@ export default class Header extends React.Component {
                     <NavbarBrand href="/generic">360º Dash</NavbarBrand>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/generic">Generic Dash</NavLink>
+                                <NavLink href="/general">General Dash</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/sales">Sales Dash</NavLink>

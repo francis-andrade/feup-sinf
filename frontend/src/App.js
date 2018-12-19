@@ -15,7 +15,7 @@ const App = () => (
 
       <Switch>
         {/* <Route exact path='/' component={Home}/> */}
-        <Route path='/generic' component={GenericDash} />
+        <Route path='/general' component={GenericDash} />
         <Route path='/sales' component={SalesDash} />
         <Route path='/purchases' component={PurchasesDash} />
         <Route path='/financial' component={FinancialDash} />

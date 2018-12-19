@@ -5,95 +5,91 @@ import GraphComponent from '../components/GraphComponent';
 import KPIComponent from '../components/KPIComponent';
 import '../App.css';
 import '../styles/Common.style.css';
+import { graphBorderColors, graphFillColors } from '../constants/GraphConstants';
 
 class FinancialDash extends Component {
+
     constructor(props) {
+
         super(props);
 
         this.state = {
             year: '',
             month: '0',
 
-            totalExpenses: 0.0,
-            totalExpensesLoading: true,
-
-            totalAsset: 0.0,
-            totalAssetLoading: true,
-
             accPayable: 0.0,
+            accPayablePrev: 0.0,
             accPayableLoading: true,
 
             accReceivable: 0.0,
-            accReceivableLoading: true
+            accReceivablePrev: 0.0,
+            accReceivableLoading: true,
 
-        };
+            assets: 0.0,
+            assetsPrev: 0.0,
+            assetsLoading: true,
+
+            cash: 0.0,
+            cashPrev: 0.0,
+            cashLoading: true,
+
+            liabilities: 0.0,
+            liabilitiesPrev: 0.0,
+            liabilitiesLoading: true,
+
+            profitMargin: 0.0,
+            profitMarginLoading: true,
+
+            cashGraph: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [
+                    {
+                        label: 'Cash',
+                        fill: true,
+                        backgroundColor: graphFillColors[0],
+                        borderColor: graphBorderColors[0],
+                        pointBorderColor: graphBorderColors[0],
+                        pointBackgroundColor: '#fff',
+                        pointHoverBackgroundColor: graphBorderColors[0],
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        data: []
+                    }
+                ]
+            },
+            cashGraphLoading: true
+        }
 
         this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
-        
-        this.revenue = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [
-                {
-                    label: 'Income',
-                    fill: true,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    data: []
-                }
-            ]
-        };
+        this.updateYear = this.updateYear.bind(this);
 
-        this.costs = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [
-                {
-                    label: 'Income',
-                    fill: true,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    data: []
-                }
-            ]
-        };
-
-        this.income = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [
-                {
-                    label: 'Income',
-                    fill: true,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    data: []
-                }
-            ]
-        };
     }
 
     setYear(value) {
         this.setState({
-            year: value
+            year: value,
+            accPayableLoading: true,
+            accReceivableLoading: true,
+            assetsLoading: true,
+            cashLoading: true,
+            liabilitiesLoading: true,
+            profitMarginLoading: true,
+            cashGraphLoading: true
         })
     }
 
     changeYear = (value) => {
 
         this.setState({
-            year: value
+            year: value,
+            accPayableLoading: true,
+            accReceivableLoading: true,
+            assetsLoading: true,
+            cashLoading: true,
+            liabilitiesLoading: true,
+            profitMarginLoading: true,
+            cashGraphLoading: true
         })
 
         this.updateYear(value);
@@ -102,7 +98,7 @@ class FinancialDash extends Component {
     async updateYear(value) {
 
         await this.updateYearFetch(value);
-        this.updateKPI(value, this.state.month);
+        this.updateKPI(value, this.state.month, true);
     }
 
     updateYearFetch(value) {
@@ -120,49 +116,173 @@ class FinancialDash extends Component {
     changeMonth = (value) => {
 
         this.setState({
-            month: value
+            month: value,
+            accPayableLoading: true,
+            accReceivableLoading: true,
+            assetsLoading: true,
+            cashLoading: true,
+            liabilitiesLoading: true,
+            profitMarginLoading: true
         })
 
-        this.updateKPI(this.state.year, value);
+        this.updateKPI(this.state.year, value, false);
     }
 
-    updateKPI(year, month) {
+    updateKPI(year, month, updateGraph) {
+
+        // Update cash graph
+        if(updateGraph) this.updateCashGraph(year);
+
+        // Calculate gross profit margin
+        this.calcGrossProfitMargin(year, month);
+
+        // Calculate total liabilities
+        this.calcLiabilities(year, month);
+
+        // Calculate cash available
+        this.calcCash(year, month);
+
+        // Calculate accounts receivable and payable
+        this.calcAccounts(year, month);
+
+        // Calculate total assets
+        this.calcAssets(year, month);
+
+    }
+
+    async updateCashGraph(year) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        let dataset = [];
+
+        for(let i = 1; i < 13; i++) {
+
+            const parameters = '&year=' + year + '&month=' + i;
+
+            let result = await this.syncLedgerSum(API + funcToUse + '?id=11' + parameters);
+            dataset.push(result[0] - result[1]);
+        }
+
+        let cashGraphAux = this.state.cashGraph;
+        cashGraphAux.datasets[0].data = [dataset[0], dataset[1], dataset[2], dataset[3], dataset[4], dataset[5], dataset[6], dataset[7], dataset[8], dataset[9], dataset[10], dataset[11]];
+
+        setTimeout(
+            function() {
+                this.setState({
+                    cashGraph: cashGraphAux,
+                    cashGraphLoading: false
+                });
+            }
+            .bind(this),
+            100
+        );
+    }
+
+    async calcGrossProfitMargin(year, month) {
 
         const API = 'http://localhost:5000/api/';
         const funcToUse = 'sumLedgerEntries';
         const parameters = '&year=' + year + '&month=' + month;
 
-        // Get total expenses
-        fetch(API + funcToUse + '?id=6' + parameters, {
+        let account61Sum = await this.syncLedgerSum(API + funcToUse + '?id=61' + parameters);
+        let account71Sum = await this.syncLedgerSum(API + funcToUse + '?id=71' + parameters);
+
+        let account61Value = account61Sum[0] - account61Sum[1];
+        let account71Value = account71Sum[0] - account71Sum[1];
+
+        let margin;
+        if(account71Value !== 0) margin = account61Value / account71Value * 100
+        else margin = 0;
+
+        this.setState({
+            profitMargin: margin,
+            profitMarginLoading: false
+        })   
+    }
+
+    async calcLiabilities(year, month) {
+        
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        let account22Sum = await this.syncLedgerSum(API + funcToUse + '?id=22' + parameters);
+        let account23Sum = await this.syncLedgerSum(API + funcToUse + '?id=23' + parameters);
+        let account24Sum = await this.syncLedgerSum(API + funcToUse + '?id=24' + parameters);
+        let account25Sum = await this.syncLedgerSum(API + funcToUse + '?id=25' + parameters);
+        let account26Sum = await this.syncLedgerSum(API + funcToUse + '?id=26' + parameters);
+
+        this.setState({
+            liabilities: account22Sum[0] + account23Sum[0] + account24Sum[0] + account25Sum[0] + account26Sum[0] -
+                account22Sum[1] + account23Sum[1] + account24Sum[1] + account25Sum[1] + account26Sum[1],
+            liabilitiesPrev: account22Sum[2] + account23Sum[2] + account24Sum[2] + account25Sum[2] + account26Sum[2] -
+            account22Sum[3] + account23Sum[3] + account24Sum[3] + account25Sum[3] + account26Sum[3],
+            liabilitiesLoading: false
+        })
+    }
+
+    calcCash(year, month) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        fetch(API + funcToUse + '?id=11' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ totalExpenses: data[0] - data[1], totalExpensesLoading: false }))
+            .then(data => this.setState({ cash: data[0] - data[1], cashPrev: data[2] - data[3], cashLoading: false }))
+    }    
 
-        // Get total asset value
-        fetch(API + funcToUse + '?id=4' + parameters, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => this.setState({ totalAsset: data[0] - data[1], totalAssetLoading: false }))
+    calcAccounts(year, month) {
 
-        // Get total accounts payable
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
         fetch(API + funcToUse + '?id=22' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ accPayable: data[1] - data[0], accPayableLoading: false }))
+            .then(data => this.setState({ accPayable: data[0] - data[1], accPayablePrev: data[2] - data[3], accPayableLoading: false }))
 
-        // Get total accounts receivable
         fetch(API + funcToUse + '?id=21' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ accReceivable: data[0] - data[1], accReceivableLoading: false }))
+            .then(data => this.setState({ accReceivable: data[0] - data[1], accReceivablePrev: data[2] - data[3], accReceivableLoading: false }))
+    }
+
+    async calcAssets(year, month) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        let account1Sum = await this.syncLedgerSum(API + funcToUse + '?id=1' + parameters);
+        let account2Sum = await this.syncLedgerSum(API + funcToUse + '?id=2' + parameters);
+        let account3Sum = await this.syncLedgerSum(API + funcToUse + '?id=3' + parameters);
+
+        this.setState({
+            assets: account1Sum[0] + account2Sum[0] + account3Sum[0] - account1Sum[1] + account2Sum[1] + account3Sum[1],
+            assetsPrev: account1Sum[2] + account2Sum[2] + account3Sum[2] - account1Sum[3] + account2Sum[3] + account3Sum[3],
+            assetsLoading: false
+        })
+    }
+
+    async syncLedgerSum(URL) {
+
+        const response = await fetch(URL, {
+            method: 'GET',
+        })
+
+        const json = await response.json();
+        return json;
     }
 
     componentDidMount() {
-        this.updateKPI(this.state.year, this.state.month);
+        this.updateKPI(this.state.year, this.state.month, true);
     }
 
     render() {
@@ -172,76 +292,48 @@ class FinancialDash extends Component {
                 <Row>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }} />
                     <Col>
-                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
+                        <TimeSelectorComponent year={this.state.year} month={this.state.month} setYear={this.setYear} updateYear={this.updateYear} changeYear={this.changeYear} changeMonth={this.changeMonth} />
                     </Col>
                     <Col md={{ size: 1 }} lg={{ size: 2 }} xl={{ size: 3 }} />
                 </Row>
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Income'} type={'money'} currentValue={1645} previousValue={1000} />
+                        <KPIComponent title={'Cash'} type={'money'} currentValue={this.state.cash} previousValue={this.state.cashPrev} loading={this.state.cashLoading} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Expenses'} type={'money'} currentValue={this.state.totalExpenses} previousValue={1000} loading={this.state.totalExpensesLoading} />
+                        <KPIComponent title={'Total Assets'} type={'money'} currentValue={this.state.assets} previousValue={this.state.assetsPrev} loading={this.state.assetsLoading} />
                     </Col>
-                    <Col xs={{ size: 1 }} className='d-xl-none' />
-                    <Col xs={{ size: 1 }} className='d-xl-none' />
-                    <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Revenue'} type={'money'} currentValue={2075} previousValue={1000} />
+                    <Col xs={{ size: 1 }} className='d-xl-none'/>
+                    <Col xs={{ size: 1 }} md className='d-xl-none'/>
+                    <Col md={{ size: 5 }} xl >
+                        <KPIComponent title={'Total Liabilities'} type={'money'} currentValue={this.state.liabilities} previousValue={this.state.liabilitiesPrev} loading={this.state.liabilitiesLoading} />
                     </Col>
-                    <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Asset Value'} type={'money'} currentValue={this.state.totalAsset} previousValue={1000} loading={this.state.totalAssetLoading} />
-                    </Col>
+                    <Col md className='d-xl-none' />
+                    <Col xl={{ size: 1 }} />
+                </Row>
+                <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
+                    <Col md={{ size: 5 }} xl className='columnStack'>
+                        <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={this.state.accPayablePrev} loading={this.state.accPayableLoading} />
+                    </Col>
+                    <Col md={{ size: 5 }} xl className='columnStack'>
+                        <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={this.state.accReceivablePrev} loading={this.state.accReceivableLoading} />
+                    </Col>
+                    <Col xs={{ size: 1 }} className='d-xl-none'/>
+                    <Col xs={{ size: 1 }} md className='d-xl-none'/>
+                    <Col md={{ size: 5 }} xl className='columnStack'>
+                        <KPIComponent title={'Gross Profit Margin'} type={'percentage'} currentValue={this.state.profitMargin} previousValue={0} loading={this.state.profitMarginLoading} />
+                    </Col>
+                    <Col md className='d-xl-none columnStack' />
+                    <Col xl={{ size: 1 }} />
                 </Row>
                 <Row className='rowStack'>
-                    <Col xl={{ size: 6 }}>
+                    <Col>
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
-                            <Col md className='columnStack'>
-                                <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={1000} loading={this.state.accPayableLoading} />
-                            </Col>
-                            <Col md className='columnStack'>
-                                <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={1000} loading={this.state.accReceivableLoading} />
-                            </Col>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
-                        </Row>
-                        <Row className='rowStack'>
-                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
-                            <Col md className='columnStack'>
-                                <KPIComponent title={'Financial Autonomy'} type={'percentage'} currentValue={140} previousValue={126} />
-                            </Col >
-                            <Col md className='columnStack'>
-                                <KPIComponent title={'General Liquidity'} type={'percentage'} currentValue={106} previousValue={102} />
-                            </Col>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
-                        </Row>
-                    </Col>
-                    <Col xl={{ size: 6 }}>
-                        <Row>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
-                            <Col className='columnStack'>
-                                <GraphComponent type={'line'} data={this.revenue} title={'Revenue History'} yearly={true} />
-                            </Col>
-                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
-                        </Row>
-                    </Col>
-                </Row>
-                <Row className='rowStack'>
-                    <Col xl={{ size: 6 }}>
-                        <Row>
-                            <Col md={{ size: 1 }} xl={{ size: 2 }} />
-                            <Col className='columnStack'>
-                                <GraphComponent type={'line'} data={this.costs} title={'Costs History'} yearly={true} />
-                            </Col>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
-                        </Row>
-                    </Col>
-                    <Col xl={{ size: 6 }}>
-                        <Row>
-                            <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='lastElement'>
-                                <GraphComponent type={'line'} data={this.income} title={'Income History'} yearly={true} />
+                                <GraphComponent type={'line'} data={this.state.cashGraph} title={'Cash Graph'} yearly={true} loading={this.state.cashGraphLoading} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>

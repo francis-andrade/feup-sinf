@@ -24,7 +24,7 @@ class TimeSelectorComponent extends Component {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => {this.setState({ availableYears: [...data] }); this.props.setYear(data[data.length - 1])})
+            .then(data => {this.setState({ availableYears: [...data] }); this.props.setYear(data[data.length - 1]); this.props.updateYear(data[data.length - 1])})
     }
 
     toggleYearDropdown() {
