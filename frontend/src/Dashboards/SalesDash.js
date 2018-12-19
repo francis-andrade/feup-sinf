@@ -100,6 +100,7 @@ class SalesDash extends Component {
         })
 
         this.updateYear(value);
+        this.update();
 
     }
 
@@ -128,11 +129,7 @@ class SalesDash extends Component {
             topProductsLoaded: false,
         })
 
-
-    }
-
-    shouldComponentUpdate(){
-        return !(this.state.salesLoaded && this.state.salesPerRegionLoaded && this.state.salesValueLoaded && this.state.backlogValueLoaded && this.state.topProducts);
+        this.update();
     }
 
     update(){
@@ -245,7 +242,7 @@ class SalesDash extends Component {
         
     }
 
-    componentDidUpdate(){
+    componentDidMount(){
         this.update();
     }
 

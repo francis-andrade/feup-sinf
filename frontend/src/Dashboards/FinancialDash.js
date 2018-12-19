@@ -17,18 +17,23 @@ class FinancialDash extends Component {
             month: '0',
 
             accPayable: 0.0,
+            accPayablePrev: 0.0,
             accPayableLoading: true,
 
             accReceivable: 0.0,
+            accReceivablePrev: 0.0,
             accReceivableLoading: true,
 
             assets: 0.0,
+            assetsPrev: 0.0,
             assetsLoading: true,
 
             cash: 0.0,
+            cashPrev: 0.0,
             cashLoading: true,
 
             liabilities: 0.0,
+            liabilitiesPrev: 0.0,
             liabilitiesLoading: true,
 
             profitMargin: 0.0,
@@ -125,6 +130,7 @@ class FinancialDash extends Component {
 
     updateKPI(year, month, updateGraph) {
 
+        // Update cash graph
         if(updateGraph) this.updateCashGraph(year);
 
         // Calculate gross profit margin
@@ -204,6 +210,8 @@ class FinancialDash extends Component {
         this.setState({
             liabilities: account22Sum[0] + account23Sum[0] + account24Sum[0] + account25Sum[0] + account26Sum[0] -
                 account22Sum[1] + account23Sum[1] + account24Sum[1] + account25Sum[1] + account26Sum[1],
+            liabilitiesPrev: account22Sum[2] + account23Sum[2] + account24Sum[2] + account25Sum[2] + account26Sum[2] -
+            account22Sum[3] + account23Sum[3] + account24Sum[3] + account25Sum[3] + account26Sum[3],
             liabilitiesLoading: false
         })
     }
@@ -218,7 +226,7 @@ class FinancialDash extends Component {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ cash: data[0] - data[1], cashLoading: false }))
+            .then(data => this.setState({ cash: data[0] - data[1], cashPrev: data[2] - data[3], cashLoading: false }))
     }    
 
     calcAccounts(year, month) {
@@ -231,13 +239,13 @@ class FinancialDash extends Component {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ accPayable: data[0] - data[1], accPayableLoading: false }))
+            .then(data => this.setState({ accPayable: data[0] - data[1], accPayablePrev: data[2] - data[3], accPayableLoading: false }))
 
         fetch(API + funcToUse + '?id=21' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ accReceivable: data[0] - data[1], accReceivableLoading: false }))
+            .then(data => this.setState({ accReceivable: data[0] - data[1], accReceivablePrev: data[2] - data[3], accReceivableLoading: false }))
     }
 
     async calcAssets(year, month) {
@@ -252,6 +260,7 @@ class FinancialDash extends Component {
 
         this.setState({
             assets: account1Sum[0] + account2Sum[0] + account3Sum[0] - account1Sum[1] + account2Sum[1] + account3Sum[1],
+            assetsPrev: account1Sum[2] + account2Sum[2] + account3Sum[2] - account1Sum[3] + account2Sum[3] + account3Sum[3],
             assetsLoading: false
         })
     }
@@ -284,15 +293,15 @@ class FinancialDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Cash'} type={'money'} currentValue={this.state.cash} previousValue={1000} loading={this.state.cashLoading} />
+                        <KPIComponent title={'Cash'} type={'money'} currentValue={this.state.cash} previousValue={this.state.cashPrev} loading={this.state.cashLoading} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Assets'} type={'money'} currentValue={this.state.assets} previousValue={1000} loading={this.state.assetsLoading} />
+                        <KPIComponent title={'Total Assets'} type={'money'} currentValue={this.state.assets} previousValue={this.state.assetsPrev} loading={this.state.assetsLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>
                     <Col md={{ size: 5 }} xl >
-                        <KPIComponent title={'Total Liabilities'} type={'money'} currentValue={this.state.liabilities} previousValue={1000} loading={this.state.liabilitiesLoading} />
+                        <KPIComponent title={'Total Liabilities'} type={'money'} currentValue={this.state.liabilities} previousValue={this.state.liabilitiesPrev} loading={this.state.liabilitiesLoading} />
                     </Col>
                     <Col md className='d-xl-none' />
                     <Col xl={{ size: 1 }} />
@@ -300,10 +309,10 @@ class FinancialDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={1000} loading={this.state.accPayableLoading} />
+                        <KPIComponent title={'Accounts Payable'} type={'money'} currentValue={this.state.accPayable} previousValue={this.state.accPayablePrev} loading={this.state.accPayableLoading} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={1000} loading={this.state.accReceivableLoading} />
+                        <KPIComponent title={'Accounts Receivable'} type={'money'} currentValue={this.state.accReceivable} previousValue={this.state.accReceivablePrev} loading={this.state.accReceivableLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>

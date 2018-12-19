@@ -298,7 +298,6 @@ app.post('/api/SalesValue', function(req, res){
         
         for (let i = 0; i< allInvoices.size(); i++){
             let invoiceMonth = getSalesMonth(allInvoices.eq(i).find('InvoiceDate').text());
-            console.log('Current Month: ' + invoiceMonth);
             let invoiceType = allInvoices.eq(i).find('InvoiceType').children().text();
             if (invoiceType != 'NC'){
                 if (invoiceMonth == month || month == 0){
@@ -316,7 +315,6 @@ app.post('/api/SalesValue', function(req, res){
                     for (let j=0; j < lastAllInvoices.size(); j++){
                         invoiceMonth = getSalesMonth(lastAllInvoices.eq(j).find('InvoiceDate').text());
                         invoiceType = lastAllInvoices.eq(j).find('InvoiceType').children().text();
-                        console.log("Month : " + invoiceMonth);
                         if (invoiceType != 'NC'){
                             
                             if (invoiceMonth == 12 || month == 0){
