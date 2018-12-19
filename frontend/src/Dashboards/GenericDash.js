@@ -185,7 +185,7 @@ class GenericDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='lastElement'>
-                                <GraphComponent type={'horizontalBar'} data={this.topProducts} title={'Top Categories'} yearly={false} loading={this.state.topProductsLoading} />
+                                <GraphComponent type={'horizontalBar'} data={this.topProducts} title={'Top Best Selling Products'} yearly={false} loading={this.state.topProductsLoading} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
