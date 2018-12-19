@@ -7,26 +7,24 @@ import '../App.css';
 import '../styles/Common.style.css';
 
 class FinancialDash extends Component {
+
     constructor(props) {
+
         super(props);
 
         this.state = {
             year: '',
             month: '0',
 
-            totalExpenses: 0.0,
-            totalExpensesLoading: true,
-
-            totalAsset: 0.0,
-            totalAssetLoading: true,
-
             accPayable: 0.0,
             accPayableLoading: true,
 
             accReceivable: 0.0,
-            accReceivableLoading: true
+            accReceivableLoading: true,
 
-        };
+            assets: 0.0,
+            assetsLoading: true
+        }
 
         this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
@@ -48,7 +46,7 @@ class FinancialDash extends Component {
                     data: []
                 }
             ]
-        };
+        }
     }
 
     setYear(value) {
@@ -99,26 +97,12 @@ class FinancialDash extends Component {
         const funcToUse = 'sumLedgerEntries';
         const parameters = '&year=' + year + '&month=' + month;
 
-        // Get total expenses
-        fetch(API + funcToUse + '?id=6' + parameters, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => this.setState({ totalExpenses: data[0] - data[1], totalExpensesLoading: false }))
-
-        // Get total asset value
-        fetch(API + funcToUse + '?id=4' + parameters, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => this.setState({ totalAsset: data[0] - data[1], totalAssetLoading: false }))
-
         // Get total accounts payable
         fetch(API + funcToUse + '?id=22' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ accPayable: data[1] - data[0], accPayableLoading: false }))
+            .then(data => this.setState({ accPayable: data[0] - data[1], accPayableLoading: false }))
 
         // Get total accounts receivable
         fetch(API + funcToUse + '?id=21' + parameters, {
@@ -126,6 +110,35 @@ class FinancialDash extends Component {
         })
             .then(response => response.json())
             .then(data => this.setState({ accReceivable: data[0] - data[1], accReceivableLoading: false }))
+
+        // Calculate total assets
+        this.calcAssets(year, month);
+    }
+
+    async calcAssets(year, month) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        let account1Sum = await this.syncLedgerSum(API + funcToUse + '?id=1' + parameters);
+        let account2Sum = await this.syncLedgerSum(API + funcToUse + '?id=2' + parameters);
+        let account3Sum = await this.syncLedgerSum(API + funcToUse + '?id=3' + parameters);
+
+        this.setState({
+            assets: account1Sum[0] + account2Sum[0] + account3Sum[0] - account1Sum[1] + account2Sum[1] + account3Sum[1],
+            assetsLoading: false
+        })
+    }
+
+    async syncLedgerSum(URL) {
+
+        const response = await fetch(URL, {
+            method: 'GET',
+        })
+
+        const json = await response.json();
+        return json;
     }
 
     componentDidMount() {
@@ -149,7 +162,7 @@ class FinancialDash extends Component {
                         <KPIComponent title={'Cash'} type={'money'} currentValue={1645} previousValue={1000}/>
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Assets'} type={'money'} currentValue={834} previousValue={1000}/>
+                        <KPIComponent title={'Total Assets'} type={'money'} currentValue={this.state.assets} previousValue={1000} loading={this.state.assetsLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>

@@ -235,35 +235,39 @@ function previousMonth(date) {
  * GET request that sums the requested ledger entries by AccountID using a timeframe specified
  * by a year and month pair. All parameters are sent through the URL of the GET, that is,
  * /api/sumLedgerEntries?id=6&year=2018&month=1.
+ * Returns an array containing [currYearDebitTotal, currYearCreditTotal, prevYearDebitTotal, prevYearCreditTotal].
  */
 app.get('/api/sumLedgerEntries', (req, res) => {
 
+    // Check SAFT is parsed
     if(!isCurrentAvailable) {
         res.send([0, 0]);
         return;
     }
 
-    let prevYear = 0;
-    let prevMonth = 0;
+    // Find previous time period
+    let prevYear = '0';
+    let prevMonth = '0';
     if(req.query.month != 0) {
        let previousDate = new Date(req.query.year, req.query.month - 1);
        previousDate = previousMonth(previousDate);
        prevYear = previousDate.getFullYear();
        prevMonth = previousDate.getMonth() + 1;
     } else {
-        prevYear = req.query.year - 1;
-        prevMonth = 0;
+        prevYear = (parseInt(req.query.year) - 1).toString();
+        prevMonth = '0';
     }
 
     // Use account ID, year and month sent through URL to sum the Ledger Entries
     let currentTimeFrame = sumLedgerEntries(req.query.id, req.query.year, req.query.month);
     let previousTimeFrame = sumLedgerEntries(req.query.id, prevYear, prevMonth);
-    console.log(currentTimeFrame[0]);
-    console.log(currentTimeFrame[1]);
-    console.log(previousTimeFrame[0]);
-    console.log(previousTimeFrame[1]);
+    // console.log(currentTimeFrame[0]);
+    // console.log(currentTimeFrame[1]);
+    // console.log(previousTimeFrame[0]);
+    // console.log(previousTimeFrame[1]);
 
-    res.send(currentTimeFrame);
+    let result = [currentTimeFrame[0], currentTimeFrame[1], previousTimeFrame[0], previousTimeFrame[1]];
+    res.send(result);
 });
 
 
