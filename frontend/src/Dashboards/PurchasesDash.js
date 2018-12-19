@@ -18,189 +18,7 @@ class PurchasesDash extends Component {
             authentication: {},
             year: '',
             month: '0',
-            purchases: [
-                {
-                    "Data": "2018-01-18T00:00:00",
-                    "Artigo": "MP004",
-                    "PrecUnit": 0.3,
-                    "DataEntrega": "2018-01-22T00:00:00",
-                    "Quantidade": 60,
-                    "QuantReserv": 0,
-                    "QuantTrans": 60,
-                    "ArtEntidade": "F0005"
-                },
-                {
-                    "Data": "2018-01-18T00:00:00",
-                    "Artigo": "MP005",
-                    "PrecUnit": 0.2,
-                    "DataEntrega": "2018-01-22T00:00:00",
-                    "Quantidade": 150,
-                    "QuantReserv": 0,
-                    "QuantTrans": 150,
-                    "ArtEntidade": "F0005"
-                },
-                {
-                    "Data": "2018-01-15T00:00:00",
-                    "Artigo": "MP001",
-                    "PrecUnit": 2.6,
-                    "DataEntrega": "2018-01-22T00:00:00",
-                    "Quantidade": 103.799995422363,
-                    "QuantReserv": 0,
-                    "QuantTrans": 103.799995422363,
-                    "ArtEntidade": "F0001"
-                },
-                {
-                    "Data": "2018-01-15T00:00:00",
-                    "Artigo": "MP002",
-                    "PrecUnit": 5,
-                    "DataEntrega": "2018-01-22T00:00:00",
-                    "Quantidade": 103.799995422363,
-                    "QuantReserv": 0,
-                    "QuantTrans": 103.799995422363,
-                    "ArtEntidade": "F0001"
-                },
-                {
-                    "Data": "2018-01-15T00:00:00",
-                    "Artigo": "MP003",
-                    "PrecUnit": 4,
-                    "DataEntrega": "2018-01-22T00:00:00",
-                    "Quantidade": 756,
-                    "QuantReserv": 0,
-                    "QuantTrans": 756,
-                    "ArtEntidade": "F0001"
-                },
-                {
-                    "Data": "2017-03-20T00:00:00",
-                    "Artigo": "A0003",
-                    "PrecUnit": 1198,
-                    "DataEntrega": "2018-01-29T00:00:00",
-                    "Quantidade": 7,
-                    "QuantReserv": 0,
-                    "QuantTrans": 2,
-                    "ArtEntidade": "F0003"
-                },
-                {
-                    "Data": "2017-03-20T00:00:00",
-                    "Artigo": "CMP-CPU001.MT2200",
-                    "PrecUnit": 23,
-                    "DataEntrega": "2018-01-29T00:00:00",
-                    "Quantidade": 45,
-                    "QuantReserv": 0,
-                    "QuantTrans": 0,
-                    "ArtEntidade": "F0003"
-                },
-                {
-                    "Data": "2017-03-20T00:00:00",
-                    "Artigo": "B0001",
-                    "PrecUnit": 99,
-                    "DataEntrega": "2018-01-29T00:00:00",
-                    "Quantidade": 6,
-                    "QuantReserv": 0,
-                    "QuantTrans": 6,
-                    "ArtEntidade": "F0003"
-                },
-                {
-                    "Data": "2017-03-20T00:00:00",
-                    "Artigo": "CMP-HDD001.IDE-80",
-                    "PrecUnit": 45,
-                    "DataEntrega": "2018-01-29T00:00:00",
-                    "Quantidade": 6,
-                    "QuantReserv": 0,
-                    "QuantTrans": 0,
-                    "ArtEntidade": "F0003"
-                },
-                {
-                    "Data": "2017-03-20T00:00:00",
-                    "Artigo": "A0004",
-                    "PrecUnit": 499,
-                    "DataEntrega": "2018-01-29T00:00:00",
-                    "Quantidade": 3,
-                    "QuantReserv": 0,
-                    "QuantTrans": 1,
-                    "ArtEntidade": "F0003"
-                },
-                {
-                    "Data": "2017-10-30T00:00:00",
-                    "Artigo": "C0001",
-                    "PrecUnit": 797,
-                    "DataEntrega": "2018-01-29T00:00:00",
-                    "Quantidade": 1,
-                    "QuantReserv": 0,
-                    "QuantTrans": 1,
-                    "ArtEntidade": "F0001"
-                },
-                {
-                    "Data": "2018-01-23T00:00:00",
-                    "Artigo": "MP001",
-                    "PrecUnit": 2.6,
-                    "DataEntrega": "2018-02-12T00:00:00",
-                    "Quantidade": 34.5999984741211,
-                    "QuantReserv": 0,
-                    "QuantTrans": 0,
-                    "ArtEntidade": "F0001"
-                },
-                {
-                    "Data": "2018-01-23T00:00:00",
-                    "Artigo": "MP003",
-                    "PrecUnit": 4,
-                    "DataEntrega": "2018-02-12T00:00:00",
-                    "Quantidade": 252,
-                    "QuantReserv": 0,
-                    "QuantTrans": 0,
-                    "ArtEntidade": "F0001"
-                },
-                {
-                    "Data": "2018-01-23T00:00:00",
-                    "Artigo": "MP002",
-                    "PrecUnit": 5,
-                    "DataEntrega": "2018-02-12T00:00:00",
-                    "Quantidade": 34.5999984741211,
-                    "QuantReserv": 0,
-                    "QuantTrans": 0,
-                    "ArtEntidade": "F0002"
-                },
-                {
-                    "Data": "2018-01-23T00:00:00",
-                    "Artigo": "MP005",
-                    "PrecUnit": 0.2,
-                    "DataEntrega": "2018-02-13T00:00:00",
-                    "Quantidade": 50,
-                    "QuantReserv": 0,
-                    "QuantTrans": 0,
-                    "ArtEntidade": "F0002"
-                },
-                {
-                    "Data": "2018-01-23T00:00:00",
-                    "Artigo": "MP004",
-                    "PrecUnit": 0.3,
-                    "DataEntrega": "2018-02-13T00:00:00",
-                    "Quantidade": 20,
-                    "QuantReserv": 0,
-                    "QuantTrans": 0,
-                    "ArtEntidade": "F0003"
-                },
-                {
-                    "Data": "2018-04-24T00:00:00",
-                    "Artigo": "A0001",
-                    "PrecUnit": 455,
-                    "DataEntrega": "2018-04-24T00:00:00",
-                    "Quantidade": 10,
-                    "QuantReserv": 0,
-                    "QuantTrans": 0,
-                    "ArtEntidade": "F0001"
-                },
-                {
-                    "Data": "2018-02-24T00:00:00",
-                    "Artigo": "A0001",
-                    "PrecUnit": 878,
-                    "DataEntrega": "2018-11-23T00:00:00",
-                    "Quantidade": 20,
-                    "QuantReserv": 0,
-                    "QuantTrans": 0,
-                    "ArtEntidade": "F0003"
-                }
-            ]
-    ,
+            purchases: {},
             items: {},
 
             previousPurchasesValue: 0,
@@ -423,24 +241,21 @@ class PurchasesDash extends Component {
         }
 
         let topSuppliers = this.sort(suppliersValue);
-        console.log(topSuppliers);
         let suppliersData = [];
         let suppliersLabels = [];
 
         for(let index = 0; index < this.suppliersNumber && index < topSuppliers.length; index++){
-            suppliersData.push(topSuppliers[index][1].toFixed(0));
+            suppliersData.push(topSuppliers[index][1]);
             suppliersLabels.push(topSuppliers[index][0]);
         }
-        console.log(suppliersData);
+
         let topSuppliersState = this.state['topSuppliers'];
         topSuppliersState['labels'] = suppliersLabels;
         topSuppliersState['datasets']['data'] = suppliersData;
-        console.log(topSuppliersState);
         this.setState({topSuppliers: topSuppliersState, topSuppliersLoading: false})        
     }
 
     updateTopCategories(year, month){
-        console.log("hello")
         let dates = retrieveDates(year, month);
         let prevStartDate = dates[0][0];
         let prevEndDate = dates[0][1];
@@ -450,20 +265,16 @@ class PurchasesDash extends Component {
         let catValue = [];
         let purchases = this.state['purchases'];
         let items = this.state['items'];
-        console.log(items);
         for(let index = 0; index < purchases.length; index++){
             let purchasesDate = new Date(purchases[index]["Data"]);
             if(purchasesDate >= currStartDate && purchasesDate <= currEndDate){
-            let name = purchases[index]['Artigo'];
+            let name = purchases[index]['ArtigoName'];
             let cat = null;
-            console.log(name);
             for(let item in items){
-                let item2 = items[item]
-                if(name.valueOf() == item2['ARTIGO$ARTIGO'].valueOf()){
-                    cat = item2['ARTIGO$FAMILIA'];
+                if(name == item['ARTIGO$ARTIGO']){
+                    cat = item['ARTIGO$FAMILIA'];
                 }
             }
-            console.log(cat);
             if(cat != null){
             let purchaseValue = purchases[index]['QuantTrans']*purchases[index]['PrecUnit'];
             if(cat in catValue){
@@ -475,23 +286,20 @@ class PurchasesDash extends Component {
             }
             }       
         }
-        console.log(catValue);
+
         let topCat = this.sort(catValue);
         let catData = [];
         let catLabels = [];
 
         for(let index = 0; index < this.catNumber && index < topCat.length; index++){
-            catData.push(topCat[index][1].toFixed(0));
+            catData.push(topCat[index][1]);
             catLabels.push(topCat[index][0]);
         }
 
         let topCatState = this.state['topCategories'];
         topCatState['labels'] = catLabels;
         topCatState['datasets']['data'] = catData;
-        console.log(catData);
-        console.log(topCatState);
         this.setState({topCategories: topCatState, topCategoriesLoading: false})
-        console.log(this.state['topCategories'])
     }
 
     componentDidMount() {
@@ -515,9 +323,7 @@ class PurchasesDash extends Component {
         })
         .then(response => response.json())
         .then(data => this.setState({ authentication: data }))
-        .then(this.updatePurchasesValue.bind(this, "2018", "0"))
-        .then(this.updateExpectedOrders.bind(this, "2018", "0"))
-        .then(this.updateTopSuppliers.bind(this, "2018", "0"))
+        .then(this.getPurchases.bind(this))
         .then(this.getItems.bind(this));   
     }
 
