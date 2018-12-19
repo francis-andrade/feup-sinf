@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { Row, Col, Table } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import TimeSelectorComponent from '../components/TimeSelectorComponent';
 import GraphComponent from '../components/GraphComponent';
 import KPIComponent from '../components/KPIComponent';
 import '../App.css';
 import '../styles/Common.style.css';
+import {retrieveDates} from '../utils.js';
+import { isNull } from 'util';
 
 class PurchasesDash extends Component {
     constructor(props) {
         super(props);
         this.suppliersNumber = 3;
+        this.catNumber = 3;
 
         this.state = {
             authentication: {},
@@ -58,6 +61,7 @@ class PurchasesDash extends Component {
                     }
                 ]
             },
+            topCategoriesLoading: true,
             topCategories: {
                 labels: ['Category1', 'Category2', 'Category3'],
                 datasets: [
@@ -73,25 +77,7 @@ class PurchasesDash extends Component {
                         data: []
                     }
                 ]
-            },
-            purchasedProducts: [
-                {
-                    name: 'Produto1',
-                    quantity: '10'
-                }, 
-                {
-                    name: 'Produto2',
-                    quantity: '12'
-                }, 
-                {
-                    name: 'Produto3',
-                    quantity: '14'
-                }, 
-                {
-                    name: 'Produto4',
-                    quantity: '17'
-                }, 
-            ]
+            }
             
         }
         this.setYear = this.setYear.bind(this);
@@ -109,13 +95,22 @@ class PurchasesDash extends Component {
     changeYear = (value) => {
         this.setState({
             year: value
-        })
+        });
+        console.log("changeYear");
+        this.updatePurchasesValue(value, this.state.month);
+        this.updateExpectedOrders(value, this.state.month);
+        this.updateTopSuppliers(value, this.state.month);
+        this.updateTopCategories(value, this.state.month);
     }
 
     changeMonth = (value) => {
         this.setState({
             month: value
-        })
+        });
+        this.updatePurchasesValue(this.state.year, value);
+        this.updateExpectedOrders(this.state.year, value);
+        this.updateTopSuppliers(this.state.year, value);
+        this.updateTopCategories(this.state.year, value);
     }
 
     getPurchases(){
@@ -132,11 +127,31 @@ class PurchasesDash extends Component {
           })
           .then(response => response.json())
           .then(data =>{ 
-              this.setState({ purchases: data["DataSet"]["Table"] }); 
-              this.updatePurchasesValue();
-              this.updateExpectedOrders(); 
-              this.updateTopSuppliers();             
+              this.setState({ purchases: data["DataSet"]["Table"] });
+              console.log(data["DataSet"]["Table"]); 
+              this.updatePurchasesValue(this.state.year, this.state.month);
+              this.updateExpectedOrders(this.state.year, this.state.month); 
+              this.updateTopSuppliers(this.state.year, this.state.month);             
             } ); 
+    }
+
+    getItems(){
+        fetch('http://localhost:2018/WebApi/Administrador/Consulta',
+        {     
+
+            method: "POST",
+            body: JSON.stringify("SELECT [ARTIGO].[ARTIGO] AS [ARTIGO$ARTIGO],[ARTIGO].[DESCRICAO] AS [ARTIGO$DESCRICAO],[ARTIGO].[UNIDADEBASE] AS [ARTIGO$UNIDADEBASE],[ARTIGOMOEDA].[PVP1] AS [ARTIGOMOEDA$PVP1],[ARTIGO].[FAMILIA] AS [ARTIGO$FAMILIA],[ARTIGO].[FORNECEDOR] AS [ARTIGO$FORNECEDOR] FROM [ARTIGO] WITH (NOLOCK) LEFT JOIN [ARTIGOMOEDA] WITH (NOLOCK) ON  [ARTIGO].[ARTIGO] = [ARTIGOMOEDA].[ARTIGO] WHERE ( (([ARTIGO].[UNIDADEBASE] = [ARTIGOMOEDA].[UNIDADE]) AND ([ARTIGOMOEDA].[MOEDA] = 'EUR')) )")
+            ,
+            headers: {
+                'Authorization' : `Bearer ${this.state.authentication['access_token']}`,
+                'Content-Type': 'application/json'
+            },             
+        })
+        .then(response => response.json())
+        .then(data =>{ 
+            this.setState({ items: data["DataSet"]["Table"] }); 
+            this.updateTopCategories(this.state.year, this.state.month);             
+          } ); 
     }
 
     sort(dict){
@@ -152,31 +167,63 @@ class PurchasesDash extends Component {
         return items;
     }
 
-    updatePurchasesValue(){
-        let purchasesValue = 0;
+    updatePurchasesValue(year, month){
+        let dates = retrieveDates(year, month);
+        let prevStartDate = dates[0][0];
+        let prevEndDate = dates[0][1];
+        let currStartDate = dates[1][0];
+        let currEndDate = dates[1][1];
+        let currPurchasesValue = 0;
+        let prevPurchasesValue = 0;
         let purchases = this.state['purchases'];
+        console.log(purchases);
         for(let index = 0; index < purchases.length; index++){
-            purchasesValue = purchasesValue + purchases[index]['Quantidade']*purchases[index]['PrecUnit'];
+            let purchasesDate = new Date(purchases[index]["Data"]);
+            if(purchasesDate >= currStartDate && purchasesDate <= currEndDate){
+                currPurchasesValue = currPurchasesValue + purchases[index]['Quantidade']*purchases[index]['PrecUnit'];
+            }
+            else if(purchasesDate >= prevStartDate && purchasesDate <= prevEndDate){
+                prevPurchasesValue = prevPurchasesValue + purchases[index]['Quantidade']*purchases[index]['PrecUnit'];
+            }
         }
-        this.setState({currentPurchasesValue: purchasesValue.toFixed(0), currentPurchasesValueLoading: false})
+        this.setState({previousPurchasesValue: prevPurchasesValue.toFixed(0)});
+        this.setState({currentPurchasesValue: currPurchasesValue.toFixed(0), currentPurchasesValueLoading: false});
+
     }
 
-    updateExpectedOrders(){
-        let expectedOrders = 0;
+    updateExpectedOrders(year, month){
+        let dates = retrieveDates(year, month);
+        let prevStartDate = dates[0][0];
+        let prevEndDate = dates[0][1];
+        let currStartDate = dates[1][0];
+        let currEndDate = dates[1][1];
+        let currExpectedOrders = 0;
+        let prevExpectedOrders = 0;
         let purchases = this.state['purchases'];
-        for(let index = 0; index < purchases.length; index++){
-           
-            
-            expectedOrders = expectedOrders + (purchases[index]['Quantidade']-purchases[index]['QuantTrans'])*purchases[index]['PrecUnit'];
+        for(let index = 0; index < purchases.length; index++){        
+            let purchasesDate = new Date(purchases[index]["Data"]);
+            if(purchasesDate >= currStartDate && purchasesDate <= currEndDate){
+                currExpectedOrders = currExpectedOrders + (purchases[index]['Quantidade']-purchases[index]['QuantTrans'])*purchases[index]['PrecUnit'];
+            }
+            else if(purchasesDate >= prevStartDate && purchasesDate <= prevEndDate){
+                prevExpectedOrders = prevExpectedOrders + (purchases[index]['Quantidade']-purchases[index]['QuantTrans'])*purchases[index]['PrecUnit'];
+            }
         }
-       
-        this.setState({currentExpectedOrders: expectedOrders.toFixed(0), currentExpectedOrdersLoading: false})
+        this.setState({previousExpectedOrders: prevExpectedOrders.toFixed(0)});
+        this.setState({currentExpectedOrders: currExpectedOrders.toFixed(0), currentExpectedOrdersLoading: false});
     }
 
-    updateTopSuppliers(){
+    updateTopSuppliers(year, month){
+        let dates = retrieveDates(year, month);
+        let prevStartDate = dates[0][0];
+        let prevEndDate = dates[0][1];
+        let currStartDate = dates[1][0];
+        let currEndDate = dates[1][1];
         let suppliersValue = [];
         let purchases = this.state['purchases'];
         for(let index = 0; index < purchases.length; index++){
+            let purchasesDate = new Date(purchases[index]["Data"]);
+            if(purchasesDate >= currStartDate && purchasesDate <= currEndDate){
             let supplier = purchases[index]['ArtEntidade'];
             let purchaseValue = purchases[index]['QuantTrans']*purchases[index]['PrecUnit'];
             if(supplier in suppliersValue){
@@ -184,13 +231,14 @@ class PurchasesDash extends Component {
             }
             else{
                 suppliersValue[supplier] = purchaseValue;
+            }
             }       
         }
-        console.log(suppliersValue);
+
         let topSuppliers = this.sort(suppliersValue);
         let suppliersData = [];
         let suppliersLabels = [];
-        console.log(topSuppliers);
+
         for(let index = 0; index < this.suppliersNumber && index < topSuppliers.length; index++){
             suppliersData.push(topSuppliers[index][1]);
             suppliersLabels.push(topSuppliers[index][0]);
@@ -199,9 +247,54 @@ class PurchasesDash extends Component {
         let topSuppliersState = this.state['topSuppliers'];
         topSuppliersState['labels'] = suppliersLabels;
         topSuppliersState['datasets']['data'] = suppliersData;
-        this.setState({topSuppliers: topSuppliersState, topSuppliersLoading: false})
-        console.log(this.state);
-        
+        this.setState({topSuppliers: topSuppliersState, topSuppliersLoading: false})        
+    }
+
+    updateTopCategories(year, month){
+        let dates = retrieveDates(year, month);
+        let prevStartDate = dates[0][0];
+        let prevEndDate = dates[0][1];
+        let currStartDate = dates[1][0];
+        let currEndDate = dates[1][1];
+
+        let catValue = [];
+        let purchases = this.state['purchases'];
+        let items = this.state['items'];
+        for(let index = 0; index < purchases.length; index++){
+            let purchasesDate = new Date(purchases[index]["Data"]);
+            if(purchasesDate >= currStartDate && purchasesDate <= currEndDate){
+            let name = purchases[index]['ArtigoName'];
+            let cat = null;
+            for(let item in items){
+                if(name == item['ARTIGO$ARTIGO']){
+                    cat = item['ARTIGO$FAMILIA'];
+                }
+            }
+            if(cat != null){
+            let purchaseValue = purchases[index]['QuantTrans']*purchases[index]['PrecUnit'];
+            if(cat in catValue){
+                catValue[cat] = catValue[cat] + purchaseValue;
+            }
+            else{
+                catValue[cat] = purchaseValue;
+            }
+            }
+            }       
+        }
+
+        let topCat = this.sort(catValue);
+        let catData = [];
+        let catLabels = [];
+
+        for(let index = 0; index < this.catNumber && index < topCat.length; index++){
+            catData.push(topCat[index][1]);
+            catLabels.push(topCat[index][0]);
+        }
+
+        let topCatState = this.state['topCategories'];
+        topCatState['labels'] = catLabels;
+        topCatState['datasets']['data'] = catData;
+        this.setState({topCategories: topCatState, topCategoriesLoading: false})
     }
 
     componentDidMount() {
@@ -225,32 +318,11 @@ class PurchasesDash extends Component {
         })
         .then(response => response.json())
         .then(data => this.setState({ authentication: data }))
-        .then(this.getPurchases.bind(this));   
+        .then(this.getPurchases.bind(this))
+        .then(this.getItems.bind(this));   
     }
 
     render() {
-        let productsTable = [];
-
-        for(let i = 0; i < this.state.purchasedProducts.length; i++) {
-            productsTable.push(<tr key={i}>
-                                    <th scope="row">{this.state.purchasedProducts[i].name}</th>
-                                    <td>{this.state.purchasedProducts[i].quantity}</td>
-                                </tr>)
-        }
-
-        console.log(productsTable)
-
-        let purchaseValueTable = 
-        <Table hover className='kpiExtraInfo'>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>{productsTable}</tbody>
-        </Table>
-
         return (
             <div className='dashboardBackground'>
                 <Row>
@@ -263,7 +335,7 @@ class PurchasesDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md className='columnStack'>
-                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} isClickable kpiExtraInfo={purchaseValueTable} loading={this.state.currentPurchasesValueLoading} />
+                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={this.state['currentPurchasesValue']} previousValue={this.state['previousPurchasesValue']} loading={this.state.currentPurchasesValueLoading} />
                     </Col>
                     <Col md className='columnStack'>
                         <KPIComponent title={'Expected Orders Cost'} type={'money'} currentValue={this.state['currentExpectedOrders']} previousValue={this.state['previousExpectedOrders']} loading={this.state.currentExpectedOrdersLoading} />
