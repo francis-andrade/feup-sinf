@@ -256,7 +256,7 @@ class PurchasesDash extends Component {
                         pointBackgroundColor: '#fff',
                         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                         pointHoverBorderColor: 'rgba(220,220,220,1)',
-                        data: []
+                        data: [5, 6, 7]
                     }
                 ]
             }
@@ -555,7 +555,7 @@ class PurchasesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='lastElement'>
-                                <GraphComponent type={'horizontalBar'} data={this.state['topCategories']} title={'Top Categories'} yearly={false} isClickable loading={this.state.topSuppliersLoading}/>
+                                <GraphComponent type={'horizontalBar'} data={this.state['topCategories']} title={'Top Categories'} yearly={false} loading={this.state.topCategoriesLoading}/>
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>

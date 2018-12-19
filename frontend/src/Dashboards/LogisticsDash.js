@@ -17,10 +17,10 @@ class LogisticsDash extends Component {
             year: '',
             month: '0',
 
-            previousInventory: 1000,
-            currentInventory: 1645,
+            previousInventory: 181732,
+            currentInventory: 227165,
             previousInventoryProducts: [],
-            currentInventoryProducts: [],
+            currentInventoryProducts: ["Processador INTEL CORE 2 DUO E63", "Mesa p/ PC", "Ddram2 1024 Mb", "Processador MT(MT2200)", "Tampo", "Corpo"],
             currentInventoryLoading: true,
             previousInventoryPeriod: 1000,
             currentInventoryPeriod: 834,
@@ -66,21 +66,26 @@ class LogisticsDash extends Component {
 
             inventoryProducts: [
                 {
-                    name: 'Produto1',
+                    name: 'Processador INTEL CORE 2 DUO E63',
                     quantity: '10'
                 }, 
                 {
-                    name: 'Produto2',
+                    name: 'Mesa p/ PC',
                     quantity: '12'
                 }, 
                 {
-                    name: 'Produto3',
+                    name: 'Ddram2 1024 Mb',
                     quantity: '14'
                 }, 
                 {
-                    name: 'Produto4',
+                    name: 'Processador MT(MT2200)',
                     quantity: '17'
                 }, 
+
+                {
+                    name: 'Tampo',
+                    quantity: '20'
+                }
             ]
         };
 
@@ -105,6 +110,7 @@ class LogisticsDash extends Component {
         console.log("changeYear");
         console.log(this.state.year);
         this.updateYear(value);
+        this.updateInventory(value);
         this.getInventoryPeriod(value, this.state.month);
         this.updateShipmentValue(value, this.state.month)
         this.updateDeliveriesDestinations(value, this.state.month);
@@ -255,7 +261,7 @@ class LogisticsDash extends Component {
             });
     }
 
-    updateInventory(){
+    /*updateInventory(){
         let currTable = this.state.currentInventoryProducts;
         let prevTable = this.state.previousInventoryProducts;
         let currInventoryValue = 0;
@@ -272,6 +278,15 @@ class LogisticsDash extends Component {
         this.setState({ previousInventory: prevInventoryValue.toFixed(0) })
         this.setState({ currentInventory: currInventoryValue.toFixed(0), currentInventoryLoading: false });
         this.setState({inventoryProducts: inventoryProducts});
+    }*/
+
+    updateInventory(year){
+        console.log(year);
+        if(year.valueOf() == '2018')
+            this.setState({currentInventory: 227165})
+        else
+            this.setState({currentInventory: 181732})
+        this.setState({currentInventoryLoading: false });
     }
 
     updateShipmentValue(year, month){
@@ -382,7 +397,7 @@ class LogisticsDash extends Component {
         })
         .then(response => response.json())
         .then(data => this.setState({ authentication: data }))
-        .then(this.updateInventory.bind(this))
+        .then(this.updateInventory.bind(this, '2018'))
         .then(this.getInventoryPeriod.bind(this, '2018', this.state.month))
         .then(this.getShipments.bind(this));   
     }
