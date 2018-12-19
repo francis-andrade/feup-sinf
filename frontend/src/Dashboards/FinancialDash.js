@@ -29,7 +29,27 @@ class FinancialDash extends Component {
             cashLoading: true,
 
             liabilities: 0.0,
-            liabilitiesLoading: true
+            liabilitiesLoading: true,
+
+            profitMargin: 0.0,
+            profitMarginLoading: true,
+
+            cashGraph: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [
+                    {
+                        label: 'Income',
+                        fill: true,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        data: []
+                    }
+                ]
+            }
         }
 
         this.setYear = this.setYear.bind(this);
@@ -37,22 +57,7 @@ class FinancialDash extends Component {
         this.changeMonth = this.changeMonth.bind(this);
         this.updateYear = this.updateYear.bind(this);
         
-        this.cash = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [
-                {
-                    label: 'Income',
-                    fill: true,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    data: []
-                }
-            ]
-        }
+
     }
 
     setYear(value) {
@@ -73,7 +78,7 @@ class FinancialDash extends Component {
     async updateYear(value) {
 
         await this.updateYearFetch(value);
-        this.updateKPI(value, this.state.month);
+        this.updateKPI(value, this.state.month, true);
     }
 
     updateYearFetch(value) {
@@ -94,10 +99,15 @@ class FinancialDash extends Component {
             month: value
         })
 
-        this.updateKPI(this.state.year, value);
+        this.updateKPI(this.state.year, value, false);
     }
 
-    updateKPI(year, month) {
+    updateKPI(year, month, updateGraph) {
+
+        if(updateGraph) this.updateCashGraph(year);
+
+        // Calculate gross profit margin
+        this.calcGrossProfitMargin(year, month);
 
         // Calculate total liabilities
         this.calcLiabilities(year, month);
@@ -110,6 +120,49 @@ class FinancialDash extends Component {
 
         // Calculate total assets
         this.calcAssets(year, month);
+    }
+
+    async updateCashGraph(year) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        let dataset = [];
+
+        for(let i = 1; i < 13; i++) {
+
+            const parameters = '&year=' + year + '&month=' + i;
+
+            let result = await this.syncLedgerSum(API + funcToUse + '?id=11' + parameters);
+            dataset.push(result[0] - result[1]);
+        }
+
+        let cashGraphAux = this.state.cashGraph;
+        cashGraphAux.datasets[0].data = [dataset[0], dataset[1], dataset[2], dataset[3], dataset[4], dataset[5], dataset[6], dataset[7], dataset[8], dataset[9], dataset[10], dataset[11], dataset[12]];
+        this.setState({
+             cashGraph: cashGraphAux
+         })
+    }
+
+    async calcGrossProfitMargin(year, month) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        let account61Sum = await this.syncLedgerSum(API + funcToUse + '?id=61' + parameters);
+        let account71Sum = await this.syncLedgerSum(API + funcToUse + '?id=71' + parameters);
+
+        let account61Value = account61Sum[0] - account61Sum[1];
+        let account71Value = account71Sum[0] - account71Sum[1];
+
+        let margin;
+        if(account71Value !== 0) margin = account61Value / account71Value * 100
+        else margin = 0;
+
+        this.setState({
+            profitMargin: margin,
+            profitMarginLoading: false
+        })   
     }
 
     async calcLiabilities(year, month) {
@@ -190,7 +243,7 @@ class FinancialDash extends Component {
     }
 
     componentDidMount() {
-        this.updateKPI(this.state.year, this.state.month);
+        this.updateKPI(this.state.year, this.state.month, true);
     }
 
     render() {
@@ -231,7 +284,7 @@ class FinancialDash extends Component {
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Gross Profit Margin'} type={'money'} currentValue={2075} previousValue={1000}/>
+                        <KPIComponent title={'Gross Profit Margin'} type={'percentage'} currentValue={this.state.profitMargin} previousValue={1000} loading={this.state.profitMarginLoading} />
                     </Col>
                     <Col md className='d-xl-none columnStack' />
                     <Col xl={{ size: 1 }} />
@@ -241,7 +294,7 @@ class FinancialDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='lastElement'>
-                                <GraphComponent type={'line'} data={this.cash} title={'Cash Graph'} yearly={true} />
+                                <GraphComponent type={'line'} data={this.state.cashGraph} title={'Cash Graph'} yearly={true} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
