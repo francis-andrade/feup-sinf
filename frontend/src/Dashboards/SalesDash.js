@@ -248,10 +248,6 @@ class SalesDash extends Component {
 
 
     render() {
-
-        console.log('Render');
-        console.log(this.state);
-
         return (
             <div className='dashboardBackground'>
                 <Row>
@@ -264,17 +260,11 @@ class SalesDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Sales Value'} type={'money'} currentValue={this.state.salesValue[0]} previousValue={this.state.salesValue[1]}/>
+                        <KPIComponent title={'Sales Value'} type={'money'} currentValue={this.state.salesValue[0]} previousValue={this.state.salesValue[1]} loading={!this.state.salesLoaded} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Expected Orders Value'} type={'money'} currentValue={this.state.backlogValue[0]} previousValue={this.state.backlogValue[1]}/>
+                        <KPIComponent title={'Expected Orders Value'} type={'money'} currentValue={this.state.backlogValue[0]} previousValue={this.state.backlogValue[1]} loading={!this.state.backlogValueLoaded} />
                     </Col>
-                    <Col xs={{ size: 1 }} className='d-xl-none'/>
-                    <Col xs={{ size: 1 }} md className='d-xl-none'/>
-                    {/* <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Sales Growth'} type={'percentage'} currentValue={2075} previousValue={1000}/>
-                    </Col> */}
-                    <Col md className='d-xl-none columnStack' />
                     <Col xl={{ size: 1 }} />
                 </Row>
                 <Row className='rowStack'>
@@ -282,7 +272,7 @@ class SalesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'pie'} data={this.state.salesPerRegion} title={'Sales per Region'} yearly={false} />
+                                <GraphComponent type={'pie'} data={this.state.salesPerRegion} title={'Sales per Region'} yearly={false} loading={!this.state.salesPerRegionLoaded} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -291,7 +281,7 @@ class SalesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='columnStack'>
-                                <GraphComponent type={'horizontalBar'} data={this.state.topProducts} title={'Top Best Selling Products'} yearly={false} />
+                                <GraphComponent type={'horizontalBar'} data={this.state.topProducts} title={'Top Best Selling Products'} yearly={false} loading={!this.state.topProductsLoaded} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
@@ -302,7 +292,7 @@ class SalesDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='lastElement'>
-                                <GraphComponent type={'line'} data={this.state.sales} title={'Sales History'} yearly={true} />
+                                <GraphComponent type={'line'} data={this.state.sales} title={'Sales History'} yearly={true} loading={!this.state.salesLoaded} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>
