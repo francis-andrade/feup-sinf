@@ -298,7 +298,8 @@ class SalesDash extends Component {
     }
 
     componentDidMount(){
-        this.update();
+        this.updateYear('2018');
+        this.update(0);
     }
 
 
