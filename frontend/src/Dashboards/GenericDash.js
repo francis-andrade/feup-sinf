@@ -14,6 +14,10 @@ class GenericDash extends Component {
         this.state = {
             year: '',
             month: '0',
+
+            salesValue: '0',
+            salesValueLoading: true,
+
             topProducts : {
                 labels: ['Category1', 'Category2', 'Category3'],
                 datasets: [
@@ -65,48 +69,75 @@ class GenericDash extends Component {
     setYear(value) {
         this.setState({
             year: value,
-            topProductsLoading: false,
-            salesLoading: false,
+            salesValueLoading: true,
+            topProductsLoading: true,
+            salesLoading: true,
         })
-
-        this.updateYear(value);
-        this.updateSales(this.state.month);
     }
 
     changeYear = (value) => {
         this.setState({
             year: value,
-            topProductsLoading: false,
-            salesLoading: false,
+            salesValueLoading: true,
+            topProductsLoading: true,
+            salesLoading: true,
         })
 
         this.updateYear(value);
-        this.updateSales(this.state.month);
+        setTimeout(
+            function() {
+                this.updateSales(this.state.month);
+            }
+            .bind(this),
+            100
+        );
     }
 
     changeMonth = (value) => {
         this.setState({
             month: value,
-            topProductsLoading: false,
-            salesLoading: false,
+            salesValueLoading: true,
+            topProductsLoading: true,
+            salesLoading: true,
         })
-
-        this.updateSales(value);
+        
+        setTimeout(
+            function() {
+                this.updateSales(value);
+            }
+            .bind(this),
+            100
+        );
     }
 
-    async updateYear() {
+    async updateYear(value) {
         await this.updateYearFetch(value);
     }
 
+    updateYearFetch(value) {
+        return fetch('http://localhost:5000/api/updateYear', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                year: value
+            })
+        })
+    }
+
+
     async updateSales(m) {
-        let salesHist = await this.requestServer('http://localhost:5000/api/SalesPerMonth', m);
+        let salesVal = await this.requestSales('http://localhost:5000/api/salesValue', m);
+        let salesHist = await this.requestSales('http://localhost:5000/api/SalesPerMonth', m);
         let topProd = await this.requestSales('http://localhost:5000/api/TopProductsSold', m);
         
         let newState = Object.assign({}, this.state);
-        newState.sales.labels = salesMon.map(function(a){
+        newState.salesValue = salesVal;
+        newState.sales.labels = salesHist.map(function(a){
             return a[0];
         });
-        newState.sales.datasets[0].data = salesMon.map(function(a){
+        newState.sales.datasets[0].data = salesHist.map(function(a){
             return Math.round(a[1] * 100) /100;
         });
         newState.topProducts.labels = topProd.map(function(a){
@@ -115,12 +146,13 @@ class GenericDash extends Component {
         newState.topProducts.datasets[0].data = topProd.map(function(a){
             return Math.round(a[2] * 100) /100;
         });
+        newState.salesValueLoading = false;
         newState.salesLoading = false;
         newState.topProductsLoading = false;
         this.setState(newState);
     }
 
-    async requestSales(URL) {
+    async requestSales(URL, m) {
         const response = await fetch(URL, {
             method: 'POST',
             headers: {
@@ -135,7 +167,14 @@ class GenericDash extends Component {
         return json;
     }
 
+    componentDidMount() {
+        this.updateYear('2018');
+        this.updateSales(this.state.month);
+    }
+
     render() {
+
+        console.log(this.state);
         return (
             <div className='dashboardBackground'>
                 <Row>
@@ -148,7 +187,7 @@ class GenericDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Sales Value'} type={'money'} currentValue={1645} previousValue={1000}/>
+                        <KPIComponent title={'Sales Value'} type={'money'} currentValue={this.state.salesValue[0]} previousValue={this.state.salesValue[1]} loading={this.state.salesValueLoading}/>
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
                         <KPIComponent title={'Purchases Value'} type={'money'} currentValue={834} previousValue={1000}/>
@@ -176,7 +215,7 @@ class GenericDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                             <Col className='columnStack'>
-                                <GraphComponent type={'line'} data={this.sales} title={'Sales History'} yearly={true} loading={this.state.salesLoading} />
+                                <GraphComponent type={'line'} data={this.state.sales} title={'Sales History'} yearly={true} loading={this.state.salesLoading} />
                             </Col>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                         </Row>
@@ -185,7 +224,7 @@ class GenericDash extends Component {
                         <Row>
                             <Col md={{ size: 1 }} className='d-xl-none' />
                             <Col className='lastElement'>
-                                <GraphComponent type={'horizontalBar'} data={this.topProducts} title={'Top Best Selling Products'} yearly={false} loading={this.state.topProductsLoading} />
+                                <GraphComponent type={'horizontalBar'} data={this.state.topProducts} title={'Top Best Selling Products'} yearly={false} loading={this.state.topProductsLoading} />
                             </Col>
                             <Col md={{ size: 1 }} xl={{ size: 2 }} />
                         </Row>

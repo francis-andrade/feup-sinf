@@ -84,8 +84,6 @@ class SalesDash extends Component {
             topProductsLoaded: false,
             salesLoaded: false,
         })
-
-        this.updateYear(value);
     }
 
     changeYear = (value) => {
@@ -187,8 +185,6 @@ class SalesDash extends Component {
         newState.salesLoaded = true;
 
         this.setState(newState);
-        
-        console.log(this.state)
     }
 
     async requestServer(URL, m) {
@@ -207,7 +203,7 @@ class SalesDash extends Component {
     }
 
     componentDidMount(){
-        //this.updateYear('2018');
+        this.updateYear('2018');
         this.update(0);
     }
 
