@@ -6,6 +6,7 @@ import KPIComponent from '../components/KPIComponent';
 
 import '../App.css';
 import '../styles/Common.style.css';
+import {retrieveDates} from '../utils.js';
 
 class GenericDash extends Component {
     constructor(props) {
@@ -61,7 +62,192 @@ class GenericDash extends Component {
             profitMargin: '0',
             profitMarginLoading: true,
 
+            purchases: [
+                {
+                    "Data": "2018-01-18T00:00:00",
+                    "Artigo": "MP004",
+                    "PrecUnit": 0.3,
+                    "DataEntrega": "2018-01-22T00:00:00",
+                    "Quantidade": 60,
+                    "QuantReserv": 0,
+                    "QuantTrans": 60,
+                    "ArtEntidade": "F0005"
+                },
+                {
+                    "Data": "2018-01-18T00:00:00",
+                    "Artigo": "MP005",
+                    "PrecUnit": 0.2,
+                    "DataEntrega": "2018-01-22T00:00:00",
+                    "Quantidade": 150,
+                    "QuantReserv": 0,
+                    "QuantTrans": 150,
+                    "ArtEntidade": "F0005"
+                },
+                {
+                    "Data": "2018-01-15T00:00:00",
+                    "Artigo": "MP001",
+                    "PrecUnit": 2.6,
+                    "DataEntrega": "2018-01-22T00:00:00",
+                    "Quantidade": 103.799995422363,
+                    "QuantReserv": 0,
+                    "QuantTrans": 103.799995422363,
+                    "ArtEntidade": "F0001"
+                },
+                {
+                    "Data": "2018-01-15T00:00:00",
+                    "Artigo": "MP002",
+                    "PrecUnit": 5,
+                    "DataEntrega": "2018-01-22T00:00:00",
+                    "Quantidade": 103.799995422363,
+                    "QuantReserv": 0,
+                    "QuantTrans": 103.799995422363,
+                    "ArtEntidade": "F0001"
+                },
+                {
+                    "Data": "2018-01-15T00:00:00",
+                    "Artigo": "MP003",
+                    "PrecUnit": 4,
+                    "DataEntrega": "2018-01-22T00:00:00",
+                    "Quantidade": 756,
+                    "QuantReserv": 0,
+                    "QuantTrans": 756,
+                    "ArtEntidade": "F0001"
+                },
+                {
+                    "Data": "2017-03-20T00:00:00",
+                    "Artigo": "A0003",
+                    "PrecUnit": 1198,
+                    "DataEntrega": "2018-01-29T00:00:00",
+                    "Quantidade": 7,
+                    "QuantReserv": 0,
+                    "QuantTrans": 2,
+                    "ArtEntidade": "F0003"
+                },
+                {
+                    "Data": "2017-03-20T00:00:00",
+                    "Artigo": "CMP-CPU001.MT2200",
+                    "PrecUnit": 23,
+                    "DataEntrega": "2018-01-29T00:00:00",
+                    "Quantidade": 45,
+                    "QuantReserv": 0,
+                    "QuantTrans": 0,
+                    "ArtEntidade": "F0003"
+                },
+                {
+                    "Data": "2017-03-20T00:00:00",
+                    "Artigo": "B0001",
+                    "PrecUnit": 99,
+                    "DataEntrega": "2018-01-29T00:00:00",
+                    "Quantidade": 6,
+                    "QuantReserv": 0,
+                    "QuantTrans": 6,
+                    "ArtEntidade": "F0003"
+                },
+                {
+                    "Data": "2017-03-20T00:00:00",
+                    "Artigo": "CMP-HDD001.IDE-80",
+                    "PrecUnit": 45,
+                    "DataEntrega": "2018-01-29T00:00:00",
+                    "Quantidade": 6,
+                    "QuantReserv": 0,
+                    "QuantTrans": 0,
+                    "ArtEntidade": "F0003"
+                },
+                {
+                    "Data": "2017-03-20T00:00:00",
+                    "Artigo": "A0004",
+                    "PrecUnit": 499,
+                    "DataEntrega": "2018-01-29T00:00:00",
+                    "Quantidade": 3,
+                    "QuantReserv": 0,
+                    "QuantTrans": 1,
+                    "ArtEntidade": "F0003"
+                },
+                {
+                    "Data": "2017-10-30T00:00:00",
+                    "Artigo": "C0001",
+                    "PrecUnit": 797,
+                    "DataEntrega": "2018-01-29T00:00:00",
+                    "Quantidade": 1,
+                    "QuantReserv": 0,
+                    "QuantTrans": 1,
+                    "ArtEntidade": "F0001"
+                },
+                {
+                    "Data": "2018-01-23T00:00:00",
+                    "Artigo": "MP001",
+                    "PrecUnit": 2.6,
+                    "DataEntrega": "2018-02-12T00:00:00",
+                    "Quantidade": 34.5999984741211,
+                    "QuantReserv": 0,
+                    "QuantTrans": 0,
+                    "ArtEntidade": "F0001"
+                },
+                {
+                    "Data": "2018-01-23T00:00:00",
+                    "Artigo": "MP003",
+                    "PrecUnit": 4,
+                    "DataEntrega": "2018-02-12T00:00:00",
+                    "Quantidade": 252,
+                    "QuantReserv": 0,
+                    "QuantTrans": 0,
+                    "ArtEntidade": "F0001"
+                },
+                {
+                    "Data": "2018-01-23T00:00:00",
+                    "Artigo": "MP002",
+                    "PrecUnit": 5,
+                    "DataEntrega": "2018-02-12T00:00:00",
+                    "Quantidade": 34.5999984741211,
+                    "QuantReserv": 0,
+                    "QuantTrans": 0,
+                    "ArtEntidade": "F0002"
+                },
+                {
+                    "Data": "2018-01-23T00:00:00",
+                    "Artigo": "MP005",
+                    "PrecUnit": 0.2,
+                    "DataEntrega": "2018-02-13T00:00:00",
+                    "Quantidade": 50,
+                    "QuantReserv": 0,
+                    "QuantTrans": 0,
+                    "ArtEntidade": "F0002"
+                },
+                {
+                    "Data": "2018-01-23T00:00:00",
+                    "Artigo": "MP004",
+                    "PrecUnit": 0.3,
+                    "DataEntrega": "2018-02-13T00:00:00",
+                    "Quantidade": 20,
+                    "QuantReserv": 0,
+                    "QuantTrans": 0,
+                    "ArtEntidade": "F0003"
+                },
+                {
+                    "Data": "2018-04-24T00:00:00",
+                    "Artigo": "A0001",
+                    "PrecUnit": 455,
+                    "DataEntrega": "2018-04-24T00:00:00",
+                    "Quantidade": 10,
+                    "QuantReserv": 0,
+                    "QuantTrans": 0,
+                    "ArtEntidade": "F0001"
+                },
+                {
+                    "Data": "2018-02-24T00:00:00",
+                    "Artigo": "A0001",
+                    "PrecUnit": 878,
+                    "DataEntrega": "2018-11-23T00:00:00",
+                    "Quantidade": 20,
+                    "QuantReserv": 0,
+                    "QuantTrans": 0,
+                    "ArtEntidade": "F0003"
+                }
+            ],
 
+            currentPurchasesValue: 0,
+            previousPurchasesValue: 0,
+            currentPurchasesValueLoading: true,
 
         };
 
@@ -93,6 +279,7 @@ class GenericDash extends Component {
             salesLoading: true,
             cashLoading: true,
             profitMarginLoading: true,
+            currentPurchasesValueLoading: true,
         })
 
         this.updateYear(value);
@@ -100,6 +287,7 @@ class GenericDash extends Component {
             function() {
                 this.updateSales(this.state.month);
                 this.updateFinancial(value, this.state.month);
+                this.updatePurchases(value, this.state.month);
             }
             .bind(this),
             100
@@ -114,12 +302,14 @@ class GenericDash extends Component {
             salesLoading: true,
             cashLoading: true,
             profitMarginLoading: true,
+            currentPurchasesValueLoading: true,
         })
         
         setTimeout(
             function() {
                 this.updateSales(value);
-                this.updateFinancial(this.state.year, this.state.month);
+                this.updateFinancial(this.state.year, value);
+                this.updatePurchases(this.state.year, value);
             }
             .bind(this),
             100
@@ -232,10 +422,38 @@ class GenericDash extends Component {
         return json;
     }
 
+    updatePurchases(year, month){
+        this.updatePurchasesValue(year, month);
+    }
+
+    updatePurchasesValue(year, month){
+        let dates = retrieveDates(year, month);
+        let prevStartDate = dates[0][0];
+        let prevEndDate = dates[0][1];
+        let currStartDate = dates[1][0];
+        let currEndDate = dates[1][1];
+        let currPurchasesValue = 0;
+        let prevPurchasesValue = 0;
+        let purchases = this.state['purchases'];
+        //console.log(purchases);
+        for(let index = 0; index < purchases.length; index++){
+            let purchasesDate = new Date(purchases[index]["Data"]);
+            if(purchasesDate >= currStartDate && purchasesDate <= currEndDate){
+                currPurchasesValue = currPurchasesValue + purchases[index]['Quantidade']*purchases[index]['PrecUnit'];
+            }
+            else if(purchasesDate >= prevStartDate && purchasesDate <= prevEndDate){
+                prevPurchasesValue = prevPurchasesValue + purchases[index]['Quantidade']*purchases[index]['PrecUnit'];
+            }
+        }
+        this.setState({previousPurchasesValue: prevPurchasesValue.toFixed(0)});
+        this.setState({currentPurchasesValue: currPurchasesValue.toFixed(0), currentPurchasesValueLoading: false});
+    }
+
     componentDidMount() {
         this.updateYear('2018');
         this.updateSales(this.state.month);
         this.updateFinancial('2018', this.state.month);
+        this.updatePurchases('2018', this.state.month);
     }
 
     render() {
@@ -256,7 +474,7 @@ class GenericDash extends Component {
                         <KPIComponent title={'Sales Value'} type={'money'} currentValue={this.state.salesValue[0]} previousValue={this.state.salesValue[1]} loading={this.state.salesValueLoading}/>
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={834} previousValue={1000}/>
+                        <KPIComponent title={'Purchases Value'} type={'money'} currentValue={Number(this.state.currentPurchasesValue)} previousValue={Number(this.state.previousPurchasesValue)} loading={this.state.currentPurchasesValueLoading}/>
                     </Col>
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>
