@@ -7,26 +7,30 @@ import '../App.css';
 import '../styles/Common.style.css';
 
 class FinancialDash extends Component {
+
     constructor(props) {
+
         super(props);
 
         this.state = {
             year: '',
             month: '0',
 
-            totalExpenses: 0.0,
-            totalExpensesLoading: true,
-
-            totalAsset: 0.0,
-            totalAssetLoading: true,
-
             accPayable: 0.0,
             accPayableLoading: true,
 
             accReceivable: 0.0,
-            accReceivableLoading: true
+            accReceivableLoading: true,
 
-        };
+            assets: 0.0,
+            assetsLoading: true,
+
+            cash: 0.0,
+            cashLoading: true,
+
+            liabilities: 0.0,
+            liabilitiesLoading: true
+        }
 
         this.setYear = this.setYear.bind(this);
         this.changeYear = this.changeYear.bind(this);
@@ -48,7 +52,7 @@ class FinancialDash extends Component {
                     data: []
                 }
             ]
-        };
+        }
     }
 
     setYear(value) {
@@ -95,37 +99,94 @@ class FinancialDash extends Component {
 
     updateKPI(year, month) {
 
+        // Calculate total liabilities
+        this.calcLiabilities(year, month);
+
+        // Calculate cash available
+        this.calcCash(year, month);
+
+        // Calculate accounts receivable and payable
+        this.calcAccounts(year, month);
+
+        // Calculate total assets
+        this.calcAssets(year, month);
+    }
+
+    async calcLiabilities(year, month) {
+        
         const API = 'http://localhost:5000/api/';
         const funcToUse = 'sumLedgerEntries';
         const parameters = '&year=' + year + '&month=' + month;
 
-        // Get total expenses
-        fetch(API + funcToUse + '?id=6' + parameters, {
+        let account22Sum = await this.syncLedgerSum(API + funcToUse + '?id=22' + parameters);
+        let account23Sum = await this.syncLedgerSum(API + funcToUse + '?id=23' + parameters);
+        let account24Sum = await this.syncLedgerSum(API + funcToUse + '?id=24' + parameters);
+        let account25Sum = await this.syncLedgerSum(API + funcToUse + '?id=25' + parameters);
+        let account26Sum = await this.syncLedgerSum(API + funcToUse + '?id=26' + parameters);
+
+        this.setState({
+            liabilities: account22Sum[0] + account23Sum[0] + account24Sum[0] + account25Sum[0] + account26Sum[0] -
+                account22Sum[1] + account23Sum[1] + account24Sum[1] + account25Sum[1] + account26Sum[1],
+            liabilitiesLoading: false
+        })
+    }
+
+    calcCash(year, month) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        fetch(API + funcToUse + '?id=11' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ totalExpenses: data[0] - data[1], totalExpensesLoading: false }))
+            .then(data => this.setState({ cash: data[0] - data[1], cashLoading: false }))
+    }    
 
-        // Get total asset value
-        fetch(API + funcToUse + '?id=4' + parameters, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => this.setState({ totalAsset: data[0] - data[1], totalAssetLoading: false }))
+    calcAccounts(year, month) {
 
-        // Get total accounts payable
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
         fetch(API + funcToUse + '?id=22' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
-            .then(data => this.setState({ accPayable: data[1] - data[0], accPayableLoading: false }))
+            .then(data => this.setState({ accPayable: data[0] - data[1], accPayableLoading: false }))
 
-        // Get total accounts receivable
         fetch(API + funcToUse + '?id=21' + parameters, {
             method: 'GET',
         })
             .then(response => response.json())
             .then(data => this.setState({ accReceivable: data[0] - data[1], accReceivableLoading: false }))
+    }
+
+    async calcAssets(year, month) {
+
+        const API = 'http://localhost:5000/api/';
+        const funcToUse = 'sumLedgerEntries';
+        const parameters = '&year=' + year + '&month=' + month;
+
+        let account1Sum = await this.syncLedgerSum(API + funcToUse + '?id=1' + parameters);
+        let account2Sum = await this.syncLedgerSum(API + funcToUse + '?id=2' + parameters);
+        let account3Sum = await this.syncLedgerSum(API + funcToUse + '?id=3' + parameters);
+
+        this.setState({
+            assets: account1Sum[0] + account2Sum[0] + account3Sum[0] - account1Sum[1] + account2Sum[1] + account3Sum[1],
+            assetsLoading: false
+        })
+    }
+
+    async syncLedgerSum(URL) {
+
+        const response = await fetch(URL, {
+            method: 'GET',
+        })
+
+        const json = await response.json();
+        return json;
     }
 
     componentDidMount() {
@@ -146,15 +207,15 @@ class FinancialDash extends Component {
                 <Row style={{ 'marginTop': '5vh' }}>
                     <Col xs={{ size: 1 }} />
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Cash'} type={'money'} currentValue={1645} previousValue={1000}/>
+                        <KPIComponent title={'Cash'} type={'money'} currentValue={this.state.cash} previousValue={1000} loading={this.state.cashLoading} />
                     </Col>
                     <Col md={{ size: 5 }} xl className='columnStack'>
-                        <KPIComponent title={'Total Assets'} type={'money'} currentValue={834} previousValue={1000}/>
+                        <KPIComponent title={'Total Assets'} type={'money'} currentValue={this.state.assets} previousValue={1000} loading={this.state.assetsLoading} />
                     </Col>
                     <Col xs={{ size: 1 }} className='d-xl-none'/>
                     <Col xs={{ size: 1 }} md className='d-xl-none'/>
                     <Col md={{ size: 5 }} xl >
-                        <KPIComponent title={'Total Liabilities'} type={'money'} currentValue={2075} previousValue={1000}/>
+                        <KPIComponent title={'Total Liabilities'} type={'money'} currentValue={this.state.liabilities} previousValue={1000} loading={this.state.liabilitiesLoading} />
                     </Col>
                     <Col md className='d-xl-none' />
                     <Col xl={{ size: 1 }} />
