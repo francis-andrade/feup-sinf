@@ -162,7 +162,8 @@ function sumLedgerEntries(accountIDToSum, strYear, strMonth) {
 
     // Get whole document as xml-query object
     let xq;
-    if(strYear === currentYear) {
+
+    if(strYear == currentYear) {
         xq = xmlQuery(parsedXML[currSAFT]);
     } else {
         if(!isPreviousAvailable) return [0, 0];
@@ -254,8 +255,8 @@ app.get('/api/sumLedgerEntries', (req, res) => {
     // Find previous time period
     let prevYear = '0';
     let prevMonth = '0';
-    if(req.query.month != 0) {
-       let previousDate = new Date(req.query.year, req.query.month - 1);
+    if(req.query.month != '0') {
+       let previousDate = new Date(req.query.year, (parseInt(req.query.month) - 1).toString());
        previousDate = previousMonth(previousDate);
        prevYear = previousDate.getFullYear();
        prevMonth = previousDate.getMonth() + 1;
