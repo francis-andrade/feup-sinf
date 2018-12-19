@@ -96,7 +96,14 @@ class SalesDash extends Component {
             salesLoaded: false,
         })
         this.updateYear(value);
-        this.update(this.state.month);
+
+        setTimeout(
+            function() {
+                this.update(this.state.month);
+            }
+            .bind(this),
+            100
+        );
 
     }
 
@@ -126,7 +133,13 @@ class SalesDash extends Component {
             salesLoaded: false,
         })
 
-        this.update(value);
+        setTimeout(
+            function() {
+                this.update(value);
+            }
+            .bind(this),
+            100
+        );
     }
 
 
@@ -173,6 +186,7 @@ class SalesDash extends Component {
 
         this.setState(newState);
         
+        console.log(this.state)
     }
 
     async requestServer(URL, m) {
