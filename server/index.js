@@ -308,22 +308,21 @@ app.post('/api/SalesValue', function(req, res){
                     let invoiceTotal = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
                     previousResult += invoiceTotal;
                 }
-                else if ((month == 1 || month == 0) && isPreviousAvailable){
-                    const lastYear = xmlQuery(parsedXML[previousSAFT]);
-                    let lastAllInvoices = lastYear.find('SalesInvoices').first().children().find('Invoice');
+            }
+            if ((month == 1 || month == 0) && isPreviousAvailable){
+                const lastYear = xmlQuery(parsedXML[previousSAFT]);
+                let lastAllInvoices = lastYear.find('SalesInvoices').first().children().find('Invoice');
 
-                    for (let j=0; j < lastAllInvoices.size(); j++){
-                        invoiceMonth = getSalesMonth(lastAllInvoices.eq(j).find('InvoiceDate').text());
-                        invoiceType = lastAllInvoices.eq(j).find('InvoiceType').children().text();
-                        if (invoiceType != 'NC'){
-                            
-                            if (invoiceMonth == 12 || month == 0){
-                                let invoiceTotal = Number(lastAllInvoices.eq(j).find('DocumentTotals').children().find('NetTotal').text());
-                                previousResult += invoiceTotal;  
-                            }
-                        }    
-                    }
-                    
+                for (let j=0; j < lastAllInvoices.size(); j++){
+                    invoiceMonth = getSalesMonth(lastAllInvoices.eq(j).find('InvoiceDate').text());
+                    invoiceType = lastAllInvoices.eq(j).find('InvoiceType').children().text();
+                    if (invoiceType != 'NC'){
+                        
+                        if (invoiceMonth == 12 || month == 0){
+                            let invoiceTotal = Number(lastAllInvoices.eq(j).find('DocumentTotals').children().find('NetTotal').text());
+                            previousResult += invoiceTotal;  
+                        }
+                    }    
                 }
             }    
         }
@@ -356,29 +355,31 @@ app.post('/api/backlogValue', function(req, res) {
                     let invoiceTotal = Number(allInvoices.eq(i).find('DocumentTotals').children().find('NetTotal').text());
                     previousResult += invoiceTotal;
                 }
-                else if ((month == 1 || month == 0) && isPreviousAvailable){
-                    const lastYear = xmlQuery(parsedXML[previousSAFT]);
-                    let lastAllInvoices = lastYear.find('SalesInvoices').first().children().find('Invoice');
-
-                    for (let j = 0; j < lastAllInvoices.size(); j++){
-                        invoiceMonth = getSalesMonth(lastAllInvoices.eq(j).find('InvoiceDate').text());
-                        invoiceType = lastAllInvoices.eq(j).find('InvoiceType').children().text();
-                        
-                        if (invoiceType = 'NC'){ //notas de Crédito
-                            if (invoiceMonth == 12 || month == 0){
-                                let invoiceTotal = Number(lastAllInvoices.eq(j).find('DocumentTotals').children().find('NetTotal').text());
-                                previousResult += invoiceTotal;  
-                            }
-                        }  
-                    }
-                    
-                }
             }
+
+            console.log("IsPreviousAvailable: " + isPreviousAvailable);
+            console.log("Month: " + month);
+                
+            if ((month == 1 || month == 0) && isPreviousAvailable){
+                const lastYear = xmlQuery(parsedXML[previousSAFT]);
+                let lastAllInvoices = lastYear.find('SalesInvoices').first().children().find('Invoice');
+
+                for (let j = 0; j < lastAllInvoices.size(); j++){
+                    invoiceMonth = getSalesMonth(lastAllInvoices.eq(j).find('InvoiceDate').text());
+                    invoiceType = lastAllInvoices.eq(j).find('InvoiceType').children().text();
+                    
+                    if (invoiceType == 'NC'){ //notas de Crédito
+                        if (invoiceMonth == 12 || month == 0){
+                            let invoiceTotal = Number(lastAllInvoices.eq(j).find('DocumentTotals').children().find('NetTotal').text());
+                            previousResult += invoiceTotal;  
+                        }
+                    }  
+                }
+                
+            }
+            
         }    
     }
-    
-    console.log("Current Sales Value: " + result);
-    console.log("Previous Sales Value: " + previousResult);
 
     //console.log(result);
     res.send([result, previousResult]); 

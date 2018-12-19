@@ -17,7 +17,7 @@ class SalesDash extends Component {
 
             salesValue: [0, 0],
             salesValueLoaded: false,
-            backlogValue : [0, 0],
+            backlogValue : [100, 0],
             backlogValueLoaded: false,
 
         
