@@ -10,3 +10,7 @@ export const retrieveDates = (year, month) => {
     }
 };
 
+export const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
